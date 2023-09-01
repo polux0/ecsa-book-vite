@@ -8,6 +8,8 @@ export default defineConfig({
     rollupOptions: {
       // manual chunks for entries
       input: {
+        'index': path.resolve(__dirname, 'index.html'),  // Add this line
+        'main': path.resolve(__dirname, 'main.js'),  
         ...getFilesFromDir('web3'),
         ...getFilesFromDir('db'),
         ...getFilesFromDir('ux'),
