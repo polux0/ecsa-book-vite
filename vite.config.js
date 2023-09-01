@@ -27,12 +27,18 @@ export default defineConfig({
         // { src: '/glossary.json', dest: 'dist/' },
         // { src: '/audiobook', dest: 'dist/audiobook' },
         // { src: '/css', dest: 'dist/css' },
-        { src: 'imgs/*', dest: 'dist/imgs' },
-        { src: 'orbs/*', dest: 'dist/orbs' },
-        { src: '/book/imgs/*', dest: 'dist/book/imgs' },
-        { src: 'glossary.json', dest: 'dist/' },
-        { src: 'audiobook/*', dest: 'dist/audiobook' },  // If 'audiobook' is a directory, use a wildcard to copy all its contents.
-        { src: 'css/*', dest: 'dist/css' },  // If 'css' is a directory, use a wildcard to copy all its contents.
+        // { src: 'imgs/*', dest: 'dist/imgs' },
+        // { src: 'orbs/*', dest: 'dist/orbs' },
+        // { src: '/book/imgs/*', dest: 'dist/book/imgs' },
+        // { src: 'glossary.json', dest: 'dist/' },
+        // { src: 'audiobook/*', dest: 'dist/audiobook' },  // If 'audiobook' is a directory, use a wildcard to copy all its contents.
+        // { src: 'css/*', dest: 'dist/css' },  // If 'css' is a directory, use a wildcard to copy all its contents.
+        { src: 'imgs/*', dest: 'imgs' },         // Just 'imgs', not 'dist/imgs'
+        { src: 'orbs/*', dest: 'orbs' },
+        { src: '/book/imgs/*', dest: 'book/imgs' },         // Just 'orbs', not 'dist/orbs'
+        { src: 'glossary.json', dest: '' },      // Just '' to place directly under dist/
+        { src: 'audiobook/*', dest: 'audiobook' },
+        { src: 'css/*', dest: 'css' },
 
       ]
     })
