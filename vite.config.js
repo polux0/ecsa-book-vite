@@ -21,12 +21,19 @@ export default defineConfig({
   plugins: [
     viteStaticCopy({
       targets: [
-        { src: '/imgs/*', dest: 'dist/imgs' },
-        { src: '/orbs/*', dest: 'dist/orbs' },
+        // { src: '/imgs/', dest: 'dist/imgs' },
+        // { src: '/orbs/', dest: 'dist/orbs' },
+        // { src: '/book/imgs/*', dest: 'dist/book/imgs' },
+        // { src: '/glossary.json', dest: 'dist/' },
+        // { src: '/audiobook', dest: 'dist/audiobook' },
+        // { src: '/css', dest: 'dist/css' },
+        { src: 'imgs/*', dest: 'dist/imgs' },
+        { src: 'orbs/*', dest: 'dist/orbs' },
         { src: '/book/imgs/*', dest: 'dist/book/imgs' },
-        { src: '/glossary.json', dest: 'dist/' },
-        { src: '/audiobook', dest: 'dist/' },
-        { src: '/css', dest: 'dist/' },
+        { src: 'glossary.json', dest: 'dist/' },
+        { src: 'audiobook/*', dest: 'dist/audiobook' },  // If 'audiobook' is a directory, use a wildcard to copy all its contents.
+        { src: 'css/*', dest: 'dist/css' },  // If 'css' is a directory, use a wildcard to copy all its contents.
+
       ]
     })
   ],
