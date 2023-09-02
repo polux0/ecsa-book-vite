@@ -1,15 +1,7 @@
-import './css/medium.css'
-import './css/reset.css'
-import './css/small.css'
-import './css/style.css'
-// Dynamically import all PNG and JPG images from the 'orbs' directory
-// const importedOrbs = import.meta.globEager('/src/orbs/*.png');
-// const importedOrbsJpg = import.meta.globEager('/src/orbs/*.jpg');
-
-// // Combine PNG and JPG imports (if you have both formats)
-// const allOrbs = { ...importedOrbs, ...importedOrbsJpg };
-
-// main.js
+// import './css/medium.css'
+// import './css/reset.css'
+// import './css/small.css'
+// import './css/style.css'
 
 // Import all modules from the specified directories
 const utilsModules = import.meta.glob('/src/utils/*.js');
