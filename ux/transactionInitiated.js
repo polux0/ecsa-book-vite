@@ -1,7 +1,3 @@
-
-import exampleImage from '../imgs/logo.png';
-console.log(exampleImage);
-
 const transactionInitiated = async function(tokenId) {
     const buttons = document.querySelectorAll(`#publishUnit${tokenId}`);
     console.log('buttons we were searching for: ', `#publishUnit${tokenId}`)
