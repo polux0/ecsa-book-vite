@@ -903,7 +903,7 @@ const mintById = async (tokenId, choosePrice) => {
           buttons.forEach(function(button) {
             // Apply changes to each element
             if(button) {
-              button.innerHTML = `Publish unit #${tokenId}`;
+              button.innerHTML = `publish unit #${tokenId}`;
               // test
           } else {
               console.warn(`Button with ID ${button} not found.`);

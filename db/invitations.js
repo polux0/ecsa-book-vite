@@ -12,7 +12,6 @@ async function isInvitationValid(invitationValue) {
             .limit(1);
         
         if (error) throw error;
-        console.log('supabase data response: ', data);
         return data && data.length > 0;
     } catch (error) {
         console.error("Error checking invitation validity:", error);

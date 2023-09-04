@@ -71,30 +71,29 @@
             </button>
         </div>
     </div>
-    <div id="congratzOverlay" style="display:none">
-        <button id="congratzOverlayClose" style="display:none">X</button>
-        <div id="congratzOverlayContent" style="display:none; text-align: center;">
-            <!-- Price Tiers Selection -->
-            <br>
-            <li id="congratzMessage" style="display: none; margin-top:20px">
+    <div id="congratzOverlay" class="overlay">
+        <button id="congratzOverlayClose" class="close-btn">X</button>
+        
+        <div id="congratzOverlayContent" class="overlay-content">
+            <p id="congratzMessage" class="message">
                 Congrats, you've become an Econaut!
-            </li>
-            <li id="congratzInvitationText" style="display: block; margin-top:20px">
-                If you'd like to engange more econauts in the discourse:
-            </li>
-            <li id="congratzInvitation1" style="display: block; margin-top:20px">
-                Congrats, you've become Econaut!
-            </li>
-            <li id="congratzInvitation2" style="display: block; margin-top:20px">
-                Congrats, you've become Econaut!
-            </li>
-            <li id="congratzInvitation3" style="display: block; margin-top:20px">
-                Congrats, you've become Econaut!
-            </li>
-        </div>
-        <div style="text-align:center;margin-top:70px">
+            </p>
+            
+            <p id="congratzInvitationText" class="invitation-text">
+                If you'd like to engage more econauts in the discourse:
+            </p>
+            
+            <div class="invitation-container">
+                <p class="invitation-link" id="invitation-link1">https://ecsa-book.vercel.app/?invitationId=?XfcOkv2s7gIF4D9Z2HKXpRLpvJCZUlntmWhAz6KgGe585n7kbHRYwT9lougYXaRp</p><br>
+                <p class="invitation-link" id="invitation-link2">https://ecsa-book.vercel.app/?invitationId=?XfcOkv2s7gIF4D9Z2HKXpRLpvJCZUlntmWhAz6KgGe585n7kbHRYwT9lougYXaRp</p><br>
+                <p class="invitation-link" id="invitation-link3">https://ecsa-book.vercel.app/?invitationId=?XfcOkv2s7gIF4D9Z2HKXpRLpvJCZUlntmWhAz6KgGe585n7kbHRYwT9lougYXaRp</p><br>
+                <button class="copy-button" id="copyButton">Copy invitations</button>
+            </div>
+            <img src="https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="NFT Representation" class="nft-image" id="nft-image">
+
         </div>
     </div>
+    
     <!---end priceTierOverlay -->
     <nav id="mainNav">
         <button class="mainNavButton" data-target="navECSA"><span>ECSA</span></button>
@@ -7251,19 +7250,30 @@
     }
 </script>
 
-<!-- <script type="module" src="main.js"></script> -->
 
-<!-- <script type="module" src="/util/nav.js"></script>
-<script type="module" src="/util/script.js"></script>
-<script type="module" src="/util/tierSubmitSelection.js"></script> -->
+<!-- util -->
+<script type="module" src="util/nav.js"></script>
+<script type="module" src="util/script.js"></script>
+<script type="module" src="util/tierSubmitSelection.js"></script>
 
-<script type="module" src="main.js"></script>
+<!-- ux -->
+<script type="module" src="ux/transactionInitiated.js"></script>
+<script type="module" src="ux/revertMintingAnimation.js"></script>
+<script type="module" src="ux/openCongratzOverlay.js"></script>
+<script type="module" src="ux/copyInvitations.js"></script>
+<script type="module" src="ux/getAnNFTViaOpenSea.js"></script>
+
+<!-- web3 -->
+<script type="module" src="web3/connectWallet.js"></script>
+<script type="module" src="web3/getMintedTokens.js"></script>
+<script type="module" src="web3/isTokenReserved.js"></script>
+<script type="module" src="web3/areReservationsActive.js"></script>
+<script type="module" src="web3/areInvitationsActive.js"></script>
+<script type="module" src="web3/mintByReservation.js"></script>
+<script type="module" src="web3/mintByInvitation.js"></script>
+<script type="module" src="web3/mintById.js"></script>
 
 <link rel="stylesheet" href="./css/medium.css">
 <link rel="stylesheet" href="./css/reset.css">
 <link rel="stylesheet" href="./css/small.css">
 <link rel="stylesheet" href="./css/style.css">
-
-
-
-

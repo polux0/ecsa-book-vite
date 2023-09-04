@@ -469,9 +469,6 @@ fetch('glossary.json')
         unitsPublishButtons[p].classList.add('unitPublishButton');
       }
       unitsPublishButtons[p].style.display = 'none';
-      // was before
-      // unitsPublishButtons[p].id = `publishUnit${p}`;
-      // Aleksa added
       unitsPublishButtons[p].id = `publishUnit${p+1}`; 
         if(!bool){
           unitsPublishButtons[p].innerHTML = `publish unit #${p+1}`;
@@ -480,6 +477,15 @@ fetch('glossary.json')
                 document.getElementById('priceTierOverlay').style.display = 'block';
                 document.getElementById('priceTierOverlayClose').style.display = 'block';
                 document.getElementById('priceTierContent').style.display = 'block';
+                const mintingError = document.getElementById('tiersErrorMessage');
+                const tiersSubmitButton = document.getElementById('tiersSubmitButton');
+                if(mintingError){
+                    mintingError.innerHTML = "";
+                }
+                if(tiersSubmitButton){
+                    console.log('this happened!');
+                    tiersSubmitButton.innerHTML = "Mint";
+                }
                 localStorage.setItem('tokenId', `${p+1}`);
               } catch (error) {
                     console.log("Trying to handle errors with magic:", error);
@@ -506,7 +512,6 @@ let econMedia = false;
 const bookOrbsButton = document.getElementById('bookOrbsButton');
 
 bookOrbsButton.onclick = function(){
-  console.log('this happened');
   this.classList.toggle('activeButton');
   // remove already minted tokenIds
   if(econMedia){

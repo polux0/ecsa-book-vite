@@ -298,7 +298,6 @@ const isTokenReserved = async (tokenId) => {
     const provider = new ethers.AlchemyProvider("sepolia", RPC_URL);
     const reservationContract = new ethers.Contract(RESERVATION_CONTRACT_ADDRESS, contractABI, provider);
     const isTokenReserved = await reservationContract.isReserved(tokenId);
-    console.log("is token reserved: ", isTokenReserved);
     return isTokenReserved;
 }
 

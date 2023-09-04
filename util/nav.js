@@ -1,7 +1,6 @@
-
+import {copyInvitations} from "../ux/copyInvitations";
 function initiateListeners(){
     document.addEventListener("DOMContentLoaded", function () {
-        console.log('DOMContentLoaded');
         let aboutButton = document.getElementById("aboutButton");
         let aboutOverlay = document.getElementById("aboutOverlay");
         let aboutOverlayClose = document.getElementById("aboutOverlayClose");
@@ -16,6 +15,7 @@ function initiateListeners(){
         let congratzOverlay = document.getElementById("congratzOverlay");
         let congratzOverlayClose = document.getElementById("congratzOverlayClose");
         let congratzOverlayContent = document.getElementById("congratzOverlayContent");
+        let copyButton = document.getElementById("copyButton");
     
         aboutButton.addEventListener("click", function () {
             aboutOverlay.style.display = "block";
@@ -42,25 +42,28 @@ function initiateListeners(){
                 footNotesAndAudiobook.classList.remove('blur-background');
             }
         });
-            // Add blur class to each element immediately when page loads
-            bookIndex.classList.add('blur-background'); 
-            bookContent.classList.add('blur-background');
-            footNotesAndAudiobook.classList.add('blur-background'); 
-    
-            // web3 related
-            priceTierOverlayClose.addEventListener("click", function () {
-                console.log('priceTierOverlayClose did happen');
-                priceTierOverlay.style.display = "none";
-                priceTierContent.style.display = "none";
-                tiersErrorMessage.innerHtml = "";
-                tiersErrorMessage.style.display = "none";
-            })
-            // congratz closed
-            congratzOverlayClose.addEventListener("click", function () {
-                congratzOverlay.style.display = "none";
-                congratzOverlayClose.style.display = "none";
-                congratzOverlayContent.style.display = "none";
-            })
+        // Add blur class to each element immediately when page loads
+        bookIndex.classList.add('blur-background'); 
+        bookContent.classList.add('blur-background');
+        footNotesAndAudiobook.classList.add('blur-background'); 
+
+        // web3 related
+        priceTierOverlayClose.addEventListener("click", function () {
+            priceTierOverlay.style.display = "none";
+            priceTierContent.style.display = "none";
+            tiersErrorMessage.innerHtml = "";
+            tiersErrorMessage.style.display = "none";
+        })
+        // congratz closed
+        congratzOverlayClose.addEventListener("click", function () {
+            congratzOverlay.style.display = "none";
+            congratzOverlayClose.style.display = "none";
+            congratzOverlayContent.style.display = "none";
+        })
+
+        copyButton.addEventListener("click", function (event) {
+            copyInvitations();
+        });
     });    
 }
 initiateListeners();

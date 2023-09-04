@@ -1,11 +1,8 @@
 const transactionInitiated = async function(tokenId) {
     const buttons = document.querySelectorAll(`#publishUnit${tokenId}`);
-    console.log('buttons we were searching for: ', `#publishUnit${tokenId}`)
-    console.log('buttons: ', buttons);
     buttons.forEach(function(button) {
         if(button) {
             button.className = 'buttonload';
-            
             button.innerHTML = `<i class="fa fa-circle-o-notch fa-spin"></i>Minting...`;
             applyStyles(button);
     } else {

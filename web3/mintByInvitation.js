@@ -2,7 +2,9 @@ import { ethers } from 'ethers';
 import {getNextThreeInvitations, setInvitationInvitedBy, setInvitationUsed, getInvitationByInvitationValue} from '../db/invitations';
 import { connectWallet } from './connectWallet';
 import { transactionInitiated } from '../ux/transactionInitiated.js';
-
+import {revertMintingAnimation} from '../ux/revertMintingAnimation';
+import { openCongratzOverlay } from '../ux/openCongratzOverlay';
+import {getAnNFTViaOpenSea} from '../ux/getAnNFTViaOpenSea';
 
 const mintByInvitation = async (tokenId, invitationId, choosePrice) => {
 
@@ -829,8 +831,10 @@ const mintByInvitation = async (tokenId, invitationId, choosePrice) => {
             gasLimit: 12000000,
             value: choosenPriceWei
         });
-        const receipt = await transaction.wait();
+
+        document.getElementById('priceTierOverlayClose').click();
         transactionInitiated(tokenId);
+        const receipt = await transaction.wait();
         if (receipt && receipt.status == 1) {
           const buttons = document.querySelectorAll(`#publishUnit${tokenId}`);
           buttons.forEach(function(button) {
@@ -849,50 +853,67 @@ const mintByInvitation = async (tokenId, invitationId, choosePrice) => {
           threeNewInvitations.forEach(element => {
           setInvitationInvitedBy(initial[0].id, element.value);
           for (let i = 1; i <= 3; i++) {
-            let element = document.getElementById(`congratzInvitation${i}`);
+            let element = document.getElementById(`invitation-link${i}`);
             element.innerHTML = `${import.meta.env.VITE_INVITATION_URL}${threeNewInvitations[i-1].value}`;
         }
         }); 
         } catch (error) {
           console.log('operations with invitation storage failed...');
         }
-          // close mint overlay!
-          document.getElementById('priceTierOverlayClose').click();
-          // open congratz overlay!
-          congratzOverlay.style.display = "block";
-          congratzOverlayClose.style.display = "block";
-          congratzOverlayContent.style.display = "block";
-          // enable message to be seen
-          congratzMessage.style.display = "block";
+        // close mint overlay!
+        document.getElementById('priceTierOverlayClose').click();
+        // open congratz overlay!
+        // try to display the nft
+        try {
+          let nft = await getAnNFTViaOpenSea(tokenId);
+          console.log('mint by invitation, response from opensea: ', nft);
+          let nftElement = document.getElementById('nft-image');
+          if(nftElement){
+            nftElement.src = nft.image_url;
+          }
+        } catch (error) {
+          console.log('displaying NFT as an image silently failed...');
+        }
+
+        openCongratzOverlay();
         }
     }
     catch (error) {
-        if (error.code === 4001) {
+        if (error.code == "ACTION_REJECTED") {
             console.log('Transaction was rejected by the user.');
         } else if (error.message.includes("wrong chain") || error.message.includes("network mismatch")) {
             console.log('You are on the wrong network. Please switch your network.');
         } else if (error.message.includes("insufficient funds")) {
             console.log('You do not have enough funds. Consider switching to a network with enough balance.');
         } else {
-          if (error.code === 4001) {
+          if (error.code == "ACTION_REJECTED") {
             console.log('Transaction was rejected by the user.');
-            mintingError.style.display = "block";
-            mintingError.innerHTML = "Transaction failed. Would you retry?"
+          }else{
+              // here transaction fails:
+              // 1. revert minting animation
+              revertMintingAnimation(tokenId);
+              // 2. reopen tierSubmitSelectionOverlay, and set it's error message. 
+              document.getElementById('priceTierOverlay').style.display = 'block';
+              document.getElementById('priceTierOverlayClose').style.display = 'block';
+              document.getElementById('priceTierContent').style.display = 'block';
+              const mintingError = document.getElementById('tiersErrorMessage');
+              const tiersSubmitButton = document.getElementById('tiersSubmitButton');
+              if(mintingError){
+                mintingError.innerHTML = "It happens that transactions fail sometimes. Would you retry?"
+                mintingError.style.display = "block";
+              }
+              if(tiersSubmitButton){
+                const tiersSubmitButton = document.getElementById('tiersSubmitButton');
+                tiersSubmitButton.innerHTML = "Retry";
+              }
+              // save tier so we don't have to present it again:
+              const selectedTier = document.querySelector('#priceTiers input[type="radio"]:checked');
+              if (selectedTier) {
+                console.log('selectedTier, minting again: ', selectedTier.value);
+                localStorage.setItem('chosenPrice', selectedTier.value);
+              }
           }
-          const mintingError = document.getElementById('tiersErrorMessage');
-          console.log('minting error: ', mintingError);
-          const buttons = document.querySelectorAll(`#publishUnit${tokenId}`);
-          buttons.forEach(function(button) {
-            // Apply changes to each element
-            if(button) {
-              button.innerHTML = `Publish unit #${tokenId}`;
-              // test
-          } else {
-              console.warn(`Button with ID ${button} not found.`);
-          }
-            
-          });
-            console.log('An error occurred:', error);
+
         }
     }
 }

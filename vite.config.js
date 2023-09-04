@@ -1,5 +1,9 @@
 import { defineConfig } from 'vite'
 import { viteStaticCopy } from 'vite-plugin-static-copy'
+import svgr from '@svgr/rollup';
+import svgLoader from 'vite-svg-loader';
+
+
 import path from 'path'
 import { readdirSync } from 'fs'
 
@@ -9,7 +13,7 @@ export default defineConfig({
       // manual chunks for entries
       input: {
         'index': path.resolve(__dirname, 'index.html'),  // Add this line
-        'main': path.resolve(__dirname, 'main.js'),  
+        // 'main': path.resolve(__dirname, 'main.js'),  
         ...getFilesFromDir('web3'),
         ...getFilesFromDir('db'),
         ...getFilesFromDir('ux'),
@@ -21,27 +25,15 @@ export default defineConfig({
   plugins: [
     viteStaticCopy({
       targets: [
-        // { src: '/imgs/', dest: 'dist/imgs' },
-        // { src: '/orbs/', dest: 'dist/orbs' },
-        // { src: '/book/imgs/*', dest: 'dist/book/imgs' },
-        // { src: '/glossary.json', dest: 'dist/' },
-        // { src: '/audiobook', dest: 'dist/audiobook' },
-        // { src: '/css', dest: 'dist/css' },
-        // { src: 'imgs/*', dest: 'dist/imgs' },
-        // { src: 'orbs/*', dest: 'dist/orbs' },
-        // { src: '/book/imgs/*', dest: 'dist/book/imgs' },
-        // { src: 'glossary.json', dest: 'dist/' },
-        // { src: 'audiobook/*', dest: 'dist/audiobook' },  // If 'audiobook' is a directory, use a wildcard to copy all its contents.
-        // { src: 'css/*', dest: 'dist/css' },  // If 'css' is a directory, use a wildcard to copy all its contents.
         { src: 'imgs/*', dest: 'imgs' },         // Just 'imgs', not 'dist/imgs'
         { src: 'orbs/*', dest: 'orbs' },
         { src: '/book/imgs/*', dest: 'book/imgs' },         // Just 'orbs', not 'dist/orbs'
         { src: 'glossary.json', dest: '' },      // Just '' to place directly under dist/
         { src: 'audiobook/*', dest: 'audiobook' },
         { src: 'css/*', dest: 'css' },
-
       ]
-    })
+    }),
+    svgr(),svgLoader()
   ],
   server: {
     port: 3000,

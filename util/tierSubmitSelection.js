@@ -12,24 +12,20 @@ async function submitSelection() {
     // clear all previous error messages
     const tokenId = localStorage.getItem('tokenId');
     const mintingError = document.getElementById('tiersErrorMessage');
+    const tiersSubmitButton = document.getElementById('tiersSubmitButton');
     if(mintingError){
         mintingError.innerHTML = "";
     }
     const errors = [];
     if (window.ethereum) {
-        console.log('Ethereum support is available')
         if (window.ethereum.isMetaMask) {
-          console.log('MetaMask is active')
         } else {
-            console.log('MetaMask is not available')
             if(mintingError){
                 mintingError.innerHTML = "Metamask is not available, please install it";
             }
-            console.log('MetaMask is not available')
         }
       } else {
-        errors.push('Metamask is not available, please install it');
-        console.log('Ethereum support is not found')
+        errors.push('Metamask is not available, please install it. https://metamask.io/download/');
         if(mintingError){
             mintingError.innerHTML = "Metamask is not available, please install it. https://metamask.io/download/";
             mintingError.style.display = "block";
@@ -48,11 +44,9 @@ async function submitSelection() {
         let chosenPrice;
 
         if (selectedTier) {
-            console.log(`Selected Tier: ${selectedTier.value}`);
             chosenPrice = selectedTier.value;
             mintingError.style.display = "block";
         } else {
-            console.log("No price tier selected!");
             errors.push("Please select a price tier before proceeding.");
             const mintingError = document.getElementById('tiersErrorMessage');
             mintingError.innerHTML = "Please select a price tier before proceeding.";
@@ -65,17 +59,13 @@ async function submitSelection() {
                 if (reservationId) {
                     // is reservationValid should be changed to take into account ReservationContract as well
                     let validReservation = await isReservationValidForTokenId(reservationId, parseInt(tokenId, 10));
-                    console.log('is valid reservation: ', validReservation);
                     if (validReservation) {
-                        console.log("It's a valid reservation, mint by reservation!");
                         mintByReservation(parseInt(tokenId, 10), reservationId, chosenPrice);
                         return;
                     } else {
-                        console.log("Invalid reservation!");
                         errors.push("Invalid reservation!");
                     }
                 } else {
-                    console.log("Reservations are active but no reservation is provided.");
                     errors.push("Reservations are active but no reservation is provided.");
                 }
             }
@@ -83,30 +73,23 @@ async function submitSelection() {
             if (invitationsActive) {
                 if (invitationId) {
                     let validInvitation = await isInvitationValid(invitationId);
-                    console.log('valid invitation? ', validInvitation);
                     if (validInvitation) {
                         const tokenReserved = await isTokenReserved(tokenId);
-                        console.log(`is token reserved, ${tokenId}? `, tokenReserved);
-                        console.log(`is reservation active? `, reservationsActive);
                         if (tokenReserved && reservationsActive) {
-                            console.log("Token is reserved. Invitation not enough!");
                             errors.push("Token is reserved. Invitation not enough!");
                         } else {
                             mintByInvitation(parseInt(tokenId, 10), invitationId, chosenPrice);
                             return;
                         }
                     } else {
-                        console.log("Invalid invitation!");
                         errors.push("Invalid invitation!");
                     }
                 } else if (!reservationId) { // If no reservationId was provided earlier
-                    console.log("Invitations are active, but no invitation is provided.");
                     errors.push("Invitations are active, but no invitation is provided.");
                 }
             }
     
             if (!reservationsActive && !invitationsActive) {
-                console.log("Mint by ID!");
                 await mintById(tokenId, chosenPrice);
                 return;
             }
