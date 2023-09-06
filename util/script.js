@@ -530,15 +530,16 @@ const activateNFTs = function(){
     map.style.display = 'grid';
     toc.style.display = 'none';
 
-    for(let u = 0; u <units.length; u++){
+    console.log('units.length: ', units.length)
+    for(let u = 1; u <units.length; u++){
       units[u].style.borderBottom = '1px solid var(--c2)';
      }
 
-    for(let n = 0; n <unitNFTs.length; n++){
+    for(let n = 1; n <unitNFTs.length; n++){
      unitNFTs[n].style.display = 'inline-block';
     }
 
-    for(let b = 0; b <unitsPublishButtons.length; b++){
+    for(let b = 1; b <unitsPublishButtons.length; b++){
       // here
       unitsPublishButtons[b].style.display = 'inline-block';
      }
@@ -547,14 +548,14 @@ const activateNFTs = function(){
     map.style.display = 'none';
     toc.style.display = 'block';
 
-    for(let u = 0; u <units.length; u++){
+    for(let u = 1; u <units.length; u++){
       units[u].style.borderBottom = 'none';
      }
 
-    for(let n = 0; n <unitNFTs.length; n++){
+    for(let n = 1; n <unitNFTs.length; n++){
      unitNFTs[n].style.display = 'none';
     }
-    for(let b = 0; b <unitsPublishButtons.length; b++){
+    for(let b = 1; b <unitsPublishButtons.length; b++){
       unitsPublishButtons[b].style.display = 'none';
      }
   }
