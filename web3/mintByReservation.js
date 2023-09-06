@@ -3,19 +3,11 @@ import { getNextThreeInvitations, setInvitationInvitedByReservation } from '../d
 import { setReservationUsed, getReservationByReservationValue } from "../db/reservations";
 import { connectWallet } from './connectWallet';
 import { transactionInitiated } from '../ux/transactionInitiated.js';
-
+import { openCongratzOverlay } from '../ux/openCongratzOverlay';
+import { getAnNFTViaOpenSea } from '../ux/getAnNFTViaOpenSea';
 const mintByReservation = async (tokenId, reservationId, choosePrice) => {
     await connectWallet();
-    if (window.ethereum) {
-      console.log('Ethereum support is available')
-      if (window.ethereum.isMetaMask) {
-        console.log('MetaMask is active')
-      } else {
-        console.log('MetaMask is not available')
-      }
-    } else {
-      console.log('Ethereum support is not found')
-    }
+    
     const provider = new ethers.BrowserProvider(window.ethereum);
     const signer = await provider.getSigner();
     const contractAddress = import.meta.env.VITE_NFT_CONTRACT_ADDRESS;
@@ -814,6 +806,13 @@ const mintByReservation = async (tokenId, reservationId, choosePrice) => {
         if(choosePrice == price2){
           choosenPriceWei = ethers.parseEther(price2.toString());
         }
+        const mintingError = document.getElementById('tiersErrorMessage');
+        mintingError.innerHTML = ""
+        
+        const expectedNetworkId = '0xaa36a7';
+        const expectedNetworkIdNumber = 11155111n;
+        const currentNetworkId = await provider.getNetwork().then(net => net.chainId);
+
         if (currentNetworkId !== expectedNetworkIdNumber) {
           try {
              const changed = await window.ethereum.request({ method: 'wallet_switchEthereumChain', params: [{ chainId: expectedNetworkId }] });
@@ -828,16 +827,15 @@ const mintByReservation = async (tokenId, reservationId, choosePrice) => {
             gasLimit: 12000000,
             value: choosenPriceWei
         });
-        // transactionInitiated(tokenId);
-        const receipt = await transaction.wait();
+        document.getElementById('priceTierOverlayClose').click();
         transactionInitiated(tokenId);
+        const receipt = await transaction.wait();
         if (receipt && receipt.status == 1) {
-          // remove button that was initially used to mint: 
-          // here function that will remove button copublish for this unit
           const buttons = document.querySelectorAll(`#publishUnit${tokenId}`);
           buttons.forEach(function(button) {
             // Apply changes to each element
             if(button) {
+              // test
               button.remove();
           } else {
               console.warn(`Button with ID ${button} not found.`);
@@ -847,54 +845,85 @@ const mintByReservation = async (tokenId, reservationId, choosePrice) => {
           await setReservationUsed(reservationId, signer.address);
           let initial = await getReservationByReservationValue(reservationId);
           const threeNewInvitations = await getNextThreeInvitations();
+          console.log('mintByReservation, threeNewInvitations: ', threeNewInvitations);
           threeNewInvitations.forEach(element => {
           setInvitationInvitedByReservation(initial[0].id, element.value);
           for (let i = 1; i <= 3; i++) {
-            let element = document.getElementById(`congratzInvitation${i}`);
+            let element = document.getElementById(`invitation-link${i}`);
             element.innerHTML = `${import.meta.env.VITE_INVITATION_URL}${threeNewInvitations[i-1].value}`;
         }
         }); 
         } catch (error) {
           console.log('operations with invitation storage silently failed...');
         }
-          // close mint overlay!
-          document.getElementById('priceTierOverlayClose').click();
-          // open congratz overlay!
-          congratzOverlay.style.display = "block";
-          congratzOverlayClose.style.display = "block";
-          congratzOverlayContent.style.display = "block";
-          // enable message to be seen
-          congratzMessage.style.display = "block";
+        // close mint overlay!
+        document.getElementById('priceTierOverlayClose').click();
+        // open congratz overlay!
+        // try to display the nft
+        try {
+          let nft = await getAnNFTViaOpenSea(tokenId);
+          console.log('mint by invitation, response from opensea: ', nft);
+          let nftElement = document.getElementById('nft-image');
+          if(nftElement){
+            nftElement.src = nft.image_url;
+        
+            let url = import.meta.env.VITE_CHAIN == 'sepolia' ? 'testnets.opensea.io' : 'opensea.io'; 
+            const final = `https://${url}/assets/${import.meta.env.VITE_CHAIN}/${import.meta.env.VITE_NFT_CONTRACT_ADDRESS}/${tokenId}`;
+            
+            // Create a new anchor element
+            let anchor = document.createElement('a');
+            anchor.href = final;
+            anchor.target = "_blank"; // Optional: to open in a new tab
+        
+            // Append the image to the anchor element
+            anchor.appendChild(nftElement.cloneNode(true));
+        
+            // Replace the image with the anchor in the DOM
+            nftElement.parentNode.replaceChild(anchor, nftElement);
+        }
+        } catch (error) {
+          console.log('displaying NFT as an image silently failed...');
+        }
+          openCongratzOverlay();
         }
     }
     catch (error) {
-        if (error.code === 4001) {
-            console.log('Transaction was rejected by the user.');
-        } else if (error.message.includes("wrong chain") || error.message.includes("network mismatch")) {
-            console.log('You are on the wrong network. Please switch your network.');
-        } else if (error.message.includes("insufficient funds")) {
-            console.log('You do not have enough funds. Consider switching to a network with enough balance.');
-        } else {
-          if (error.code === 4001) {
-            console.log('Transaction was rejected by the user.');
-            mintingError.style.display = "block";
-            mintingError.innerHTML = "Transaction failed. Would you retry?"
-          }
-          const mintingError = document.getElementById('tiersErrorMessage');
-          console.log('minting error: ', mintingError);
-          const buttons = document.querySelectorAll(`#publishUnit${tokenId}`);
-          buttons.forEach(function(button) {
-            // Apply changes to each element
-            if(button) {
-              button.innerHTML = `publish unit #${tokenId}`;
-              // test
-          } else {
-              console.warn(`Button with ID ${button} not found.`);
-          }
-            
-          });
-            console.log('An error occurred:', error);
+      if (error.code == "ACTION_REJECTED") {
+          console.log('Transaction was rejected by the user.');
+      } else if (error.message.includes("wrong chain") || error.message.includes("network mismatch")) {
+          console.log('You are on the wrong network. Please switch your network.');
+      } else if (error.message.includes("insufficient funds")) {
+          console.log('You do not have enough funds. Consider switching to a network with enough balance.');
+      } else {
+        if (error.code == "ACTION_REJECTED") {
+          console.log('Transaction was rejected by the user.');
+        }else{
+            // here transaction fails:
+            // 1. revert minting animation
+            revertMintingAnimation(tokenId);
+            // 2. reopen tierSubmitSelectionOverlay, and set it's error message. 
+            document.getElementById('priceTierOverlay').style.display = 'block';
+            document.getElementById('priceTierOverlayClose').style.display = 'block';
+            document.getElementById('priceTierContent').style.display = 'block';
+            const mintingError = document.getElementById('tiersErrorMessage');
+            const tiersSubmitButton = document.getElementById('tiersSubmitButton');
+            if(mintingError){
+              mintingError.innerHTML = "It happens that transactions fail sometimes. Would you retry?"
+              mintingError.style.display = "block";
+            }
+            if(tiersSubmitButton){
+              const tiersSubmitButton = document.getElementById('tiersSubmitButton');
+              tiersSubmitButton.innerHTML = "Retry";
+            }
+            // save tier so we don't have to present it again:
+            const selectedTier = document.querySelector('#priceTiers input[type="radio"]:checked');
+            if (selectedTier) {
+              console.log('selectedTier, minting again: ', selectedTier.value);
+              localStorage.setItem('chosenPrice', selectedTier.value);
+            }
         }
-    }
+
+      }
+  }
 }
 export {mintByReservation}

@@ -81,19 +81,6 @@ const contractABI = [
     "anonymous": false,
     "inputs": [
       {
-        "indexed": false,
-        "internalType": "string",
-        "name": "log",
-        "type": "string"
-      }
-    ],
-    "name": "Debugging",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
         "indexed": true,
         "internalType": "address",
         "name": "previousOwner",
@@ -354,19 +341,6 @@ const contractABI = [
         "internalType": "uint256",
         "name": "tokenId",
         "type": "uint256"
-      }
-    ],
-    "name": "mintBaseTest",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "tokenId",
-        "type": "uint256"
       },
       {
         "internalType": "uint256",
@@ -539,24 +513,6 @@ const contractABI = [
     "name": "safeTransferFrom",
     "outputs": [],
     "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address payable",
-        "name": "_to",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "amount",
-        "type": "uint256"
-      }
-    ],
-    "name": "sendViaCall",
-    "outputs": [],
-    "stateMutability": "payable",
     "type": "function"
   },
   {
@@ -780,15 +736,30 @@ const contractABI = [
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "to",
+        "type": "address"
+      }
+    ],
+    "name": "withdrawEther",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
   }
-]
+];
 
 
 // This function fetches the token IDs
 const getReservationsStatus = async () => {
     const provider = new ethers.AlchemyProvider("sepolia", RPC_URL);
     const nftContract = new ethers.Contract(NFT_CONTRACT_ADDRESS, contractABI, provider);
+    console.log('reservation status: ');
     const reservationsStatus = await nftContract.getReservationsActive();
+    console.log('reservation status: ', reservationsStatus);
     return reservationsStatus;
 }
 
@@ -802,7 +773,7 @@ const areReservationsActive = async () => {
         else return !active;
     } catch (error) {
         console.error('Error fetching invitation status:', error);
-        return [];  // return an empty array in case of an error
+        return active;  // return an empty array in case of an error
     }
 }
 export { areReservationsActive }

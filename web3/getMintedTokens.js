@@ -81,19 +81,6 @@ const contractABI = [
     "anonymous": false,
     "inputs": [
       {
-        "indexed": false,
-        "internalType": "string",
-        "name": "log",
-        "type": "string"
-      }
-    ],
-    "name": "Debugging",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
         "indexed": true,
         "internalType": "address",
         "name": "previousOwner",
@@ -354,19 +341,6 @@ const contractABI = [
         "internalType": "uint256",
         "name": "tokenId",
         "type": "uint256"
-      }
-    ],
-    "name": "mintBaseTest",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "tokenId",
-        "type": "uint256"
       },
       {
         "internalType": "uint256",
@@ -539,24 +513,6 @@ const contractABI = [
     "name": "safeTransferFrom",
     "outputs": [],
     "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address payable",
-        "name": "_to",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "amount",
-        "type": "uint256"
-      }
-    ],
-    "name": "sendViaCall",
-    "outputs": [],
-    "stateMutability": "payable",
     "type": "function"
   },
   {
@@ -780,14 +736,28 @@ const contractABI = [
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "to",
+        "type": "address"
+      }
+    ],
+    "name": "withdrawEther",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
   }
-]
+];
 
 // This function fetches the token IDs
 const fetchMintedTokenIds = async () => {
     const provider = new ethers.AlchemyProvider("sepolia", RPC_URL);
     const nftContract = new ethers.Contract(CONTRACT_ADDRESS, contractABI, provider);
     const _alreadyMintedTokenIds = await nftContract.getAlreadyMintedTokenIds();
+    console.log('already minted token ids response: ', _alreadyMintedTokenIds);
     return _alreadyMintedTokenIds;
 }
 
