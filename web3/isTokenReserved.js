@@ -291,7 +291,7 @@ const contractABI = [
       "stateMutability": "nonpayable",
       "type": "function"
     }
-  ]
+]
   
 // This function fetches if the token is reserved IDs
 const isTokenReserved = async (tokenId) => {
