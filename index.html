@@ -7229,6 +7229,7 @@
 </body>
 </html>
 <script>
+    var global = global || window
     let orbsAs = [];
     let orbsImgs = [];
     const orbNumber = 741;
@@ -7249,7 +7250,6 @@
        
     }
 </script>
-
 
 <!-- util -->
 <script type="module" src="util/nav.js"></script>
@@ -7273,8 +7273,19 @@
 <script type="module" src="web3/mintByInvitation.js"></script>
 <script type="module" src="web3/mintById.js"></script>
 
+<!-- validation -->
+<script type="module" src="validation/displayError.js"></script>
+<script type="module" src="validation/getChosenPrice.js"></script>
+<script type="module" src="validation/handleInvitations.js"></script>
+<script type="module" src="validation/handleReservations.js"></script>
+
+<!-- web3/blocknative -->
+<script type="module" src="web3/blocknative/onboard.js"></script>
+<script type="module" src="web3/blocknative/index.js"></script>
+
 <!-- css -->
 <link rel="stylesheet" href="./css/reset.css">
 <link rel="stylesheet" href="./css/style.css">
 <link rel="stylesheet" href="./css/medium.css">
 <link rel="stylesheet" href="./css/small.css">
+<link rel="stylesheet" href="./css/wallet.css">

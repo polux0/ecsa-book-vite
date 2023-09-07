@@ -271,14 +271,12 @@
     /* Media query for mobile adjustments */
     @media (max-width: 480px) {
         #priceTierOverlay {
-            /* Example adjustments for mobile, adjust as necessary */
             width: 60vw;
             height: 70vw;
             max-width: 100%;
             padding: 2vw;
             margin-top: 5vh;
-            font-size: var(--mobileBookFontSize); /* Assuming you have a variable for mobile font size */
-            /* Add any other modifications for mobile here */
+            font-size: var(--mobileBookFontSize);
         }
     }
     #tiersSubmitButton{

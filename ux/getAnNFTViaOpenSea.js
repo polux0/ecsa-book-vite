@@ -1,8 +1,8 @@
 
 async function getAnNFTViaOpenSea(tokenId) {
 
-    let api = import.meta.env.VITE_CHAIN == 'sepolia' ? import.meta.env.VITE_TESTNET_OPEN_SEA_API_URL : import.meta.env.VITE_OPEN_SEA_API_URL; 
-    const url = `https://${api}/v2/chain/${import.meta.env.VITE_CHAIN}/contract/${import.meta.env.VITE_NFT_CONTRACT_ADDRESS}/nfts/${tokenId}`;
+    let api = import.meta.env.VITE_NETWORK == 'sepolia' ? import.meta.env.VITE_TESTNET_OPEN_SEA_API_URL : import.meta.env.VITE_OPEN_SEA_API_URL; 
+    const url = `https://${api}/v2/chain/${import.meta.env.VITE_NETWORK}/contract/${import.meta.env.VITE_NFT_CONTRACT_ADDRESS}/nfts/${tokenId}`;
     
     return fetch(url, {
       method: 'GET',

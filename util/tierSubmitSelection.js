@@ -1,111 +1,122 @@
-import { isInvitationValid } from "../db/invitations";
-import { isReservationValidForTokenId } from "../db/reservations";
 import { areInvitationsActive } from '../web3/areInvitationsActive.js';
 import { areReservationsActive } from '../web3/areReservationsActive.js';
-import { isTokenReserved } from '../web3/isTokenReserved.js';
-import { mintByReservation } from '../web3/mintByReservation.js';
-import { mintByInvitation } from "../web3/mintByInvitation.js";
 import { mintById } from "../web3/mintById";
+import { connect } from '../web3/blocknative/index';
+import { ethers } from 'ethers';
+import { displayError } from "../validation/displayError.js";
+import { getChosenPrice } from "../validation/getChosenPrice.js";
+import { handleInvitations } from '../validation/handleInvitations.js';
+import { handleReservations } from '../validation/handleReservations.js';
+import { Magic } from 'magic-sdk';
 
 async function submitSelection() {
 
     // clear all previous error messages
     const tokenId = localStorage.getItem('tokenId');
     const mintingError = document.getElementById('tiersErrorMessage');
-    const tiersSubmitButton = document.getElementById('tiersSubmitButton');
+
     if(mintingError){
         mintingError.innerHTML = "";
     }
-    const errors = [];
-    if (window.ethereum) {
-        if (window.ethereum.isMetaMask) {
-        } else {
-            if(mintingError){
-                mintingError.innerHTML = "Metamask is not available, please install it";
+    
+    let connected = false;
+    let wallets = null;
+    let provider;
+
+    wallets = await connect();
+    console.log('wallets', wallets);
+
+    if(wallets){
+        if(wallets[0]){
+            const network = wallets[0].provider.networkVersion;
+            const connectedAccount = wallets[0].accounts[0]
+            console.log('connected account', connectedAccount);
+            let label = wallets[0].label
+            console.log('label: ', label);
+            connected = true;
+            // test
+            let magicInstance;
+            // if(label.includes("Magic Wallet")){
+            //     magicInstance = new Magic("pk_live_22D57864122EFAD7", {
+            //         network: {
+            //             rpcUrl: "https://eth-sepolia.g.alchemy.com/v2/-tMMu3AHudsbSzy1OJNFuhoiFCgHLKwE", 
+            //             chainId: 11155111,
+            //         },
+            //     });
+            //     provider = new ethers.BrowserProvider(magicInstance.rpcProvider);
+            // }
+            // else{
+                provider = new ethers.BrowserProvider(wallets[0].provider, 'any');
+            // }
+            // test
+            const expectedNetworkId = import.meta.env.VITE_EXPECTED_NETWORK_ID;
+            const expectedNetworkIdNumber = import.meta.env.VITE_EXPECTED_NETWORK_ID_NUMBER;
+            const currentNetworkId = await provider.getNetwork().then(net => net.chainId);
+
+            if (currentNetworkId !== expectedNetworkIdNumber) {
+                try {
+                   const changed = await window.ethereum.request({ method: 'wallet_switchEthereumChain', params: [{ chainId: expectedNetworkId }] });
+                } catch (switchError) {
+                    console.error('Chain switch failed:', switchError);
+                    mintingError.innerHTML = `Please change your network to ${import.meta.env.VITE_NETWORK}`;
+                    mintingError.style.display = "block";
+                    return;
+                }
             }
         }
-      } else {
-        errors.push('Metamask is not available, please install it. https://metamask.io/download/');
-        if(mintingError){
-            mintingError.innerHTML = "Metamask is not available, please install it. https://metamask.io/download/";
+        else{
+            connected = false;
+            mintingError.innerHTML = "Please connect with one of the available wallet providers";
             mintingError.style.display = "block";
+            return;
         }
-        return;
-      }
+    
+    }
       
     const params = new URLSearchParams(window.location.search);
     const reservationId = params.get('reservationId') || "";
     const invitationId = params.get('invitationId') || "";
     const reservationsActive = await areReservationsActive();
     const invitationsActive = await areInvitationsActive();
-    try {
-        // Retrieving the chosenPrice
-        const selectedTier = document.querySelector('#priceTiers input[type="radio"]:checked');
-        let chosenPrice;
 
-        if (selectedTier) {
-            chosenPrice = selectedTier.value;
-            mintingError.style.display = "block";
-        } else {
-            errors.push("Please select a price tier before proceeding.");
-            const mintingError = document.getElementById('tiersErrorMessage');
-            mintingError.innerHTML = "Please select a price tier before proceeding.";
-            mintingError.style.display = "block";
-            // technical debt - make mint button not clickable
-            return; // Exit the function early if no tier is selected.
+    try {
+        let errors = [];
+        const chosenPrice = getChosenPrice();
+    
+        if (!chosenPrice) {
+            displayError("Please select a price tier before proceeding.");
+            return;
         }
-    
+        // if(balance)
+        if(connected){
             if (reservationsActive) {
-                if (reservationId) {
-                    // is reservationValid should be changed to take into account ReservationContract as well
-                    let validReservation = await isReservationValidForTokenId(reservationId, parseInt(tokenId, 10));
-                    if (validReservation) {
-                        mintByReservation(parseInt(tokenId, 10), reservationId, chosenPrice);
-                        return;
-                    } else {
-                        errors.push("Invalid reservation!");
-                    }
-                } else {
-                    errors.push("Reservations are active but no reservation is provided.");
-                }
+                const reservationError = await handleReservations(reservationId, tokenId, chosenPrice);
+                if (reservationError !== true) errors.push(reservationError);
             }
-    
+        
             if (invitationsActive) {
-                if (invitationId) {
-                    let validInvitation = await isInvitationValid(invitationId);
-                    if (validInvitation) {
-                        const tokenReserved = await isTokenReserved(tokenId);
-                        if (tokenReserved && reservationsActive) {
-                            errors.push("Token is reserved. Invitation not enough!");
-                        } else {
-                            mintByInvitation(parseInt(tokenId, 10), invitationId, chosenPrice);
-                            return;
-                        }
-                    } else {
-                        errors.push("Invalid invitation!");
-                    }
-                } else if (!reservationId) { // If no reservationId was provided earlier
-                    errors.push("Invitations are active, but no invitation is provided.");
-                }
+                const invitationError = await handleInvitations(invitationId, tokenId, chosenPrice, provider, reservationsActive);
+                if (invitationError !== true) errors.push(invitationError);
             }
-    
+        
             if (!reservationsActive && !invitationsActive) {
                 await mintById(tokenId, chosenPrice);
                 return;
             }
-    
-            // If any errors have occurred and you're still in this function, display the last error message.
+        
             if (errors.length > 0) {
-                const mintingError = document.getElementById('tiersErrorMessage');
-                mintingError.innerHTML = errors[errors.length - 1];
-                mintingError.style.display = "block";
-                console.log('errors: ', errors)
+                displayError(errors[errors.length - 1]);
+                console.log('errors: ', errors);
             }
+        }
+        else{
+            mintingError.innerHTML = "Please connect with one of available wallet providers";
+            mintingError.style.display = "block";
+        }
     
-        } catch (error) {
-            // Handle any thrown errors here.
-            console.error("An error occurred:", error.message);
-        }   
+    } catch (error) {
+        console.error("An error occurred:", error.message);
+    }
 }
 
 window.submitSelection = submitSelection;

@@ -1,6 +1,5 @@
 import { ethers } from 'ethers';
 
-// Define constants or better yet, move to configuration
 const RPC_URL = import.meta.env.VITE_RPC_URL;
 const CONTRACT_ADDRESS = import.meta.env.VITE_NFT_CONTRACT_ADDRESS;
 
@@ -751,16 +750,13 @@ const contractABI = [
   }
 ];
 
-// This function fetches the token IDs
 const fetchMintedTokenIds = async () => {
     const provider = new ethers.AlchemyProvider("sepolia", RPC_URL);
     const nftContract = new ethers.Contract(CONTRACT_ADDRESS, contractABI, provider);
     const _alreadyMintedTokenIds = await nftContract.getAlreadyMintedTokenIds();
-    console.log('already minted token ids response: ', _alreadyMintedTokenIds);
     return _alreadyMintedTokenIds;
 }
 
-// This function wraps fetchMintedTokenIds and returns the token IDs
 const getMintedTokens = async () => {
     try {
         return await fetchMintedTokenIds();

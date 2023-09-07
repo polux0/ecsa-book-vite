@@ -809,20 +809,6 @@ const mintByReservation = async (tokenId, reservationId, choosePrice) => {
         const mintingError = document.getElementById('tiersErrorMessage');
         mintingError.innerHTML = ""
         
-        const expectedNetworkId = '0xaa36a7';
-        const expectedNetworkIdNumber = 11155111n;
-        const currentNetworkId = await provider.getNetwork().then(net => net.chainId);
-
-        if (currentNetworkId !== expectedNetworkIdNumber) {
-          try {
-             const changed = await window.ethereum.request({ method: 'wallet_switchEthereumChain', params: [{ chainId: expectedNetworkId }] });
-             console.log('network is changed:', changed);
-             window.location.reload();
-          } catch (switchError) {
-              console.error('Chain switch failed:', switchError);
-              return;
-          }
-        }
         const transaction = await nftContract.mintByReservation(tokenId, reservationId, choosenPriceWei, {
             gasLimit: 12000000,
             value: choosenPriceWei
