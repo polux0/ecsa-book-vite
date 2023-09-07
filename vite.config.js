@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import { viteStaticCopy } from 'vite-plugin-static-copy'
+import { nodePolyfills } from 'vite-plugin-node-polyfills'
 import svgr from '@svgr/rollup';
 import svgLoader from 'vite-svg-loader';
 
@@ -22,6 +23,19 @@ export default defineConfig({
     },
     assetsDir: '.', // Flatten the asset directory structure
   },
+  // resolve: {
+  //   alias: {
+  //     assert: 'assert',
+  //     buffer: 'buffer',
+  //     crypto: 'crypto-browserify',
+  //     http: 'stream-http',
+  //     https: 'https-browserify',
+  //     os: 'os-browserify/browser',
+  //     process: 'process/browser',
+  //     stream: 'stream-browserify',
+  //     util: 'util'
+  //   }
+  // },
   plugins: [
     viteStaticCopy({
       targets: [
@@ -32,6 +46,23 @@ export default defineConfig({
         { src: 'audiobook/*', dest: 'audiobook' },
         { src: 'css/*', dest: 'css' },
       ]
+    }),
+    nodePolyfills({
+      // To add only specific polyfills, add them here. If no option is passed, adds all polyfills
+      include: ['path'],
+      // To exclude specific polyfills, add them to this list. Note: if include is provided, this has no effect
+      exclude: [
+        'fs', // Excludes the polyfill for `fs` and `node:fs`.
+      ],
+      // Whether to polyfill specific globals.
+      globals: {
+        Buffer: true, // can also be 'build', 'dev', or false
+        global: true,
+        util: true,
+        process: true,
+      },
+      // Whether to polyfill `node:` protocol imports.
+      protocolImports: true,
     }),
     svgr(),svgLoader()
   ],

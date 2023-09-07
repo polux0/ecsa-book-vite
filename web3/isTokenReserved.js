@@ -1,6 +1,5 @@
 import { ethers } from 'ethers';
 
-// Define constants or better yet, move to configuration
 const RPC_URL = import.meta.env.VITE_RPC_URL;
 const RESERVATION_CONTRACT_ADDRESS = import.meta.env.VITE_RESERVATION_CONTRACT_ADDRESS;
 
@@ -293,7 +292,6 @@ const contractABI = [
     }
 ]
   
-// This function fetches if the token is reserved IDs
 const isTokenReserved = async (tokenId) => {
     const provider = new ethers.AlchemyProvider("sepolia", RPC_URL);
     const reservationContract = new ethers.Contract(RESERVATION_CONTRACT_ADDRESS, contractABI, provider);

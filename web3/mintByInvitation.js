@@ -1,16 +1,18 @@
 import { ethers } from 'ethers';
 import {getNextThreeInvitations, setInvitationInvitedBy, setInvitationUsed, getInvitationByInvitationValue} from '../db/invitations';
 import { connectWallet } from './connectWallet';
+import { connect } from './blocknative/index';
 import { transactionInitiated } from '../ux/transactionInitiated.js';
 import {revertMintingAnimation} from '../ux/revertMintingAnimation';
 import { openCongratzOverlay } from '../ux/openCongratzOverlay';
 import {getAnNFTViaOpenSea} from '../ux/getAnNFTViaOpenSea';
 
-const mintByInvitation = async (tokenId, invitationId, choosePrice) => {
+const mintByInvitation = async (tokenId, invitationId, choosePrice, provider) => {
 
-    await connectWallet();
+    // await connectWallet();
+    // await connect();
 
-    const provider = new ethers.BrowserProvider(window.ethereum);
+    // const provider = new ethers.BrowserProvider(providerz.provider, 'any');
     const signer = await provider.getSigner();
     const contractAddress = import.meta.env.VITE_NFT_CONTRACT_ADDRESS;
     const contractABI = [
@@ -795,7 +797,6 @@ const mintByInvitation = async (tokenId, invitationId, choosePrice) => {
     let price1 = 0.0001;
     let price2 = 0.0002;
 
-
     try {
         // choosenPrice is not as amount in wei -> write it as message;
         let choosenPriceWei = 0.001;
@@ -813,20 +814,6 @@ const mintByInvitation = async (tokenId, invitationId, choosePrice) => {
         const mintingError = document.getElementById('tiersErrorMessage');
         mintingError.innerHTML = ""
 
-        const expectedNetworkId = '0xaa36a7';
-        const expectedNetworkIdNumber = 11155111n;
-        const currentNetworkId = await provider.getNetwork().then(net => net.chainId);
-
-        if (currentNetworkId !== expectedNetworkIdNumber) {
-            try {
-               const changed = await window.ethereum.request({ method: 'wallet_switchEthereumChain', params: [{ chainId: expectedNetworkId }] });
-               console.log('network is changed:', changed);
-               window.location.reload();
-            } catch (switchError) {
-                console.error('Chain switch failed:', switchError);
-                return;
-            }
-        }
         const transaction = await nftContract.mintByInvitation(tokenId, invitationId, choosenPriceWei, {
             gasLimit: 12000000,
             value: choosenPriceWei
@@ -870,8 +857,8 @@ const mintByInvitation = async (tokenId, invitationId, choosePrice) => {
           if(nftElement){
             nftElement.src = nft.image_url;
         
-            let url = import.meta.env.VITE_CHAIN == 'sepolia' ? 'testnets.opensea.io' : 'opensea.io'; 
-            const final = `https://${url}/assets/${import.meta.env.VITE_CHAIN}/${import.meta.env.VITE_NFT_CONTRACT_ADDRESS}/${tokenId}`;
+            let url = import.meta.env.VITE_NETWORK == 'sepolia' ? 'testnets.opensea.io' : 'opensea.io'; 
+            const final = `https://${url}/assets/${import.meta.env.VITE_NETWORK}/${import.meta.env.VITE_NFT_CONTRACT_ADDRESS}/${tokenId}`;
             
             // Create a new anchor element
             let anchor = document.createElement('a');

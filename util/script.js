@@ -483,7 +483,6 @@ fetch('glossary.json')
                     mintingError.innerHTML = "";
                 }
                 if(tiersSubmitButton){
-                    console.log('this happened!');
                     tiersSubmitButton.innerHTML = "Mint";
                 }
                 localStorage.setItem('tokenId', `${p+1}`);
@@ -530,7 +529,6 @@ const activateNFTs = function(){
     map.style.display = 'grid';
     toc.style.display = 'none';
 
-    console.log('units.length: ', units.length)
     for(let u = 1; u <units.length; u++){
       units[u].style.borderBottom = '1px solid var(--c2)';
      }
