@@ -66,6 +66,8 @@ async function getNextThreeInvitations() {
             .from('invitations')
             .select('*')
             .eq('used_by_wallet', '0x')
+            .eq('invited_by_reservation_id', 0)
+            .eq('invited_by_invitation_id', 0)
             .limit(3);
         if (error) throw error;
         return data;
@@ -74,6 +76,7 @@ async function getNextThreeInvitations() {
         return null;
     }
 }
+
 async function getInvitationByInvitationValue(invitationValue) {
     try {
         const { data, error } = await supabase

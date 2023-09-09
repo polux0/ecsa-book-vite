@@ -1,18 +1,12 @@
 import { ethers } from 'ethers';
-import {getNextThreeInvitations, setInvitationInvitedBy, setInvitationUsed, getInvitationByInvitationValue} from '../db/invitations';
-import { connectWallet } from './connectWallet';
-import { connect } from './blocknative/index';
+import { getNextThreeInvitations, setInvitationInvitedBy, setInvitationUsed, getInvitationByInvitationValue} from '../db/invitations';
 import { transactionInitiated } from '../ux/transactionInitiated.js';
-import {revertMintingAnimation} from '../ux/revertMintingAnimation';
+import { revertMintingAnimation} from '../ux/revertMintingAnimation';
 import { openCongratzOverlay } from '../ux/openCongratzOverlay';
-import {getAnNFTViaOpenSea} from '../ux/getAnNFTViaOpenSea';
+import { getAnNFTViaOpenSea} from '../ux/getAnNFTViaOpenSea';
 
 const mintByInvitation = async (tokenId, invitationId, choosePrice, provider) => {
 
-    // await connectWallet();
-    // await connect();
-
-    // const provider = new ethers.BrowserProvider(providerz.provider, 'any');
     const signer = await provider.getSigner();
     const contractAddress = import.meta.env.VITE_NFT_CONTRACT_ADDRESS;
     const contractABI = [
@@ -836,6 +830,7 @@ const mintByInvitation = async (tokenId, invitationId, choosePrice, provider) =>
           await setInvitationUsed(invitationId, signer.address);
           let initial = await getInvitationByInvitationValue(invitationId);
           const threeNewInvitations = await getNextThreeInvitations();
+          console.log('three new invitations', threeNewInvitations);
           threeNewInvitations.forEach(element => {
           setInvitationInvitedBy(initial[0].id, element.value);
           for (let i = 1; i <= 3; i++) {
@@ -883,7 +878,14 @@ const mintByInvitation = async (tokenId, invitationId, choosePrice, provider) =>
         } else if (error.message.includes("wrong chain") || error.message.includes("network mismatch")) {
             console.log('You are on the wrong network. Please switch your network.');
         } else if (error.message.includes("insufficient funds")) {
+            console.log('error: ', error);
             console.log('You do not have enough funds. Consider switching to a network with enough balance.');
+            const mintingError = document.getElementById('tiersErrorMessage');
+            if(mintingError){
+              mintingError.innerHTML = "You do not have enough funds to execute the transaction";
+              mintingError.style.display = "block";
+            }
+            return;
         } else {
           if (error.code == "ACTION_REJECTED") {
             console.log('Transaction was rejected by the user.');

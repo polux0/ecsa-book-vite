@@ -333,6 +333,7 @@
     
     .message, .invitation-text {
         margin-top: 20px;
+        margin-bottom: 2em;
     }
     
     .invitation-container span {
