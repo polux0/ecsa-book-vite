@@ -7,7 +7,6 @@ import { displayError } from "../validation/displayError.js";
 import { getChosenPrice } from "../validation/getChosenPrice.js";
 import { handleInvitations } from '../validation/handleInvitations.js';
 import { handleReservations } from '../validation/handleReservations.js';
-import { Magic } from 'magic-sdk';
 
 async function submitSelection() {
 
@@ -22,33 +21,20 @@ async function submitSelection() {
     let connected = false;
     let wallets = null;
     let provider;
-
     wallets = await connect();
     console.log('wallets', wallets);
 
     if(wallets){
         if(wallets[0]){
-            const network = wallets[0].provider.networkVersion;
-            const connectedAccount = wallets[0].accounts[0]
-            console.log('connected account', connectedAccount);
             let label = wallets[0].label
-            console.log('label: ', label);
+            let connectedAccount = document.getElementById("connectedAccount");
+            if(connectedAccount){
+                connectedAccount.innerHTML = label;
+            }
             connected = true;
-            // test
-            let magicInstance;
-            // if(label.includes("Magic Wallet")){
-            //     magicInstance = new Magic("pk_live_22D57864122EFAD7", {
-            //         network: {
-            //             rpcUrl: "https://eth-sepolia.g.alchemy.com/v2/-tMMu3AHudsbSzy1OJNFuhoiFCgHLKwE", 
-            //             chainId: 11155111,
-            //         },
-            //     });
-            //     provider = new ethers.BrowserProvider(magicInstance.rpcProvider);
-            // }
-            // else{
-                provider = new ethers.BrowserProvider(wallets[0].provider, 'any');
-            // }
-            // test
+
+            provider = new ethers.BrowserProvider(wallets[0].provider, 'any');
+
             const expectedNetworkId = import.meta.env.VITE_EXPECTED_NETWORK_ID;
             const expectedNetworkIdNumber = import.meta.env.VITE_EXPECTED_NETWORK_ID_NUMBER;
             const currentNetworkId = await provider.getNetwork().then(net => net.chainId);
@@ -87,7 +73,7 @@ async function submitSelection() {
             displayError("Please select a price tier before proceeding.");
             return;
         }
-        // if(balance)
+        console.log("connected: ", connected)
         if(connected){
             if (reservationsActive) {
                 const reservationError = await handleReservations(reservationId, tokenId, chosenPrice);

@@ -13,8 +13,14 @@
     --onboard-font-size-5: 1.3rem;
     --onboard-font-size-6: 1.2rem;
     --onboard-font-size-7: 1.2rem;
+    --account-center-position-top: 0px;
+    --account-center-position-bottom: 30px;
+    --account-center-z-index:5;
     
 }
 .subheading.svelte-obaru3 {
     display: none;
-} 
+}
+#connectedAccount{
+    display:none;
+}

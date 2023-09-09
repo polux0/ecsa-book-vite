@@ -3,7 +3,7 @@ const transactionInitiated = async function(tokenId) {
     buttons.forEach(function(button) {
         if(button) {
             button.className = 'buttonload';
-            button.innerHTML = `<i class="fa fa-circle-o-notch fa-spin"></i>Minting...`;
+            button.innerHTML = `<i class="fa fa-circle-o-notch fa-spin"></i>Publishing...`;
             applyStyles(button);
     } else {
         console.warn(`Button with ID ${button} not found.`);

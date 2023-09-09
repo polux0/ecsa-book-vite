@@ -1,18 +1,18 @@
 import Onboard from '@web3-onboard/core'
-import injectedModule from '@web3-onboard/injected-wallets'
-// import type { OnboardAPI } from '@web3-onboard/core'
+import injectedModule, { ProviderLabel } from '@web3-onboard/injected-wallets'
 import walletConnectModule from '@web3-onboard/walletconnect'
 import coinbaseModule from '@web3-onboard/coinbase'
 import magicModule from '@web3-onboard/magic'
 
 const injected = injectedModule({
-  displayUnavailable: true,
+  // display specific unavailable wallets
+  displayUnavailable: [ProviderLabel.MetaMask, ProviderLabel.Trust, ProviderLabel.Coinbase, ProviderLabel.Rainbow]
 })
-const walletConnect = walletConnectModule({projectId: 'd81918ea6d7ef1f1fe78fdb74ec52ed2',   qrcodeModalOptions: {
+const walletConnect = walletConnectModule({projectId: `${import.meta.env.WALLET_CONNECT_API_KEY}`,   qrcodeModalOptions: {
   mobileLinks: ['rainbow', 'metamask', 'argent', 'trust', 'imtoken', 'pillar']
 }}, )
 const coinbaseWallet = coinbaseModule()
-const magicWallet = magicModule({apiKey: "pk_live_22D57864122EFAD7"});
+const magicWallet = magicModule({apiKey: `${import.meta.env.MAGIC_AUTH_MODULE_API_KEY}`});
 
 const wallets = [injected, walletConnect, coinbaseWallet, magicWallet]
 
@@ -33,10 +33,10 @@ const chains = [
 ]
 
 const appMetadata = {
-  name: 'Web3-Onboard',
+  name: 'Economic Space Agency',
   icon: '<svg />',
   logo: '<svg />',
-  description: 'Demo using Onboard',
+  description: 'Protocols for Postcapitalist Expression',
   recommendedInjectedWallets: [
     { name: 'Coinbase', url: 'https://wallet.coinbase.com/' },
     { name: 'MetaMask', url: 'https://metamask.io' }
