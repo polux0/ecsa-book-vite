@@ -32,6 +32,7 @@
     "@web3-onboard/magic": "^2.1.7",
     "@web3-onboard/walletconnect": "^2.4.6",
     "ethers": "^6.7.1",
+    "font-awesome-animation": "^1.1.1",
     "magic-sdk": "^19.3.1",
     "vite-svg-loader": "^4.0.0"
   }

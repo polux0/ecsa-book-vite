@@ -17,7 +17,6 @@ function applyStyles(button) {
         button.style.fontFamily = 'var(--bookFontFamily)';
         button.style.fontSize = 'var(--bookFontSize)';
         button.style.marginBottom = '1em';
-        button.style.backgroundColor = 'var(--bg)';
         button.style.marginLeft = '74%';
         button.style.transition = 'border 250ms, background-color 250ms';
     } else {

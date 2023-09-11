@@ -3,6 +3,7 @@ import { mintByReservation} from "../web3/mintByReservation";
 async function handleReservations(reservationId, tokenId, chosenPrice) {
     if (reservationId) {
         let validReservation = await isReservationValidForTokenId(reservationId, parseInt(tokenId, 10));
+        console.log('isValidReservation', validReservation);
         if (validReservation) {
             mintByReservation(parseInt(tokenId, 10), reservationId, chosenPrice);
             return true;

@@ -1,5 +1,4 @@
-const revertMintingAnimation = async function(tokenId) {
-const mintingError = document.getElementById('tiersErrorMessage');
+const revertTransactionInitiatedAnimation = async function(tokenId) {
 const buttons = document.querySelectorAll(`#publishUnit${tokenId}`);
 buttons.forEach(function(button) {
         if(button) {
@@ -8,6 +7,5 @@ buttons.forEach(function(button) {
             console.warn(`Button with ID ${button} not found.`);
         }
     });
-
 }
-export {revertMintingAnimation} 
+export {revertTransactionInitiatedAnimation} 

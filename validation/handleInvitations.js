@@ -4,6 +4,7 @@ import { mintByInvitation } from "../web3/mintByInvitation.js";
 async function handleInvitations(invitationId, tokenId, chosenPrice, provider, reservationsActive) {
     if (invitationId) {
         let validInvitation = await isInvitationValid(invitationId);
+        console.log('isInvitationValid', validInvitation);
         if (validInvitation) {
             const tokenReserved = await isTokenReserved(tokenId);
             if (tokenReserved && reservationsActive) {

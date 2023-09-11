@@ -1,9 +1,11 @@
 import { ethers } from 'ethers';
-import { getNextThreeInvitations, setInvitationInvitedBy, setInvitationUsed, getInvitationByInvitationValue} from '../db/invitations';
 import { transactionInitiated } from '../ux/transactionInitiated.js';
-import { revertMintingAnimation} from '../ux/revertMintingAnimation';
 import { openCongratzOverlay } from '../ux/openCongratzOverlay';
-import { getAnNFTViaOpenSea} from '../ux/getAnNFTViaOpenSea';
+import { revertWaitingForTransactionToInitiate } from '../ux/waitingForTransactionToInitiate';
+import { displayNFTImageFromOpenSea } from './ui-interactions/displayNFTFromOpenSea';
+import { handleInvitationOperations } from './handleInvitationOperations';
+import { clearMintingError, closePriceTierOverlay, removePublishButton, handleTransactionError } from './ui-interactions/index.js';
+import { validateChoosePrice } from '../validation/validateChoosePrice.js';
 
 const mintByInvitation = async (tokenId, invitationId, choosePrice, provider) => {
 
@@ -788,93 +790,33 @@ const mintByInvitation = async (tokenId, invitationId, choosePrice, provider) =>
       ];
     const nftContract = new ethers.Contract(contractAddress, contractABI, signer);
 
-    let price1 = 0.0001;
-    let price2 = 0.0002;
+    let price1 = import.meta.env.VITE_PRICE1;
+    let price2 = import.meta.env.VITE_PRICE2;
 
     try {
-        // choosenPrice is not as amount in wei -> write it as message;
-        let choosenPriceWei = 0.001;
-        // technical debt - do this as timeout so it does not stay forever
-        if(choosePrice != price1 || choosePrice != price2){
-          //error invalid priceSelected;  
-        }
-        if(choosePrice == price1){
-          choosenPriceWei = ethers.parseEther(price1.toString());
-        }
-        if(choosePrice == price2){
-          choosenPriceWei = ethers.parseEther(price2.toString());
-        }
-
-        const mintingError = document.getElementById('tiersErrorMessage');
-        mintingError.innerHTML = ""
+        let choosenPriceWei = validateChoosePrice(choosePrice, price1, price2);
+        clearMintingError();
 
         const transaction = await nftContract.mintByInvitation(tokenId, invitationId, choosenPriceWei, {
             gasLimit: 12000000,
             value: choosenPriceWei
         });
 
-        document.getElementById('priceTierOverlayClose').click();
+        closePriceTierOverlay();
         transactionInitiated(tokenId);
         const receipt = await transaction.wait();
         if (receipt && receipt.status == 1) {
-          const buttons = document.querySelectorAll(`#publishUnit${tokenId}`);
-          buttons.forEach(function(button) {
-            // Apply changes to each element
-            if(button) {
-              button.remove();
-          } else {
-              console.warn(`Button with ID ${button} not found.`);
-          }
-        });
-        try {
-          await setInvitationUsed(invitationId, signer.address);
-          let initial = await getInvitationByInvitationValue(invitationId);
-          const threeNewInvitations = await getNextThreeInvitations();
-          console.log('three new invitations', threeNewInvitations);
-          threeNewInvitations.forEach(element => {
-          setInvitationInvitedBy(initial[0].id, element.value);
-          for (let i = 1; i <= 3; i++) {
-            let element = document.getElementById(`invitation-link${i}`);
-            element.innerHTML = `${import.meta.env.VITE_INVITATION_URL}${threeNewInvitations[i-1].value}`;
-        }
-        }); 
-        } catch (error) {
-          console.log('operations with invitation storage failed...');
-        }
-        // close mint overlay!
-        document.getElementById('priceTierOverlayClose').click();
-        // open congratz overlay!
-        // try to display the nft
-        try {
-          let nft = await getAnNFTViaOpenSea(tokenId);
-          console.log('mint by invitation, response from opensea: ', nft);
-          let nftElement = document.getElementById('nft-image');
-          if(nftElement){
-            nftElement.src = nft.image_url;
-        
-            let url = import.meta.env.VITE_NETWORK == 'sepolia' ? 'testnets.opensea.io' : 'opensea.io'; 
-            const final = `https://${url}/assets/${import.meta.env.VITE_NETWORK}/${import.meta.env.VITE_NFT_CONTRACT_ADDRESS}/${tokenId}`;
-            
-            // Create a new anchor element
-            let anchor = document.createElement('a');
-            anchor.href = final;
-            anchor.target = "_blank"; // Optional: to open in a new tab
-        
-            // Append the image to the anchor element
-            anchor.appendChild(nftElement.cloneNode(true));
-        
-            // Replace the image with the anchor in the DOM
-            nftElement.parentNode.replaceChild(anchor, nftElement);
-        }
-        } catch (error) {
-          console.log('displaying NFT as an image silently failed...');
-        }
-        openCongratzOverlay();
+          removePublishButton(tokenId);
+          await handleInvitationOperations(invitationId, signer.address);
+          closePriceTierOverlay();
+          openCongratzOverlay();
+          displayNFTImageFromOpenSea(tokenId);
         }
     }
     catch (error) {
         if (error.code == "ACTION_REJECTED") {
             console.log('Transaction was rejected by the user.');
+            revertWaitingForTransactionToInitiate();
         } else if (error.message.includes("wrong chain") || error.message.includes("network mismatch")) {
             console.log('You are on the wrong network. Please switch your network.');
         } else if (error.message.includes("insufficient funds")) {
@@ -889,30 +831,10 @@ const mintByInvitation = async (tokenId, invitationId, choosePrice, provider) =>
         } else {
           if (error.code == "ACTION_REJECTED") {
             console.log('Transaction was rejected by the user.');
+            revertWaitingForTransactionToInitiate();
           }else{
-              // here transaction fails:
-              // 1. revert minting animation
-              revertMintingAnimation(tokenId);
-              // 2. reopen tierSubmitSelectionOverlay, and set it's error message. 
-              document.getElementById('priceTierOverlay').style.display = 'block';
-              document.getElementById('priceTierOverlayClose').style.display = 'block';
-              document.getElementById('priceTierContent').style.display = 'block';
-              const mintingError = document.getElementById('tiersErrorMessage');
-              const tiersSubmitButton = document.getElementById('tiersSubmitButton');
-              if(mintingError){
-                mintingError.innerHTML = "It happens that transactions fail sometimes. Would you retry?"
-                mintingError.style.display = "block";
-              }
-              if(tiersSubmitButton){
-                const tiersSubmitButton = document.getElementById('tiersSubmitButton');
-                tiersSubmitButton.innerHTML = "Retry";
-              }
-              // save tier so we don't have to present it again:
-              const selectedTier = document.querySelector('#priceTiers input[type="radio"]:checked');
-              if (selectedTier) {
-                console.log('selectedTier, minting again: ', selectedTier.value);
-                localStorage.setItem('chosenPrice', selectedTier.value);
-              }
+            console.log('error: ', error);
+            handleTransactionError(tokenId);
           }
 
         }
