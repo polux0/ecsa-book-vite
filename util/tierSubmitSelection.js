@@ -1,67 +1,49 @@
+import { ethers } from 'ethers';
+import { connect } from '../web3/blocknative/index';
 import { areInvitationsActive } from '../web3/areInvitationsActive.js';
 import { areReservationsActive } from '../web3/areReservationsActive.js';
 import { mintById } from "../web3/mintById";
-import { connect } from '../web3/blocknative/index';
-import { ethers } from 'ethers';
 import { displayError } from "../validation/displayError.js";
 import { getChosenPrice } from "../validation/getChosenPrice.js";
 import { handleInvitations } from '../validation/handleInvitations.js';
 import { handleReservations } from '../validation/handleReservations.js';
+import { waitingForTransactionToInitiate, revertWaitingForTransactionToInitiate } from '../ux/waitingForTransactionToInitiate';
+import { checkAndSwitchNetwork } from '../ux/checkAndSwitchNetwork.js';
+import { clearMintingError } from '../web3/ui-interactions/index';
 
 async function submitSelection() {
 
-    // clear all previous error messages
     const tokenId = localStorage.getItem('tokenId');
-    const mintingError = document.getElementById('tiersErrorMessage');
+    clearMintingError();
 
-    if(mintingError){
-        mintingError.innerHTML = "";
-    }
-    
-    let connected = false;
     let wallets = null;
     let provider;
+    let connected = false;
     wallets = await connect();
-    console.log('wallets', wallets);
 
     if(wallets){
         if(wallets[0]){
-            let label = wallets[0].label
-            let connectedAccount = document.getElementById("connectedAccount");
-            if(connectedAccount){
-                connectedAccount.innerHTML = label;
-            }
             connected = true;
-
             provider = new ethers.BrowserProvider(wallets[0].provider, 'any');
-
-            const expectedNetworkId = import.meta.env.VITE_EXPECTED_NETWORK_ID;
-            const expectedNetworkIdNumber = import.meta.env.VITE_EXPECTED_NETWORK_ID_NUMBER;
-            const currentNetworkId = await provider.getNetwork().then(net => net.chainId);
-
-            if (currentNetworkId !== expectedNetworkIdNumber) {
-                try {
-                   const changed = await window.ethereum.request({ method: 'wallet_switchEthereumChain', params: [{ chainId: expectedNetworkId }] });
-                } catch (switchError) {
-                    console.error('Chain switch failed:', switchError);
-                    mintingError.innerHTML = `Please change your network to ${import.meta.env.VITE_NETWORK}`;
-                    mintingError.style.display = "block";
-                    return;
-                }
+            try {
+                await checkAndSwitchNetwork(provider);
+            } catch (error) {
+                displayError(error.message);
+                return;
             }
         }
         else{
-            connected = false;
-            mintingError.innerHTML = "Please connect with one of the available wallet providers";
-            mintingError.style.display = "block";
+            // wallets = await connect();
+            displayError('Please connect with one of the available wallet providers');
             return;
         }
     
     }
+    waitingForTransactionToInitiate();
       
     const params = new URLSearchParams(window.location.search);
-    const reservationId = params.get('reservationId') || "";
-    const invitationId = params.get('invitationId') || "";
+    const reservationId = params.get('reservationId');
+    const invitationId = params.get('invitationId');
     const reservationsActive = await areReservationsActive();
     const invitationsActive = await areInvitationsActive();
 
@@ -73,31 +55,32 @@ async function submitSelection() {
             displayError("Please select a price tier before proceeding.");
             return;
         }
-        console.log("connected: ", connected)
         if(connected){
-            if (reservationsActive) {
+            if (reservationsActive && reservationId) {
                 const reservationError = await handleReservations(reservationId, tokenId, chosenPrice);
                 if (reservationError !== true) errors.push(reservationError);
             }
-        
-            if (invitationsActive) {
+            if (invitationsActive && invitationId) {
                 const invitationError = await handleInvitations(invitationId, tokenId, chosenPrice, provider, reservationsActive);
                 if (invitationError !== true) errors.push(invitationError);
             }
-        
             if (!reservationsActive && !invitationsActive) {
                 await mintById(tokenId, chosenPrice);
                 return;
             }
+            else{
+                revertWaitingForTransactionToInitiate();
+                displayError("Invitations and reservations are still active.");
+            }
         
             if (errors.length > 0) {
+                revertWaitingForTransactionToInitiate();
                 displayError(errors[errors.length - 1]);
                 console.log('errors: ', errors);
             }
         }
         else{
-            mintingError.innerHTML = "Please connect with one of available wallet providers";
-            mintingError.style.display = "block";
+            displayError('Please connect with one of available wallet providers');
         }
     
     } catch (error) {

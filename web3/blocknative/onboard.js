@@ -8,11 +8,11 @@ const injected = injectedModule({
   // display specific unavailable wallets
   displayUnavailable: [ProviderLabel.MetaMask, ProviderLabel.Trust, ProviderLabel.Coinbase, ProviderLabel.Rainbow]
 })
-const walletConnect = walletConnectModule({projectId: `${import.meta.env.WALLET_CONNECT_API_KEY}`,   qrcodeModalOptions: {
+const walletConnect = walletConnectModule({projectId: `${import.meta.env.VITE_WALLET_CONNECT_API_KEY}`,   qrcodeModalOptions: {
   mobileLinks: ['rainbow', 'metamask', 'argent', 'trust', 'imtoken', 'pillar']
 }}, )
 const coinbaseWallet = coinbaseModule()
-const magicWallet = magicModule({apiKey: `${import.meta.env.MAGIC_AUTH_MODULE_API_KEY}`});
+const magicWallet = magicModule({apiKey: `${import.meta.env.VITE_MAGIC_AUTH_MODULE_API_KEY}`});
 
 const wallets = [injected, walletConnect, coinbaseWallet, magicWallet]
 
