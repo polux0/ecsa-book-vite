@@ -3,7 +3,7 @@ import { getNextThreeInvitations } from '../db/invitations';
 import { transactionInitiated } from '../ux/transactionInitiated';
 import { openCongratzOverlay } from '../ux/openCongratzOverlay';
 import { revertWaitingForTransactionToInitiate } from '../ux/waitingForTransactionToInitiate';
-import { clearMintingError, closePriceTierOverlay, removePublishButton, handleTransactionError } from './ui-interactions/index.js';
+import { clearMintingError, closePriceTierOverlay, removePublishButton, removeBlurFilter, setOrbBorderToSignalThatUnitIsPublished,  handleTransactionError } from './ui-interactions/index.js';
 import { validateChoosePrice } from '../validation/validateChoosePrice.js';
 import { displayNFTImageFromOpenSea } from './ui-interactions/displayNFTFromOpenSea';
 
@@ -807,6 +807,10 @@ const mintById = async (tokenId, choosePrice) => {
         const receipt = await transaction.wait();
         if (receipt && receipt.status == 1) {
           removePublishButton(tokenId);
+          // remove blur filter for unit ( it's here and in script.js )
+          removeBlurFilter(tokenId);
+          // set orb ( in index map ) border to signal that unit is published ( it's here and in script.js )
+          setOrbBorderToSignalThatUnitIsPublished(tokenId);
         try {
           const threeNewInvitations = await getNextThreeInvitations();
           for (let i = 1; i <= 3; i++) {
@@ -816,6 +820,7 @@ const mintById = async (tokenId, choosePrice) => {
         } catch (error) {
           console.log('operations with invitation storage silently failed...');
         }
+        
         closePriceTierOverlay();
         openCongratzOverlay();
         displayNFTImageFromOpenSea(tokenId);

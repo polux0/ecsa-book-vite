@@ -4,7 +4,7 @@ import { openCongratzOverlay } from '../ux/openCongratzOverlay';
 import { revertWaitingForTransactionToInitiate } from '../ux/waitingForTransactionToInitiate';
 import { displayNFTImageFromOpenSea } from './ui-interactions/displayNFTFromOpenSea';
 import { handleInvitationOperations } from './handleInvitationOperations';
-import { clearMintingError, closePriceTierOverlay, removePublishButton, handleTransactionError } from './ui-interactions/index.js';
+import { clearMintingError, closePriceTierOverlay, removePublishButton, removeBlurFilter, setOrbBorderToSignalThatUnitIsPublished,  handleTransactionError } from './ui-interactions/index.js';
 import { validateChoosePrice } from '../validation/validateChoosePrice.js';
 
 const mintByInvitation = async (tokenId, invitationId, choosePrice, provider) => {
@@ -807,6 +807,10 @@ const mintByInvitation = async (tokenId, invitationId, choosePrice, provider) =>
         const receipt = await transaction.wait();
         if (receipt && receipt.status == 1) {
           removePublishButton(tokenId);
+          // remove blur filter for unit ( it's here and in script.js )
+          removeBlurFilter(tokenId);
+          // set orb ( in index map ) border to signal that unit is published ( it's here and in script.js )
+          setOrbBorderToSignalThatUnitIsPublished(tokenId);
           await handleInvitationOperations(invitationId, signer.address);
           closePriceTierOverlay();
           openCongratzOverlay();

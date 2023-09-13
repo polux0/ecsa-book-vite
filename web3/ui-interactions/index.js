@@ -26,6 +26,32 @@ const removePublishButton = (tokenId) =>{
     }
   });
 }
+const removeBlurFilter = (tokenId) => {
+    const unit = document.getElementById(`u${tokenId}`);
+    if(unit){
+        const pElements = unit.querySelectorAll('p');
+        const h5Elements = unit.querySelectorAll('h5');
+        
+        if(pElements){
+            pElements.forEach(pElement => {
+                pElement.style.filter = 'none';  
+            });
+        }
+        if(h5Elements){
+            h5Elements.forEach(h5Element => {
+                h5Element.style.filter = 'none';
+            });
+        }
+    }
+}
+const setOrbBorderToSignalThatUnitIsPublished = (tokenId) => {
+    const unit = document.getElementById(`orb_${tokenId}`);
+    if(unit){
+        console.log('unit: ', unit);
+        unit.style.border = '4px solid #611212';
+    }
+
+}
 
 const handleTransactionError = (tokenId) => {
     // 1. revert minting animation
@@ -51,4 +77,4 @@ const handleTransactionError = (tokenId) => {
         localStorage.setItem('chosenPrice', selectedTier.value);
     }
 };
-export {clearMintingError, closePriceTierOverlay, removePublishButton, handleTransactionError}
+export {clearMintingError, closePriceTierOverlay, removePublishButton, removeBlurFilter, setOrbBorderToSignalThatUnitIsPublished, handleTransactionError}
