@@ -1,5 +1,7 @@
 import { isTokenMinted } from '../web3/getMintedTokens.js'
 import { getMintedTokens } from '../web3/getMintedTokens.js';
+import { removeBlurFilter, setOrbBorderToSignalThatUnitIsPublished } from '../web3/ui-interactions/index.js';
+
 
 //Get the root style to access css variables
 let root  = document.documentElement;
@@ -490,6 +492,12 @@ fetch('glossary.json')
                     console.log("Trying to handle errors with magic:", error);
               }
           });
+      }
+      else{
+        // remove blur filter for unit ( it's here or in script.js )
+        removeBlurFilter(p+1);
+        // set orb ( in index map ) border to signal that unit is published ( it's here on in script.js )
+        setOrbBorderToSignalThatUnitIsPublished(p+1);
       }
       if (units[p].classList.contains('available')){
         units[p].append(unitsPublishButtons[p]);

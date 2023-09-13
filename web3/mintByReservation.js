@@ -1,6 +1,6 @@
 import { ethers } from 'ethers';
 import { handleReservationOperations } from './handleReservationOperations';
-import { clearMintingError, closePriceTierOverlay, removePublishButton, handleTransactionError } from './ui-interactions/index.js';
+import { clearMintingError, closePriceTierOverlay, removePublishButton, removeBlurFilter, setOrbBorderToSignalThatUnitIsPublished,  handleTransactionError } from './ui-interactions/index.js';
 import { transactionInitiated } from '../ux/transactionInitiated.js';
 import { openCongratzOverlay } from '../ux/openCongratzOverlay';
 import { revertWaitingForTransactionToInitiate } from '../ux/waitingForTransactionToInitiate';
@@ -806,6 +806,10 @@ const mintByReservation = async (tokenId, reservationId, choosePrice) => {
         const receipt = await transaction.wait();
         if (receipt && receipt.status == 1) {
           removePublishButton(tokenId);
+          // remove blur filter for unit ( it's here and in script.js )
+          removeBlurFilter(tokenId);
+          // set orb ( in index map ) border to signal that unit is published ( it's here and in script.js )
+          setOrbBorderToSignalThatUnitIsPublished(tokenId);
           await handleReservationOperations(reservationId, signer.address);
           closePriceTierOverlay();
           openCongratzOverlay();
