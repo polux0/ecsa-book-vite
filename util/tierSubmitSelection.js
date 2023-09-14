@@ -7,6 +7,7 @@ import { displayError } from "../validation/displayError.js";
 import { getChosenPrice } from "../validation/getChosenPrice.js";
 import { handleInvitations } from '../validation/handleInvitations.js';
 import { handleReservations } from '../validation/handleReservations.js';
+import { handleWithoutInvitationOrReservation } from '../validation/handleWithoutInvitationOrReservation.js';
 import { waitingForTransactionToInitiate, revertWaitingForTransactionToInitiate } from '../ux/waitingForTransactionToInitiate';
 import { checkAndSwitchNetwork } from '../ux/checkAndSwitchNetwork.js';
 import { clearMintingError } from '../web3/ui-interactions/index';
@@ -52,35 +53,35 @@ async function submitSelection() {
         const chosenPrice = getChosenPrice();
     
         if (!chosenPrice) {
+            revertWaitingForTransactionToInitiate();
             displayError("Please select a price tier before proceeding.");
             return;
         }
         if(connected){
             if (reservationsActive && reservationId) {
-                const reservationError = await handleReservations(reservationId, tokenId, chosenPrice);
-                if (reservationError !== true) errors.push(reservationError);
+                const reservationError = await handleReservations(reservationsActive, reservationId, tokenId, chosenPrice);
+                if (reservationError !== true){
+                    revertWaitingForTransactionToInitiate();
+                    displayError(reservationError);
+                }
             }
-            if (invitationsActive && invitationId) {
+            else if (invitationsActive && invitationId) {
                 const invitationError = await handleInvitations(invitationId, tokenId, chosenPrice, provider, reservationsActive);
-                if (invitationError !== true) errors.push(invitationError);
-            }
-            if (!reservationsActive && !invitationsActive) {
-                await mintById(tokenId, chosenPrice);
-                return;
+                if (invitationError !== true){
+                    revertWaitingForTransactionToInitiate();
+                    displayError(invitationError);
+                }
             }
             else{
-                revertWaitingForTransactionToInitiate();
-                displayError("Invitations and reservations are still active.");
-            }
-        
-            if (errors.length > 0) {
-                revertWaitingForTransactionToInitiate();
-                displayError(errors[errors.length - 1]);
-                console.log('errors: ', errors);
+                const withoutReservationAndInvitationError = await handleWithoutInvitationOrReservation(reservationsActive, invitationsActive, tokenId, chosenPrice);
+                if (withoutReservationAndInvitationError !== true){
+                    revertWaitingForTransactionToInitiate();
+                    displayError(withoutReservationAndInvitationError);
+                }
             }
         }
         else{
-            displayError('Please connect with one of available wallet providers');
+            displayError('Please connect with one of available wallet providers.');
         }
     
     } catch (error) {

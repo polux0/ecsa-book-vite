@@ -47,10 +47,8 @@ const removeBlurFilter = (tokenId) => {
 const setOrbBorderToSignalThatUnitIsPublished = (tokenId) => {
     const unit = document.getElementById(`orb_${tokenId}`);
     if(unit){
-        console.log('unit: ', unit);
         unit.style.border = '4px solid #611212';
     }
-
 }
 
 const handleTransactionError = (tokenId) => {
