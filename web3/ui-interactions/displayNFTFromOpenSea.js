@@ -2,6 +2,7 @@ import {getAnNFTViaOpenSea } from '../../ux/getAnNFTViaOpenSea';
 
 const displayNFTImageFromOpenSea = async (tokenId) => {
     try {
+        await new Promise(resolve => setTimeout(resolve, 2000));
         let nft = await getAnNFTViaOpenSea(tokenId);
         console.log('mint by invitation, response from opensea: ', nft);
         let nftElement = document.getElementById('nft-image');

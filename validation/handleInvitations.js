@@ -8,7 +8,7 @@ async function handleInvitations(invitationId, tokenId, chosenPrice, provider, r
         if (validInvitation) {
             const tokenReserved = await isTokenReserved(tokenId);
             if (tokenReserved && reservationsActive) {
-                return "Token is reserved. Invitation not enough!";
+                return "Token is still reserved. Invitation is not enough!";
             } else {
                 mintByInvitation(parseInt(tokenId, 10), invitationId, chosenPrice, provider);
                 return true;

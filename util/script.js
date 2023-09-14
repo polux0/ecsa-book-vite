@@ -95,7 +95,8 @@ let observer = new IntersectionObserver(function(entries) {
     });
 }, { threshold: [thresholdLimit] });
 
-//Activate observer for all footNotes
+// Activate Abount Content
+// Activate observer for all footNotes
 for(let c = 0; c < footNotes.length; c++){
     observer.observe(footNotes[c]);
 }

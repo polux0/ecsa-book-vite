@@ -830,6 +830,7 @@ const mintById = async (tokenId, choosePrice) => {
       if (error.code == "ACTION_REJECTED") {
           console.log('Transaction was rejected by the user.');
           revertWaitingForTransactionToInitiate();
+          return;
       } else if (error.message.includes("wrong chain") || error.message.includes("network mismatch")) {
           console.log('You are on the wrong network. Please switch your network.');
       } else if (error.message.includes("insufficient funds")) {
@@ -845,6 +846,7 @@ const mintById = async (tokenId, choosePrice) => {
         if (error.code == "ACTION_REJECTED") {
           console.log('Transaction was rejected by the user.');
           revertWaitingForTransactionToInitiate();
+          return;
         }else{
           console.log('error: ', error);
           handleTransactionError(tokenId);

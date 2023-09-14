@@ -2,6 +2,23 @@ import {initiateSupabase} from './supabase';
 
 const supabase = initiateSupabase();
 
+async function isTokenReserved(tokenId) {
+    try {
+        const { data, error } = await supabase
+            .from('reservations')
+            .select('*')
+            .eq('token_id', tokenId)
+            .eq('used_by_wallet', "0x")
+            .limit(1);
+        
+        if (error) throw error;
+        return data && data.length > 0;
+    } catch (error) {
+        console.error("Error checking `isTokenReserved:", error);
+        return false;
+    }
+}
+
 async function isReservationValid(reservationValue) {
     try {
         const { data, error } = await supabase
@@ -68,4 +85,4 @@ async function getReservationByReservationValue(reservationValue) {
         return null;
     }
 }
-export {isReservationValid, isReservationValidForTokenId, setReservationUsed, getReservationByReservationValue}
+export {isTokenReserved, isReservationValid, isReservationValidForTokenId, setReservationUsed, getReservationByReservationValue}
