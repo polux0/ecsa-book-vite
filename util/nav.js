@@ -1,4 +1,5 @@
-import {copyInvitations} from "../ux/copyInvitations";
+import { copyInvitations } from "../ux/copyInvitations";
+import { downloadInvitations } from "../ux/downloadInvitations";
 function initiateListeners(){
     document.addEventListener("DOMContentLoaded", function () {
         let aboutButton = document.getElementById("aboutButton");
@@ -16,6 +17,7 @@ function initiateListeners(){
         let congratzOverlayClose = document.getElementById("congratzOverlayClose");
         let congratzOverlayContent = document.getElementById("congratzOverlayContent");
         let copyButton = document.getElementById("copyButton");
+        let downloadButton = document.getElementById("downloadButton");
     
         aboutButton.addEventListener("click", function () {
             aboutOverlay.style.display = "block";
@@ -63,6 +65,9 @@ function initiateListeners(){
 
         copyButton.addEventListener("click", function (event) {
             copyInvitations();
+        });
+        downloadButton.addEventListener("click", function (event) {
+            downloadInvitations();
         });
     });    
 }

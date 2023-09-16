@@ -21,7 +21,7 @@ function copyInvitations() {
     // Set a timeout to revert the innerHTML after 3 seconds
     setTimeout(() => {
         copyButton.innerHTML = originalHtml;
-    }, 5000);  // 3000 milliseconds = 3 seconds
+    }, 5000);  // 5000 milliseconds = 5 seconds
 
 }
 export {copyInvitations}
