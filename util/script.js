@@ -479,7 +479,7 @@ fetch('glossary.json')
               try {
                 document.getElementById('priceTierOverlay').style.display = 'block';
                 document.getElementById('priceTierOverlayClose').style.display = 'block';
-                document.getElementById('priceTierContent').style.display = 'block';
+                document.getElementById('priceTierContent').style.display = 'flex';
                 const mintingError = document.getElementById('tiersErrorMessage');
                 const tiersSubmitButton = document.getElementById('tiersSubmitButton');
                 if(mintingError){

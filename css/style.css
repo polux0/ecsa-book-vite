@@ -84,7 +84,7 @@
         --c3: #e2ee5c;
         --c4: #ee7ac7;
         --eMshadow: 0px 0px 12px var(--c2);
-        --bookFontSize: 24px;
+        --bookFontSize: 20px;
         --mainFontFamily: 'EB Garamond';
         --displayFontFamily: 'basteleur';
         --interfaceFontFamily: 'VG5000';
@@ -246,7 +246,7 @@
     margin-left: auto;
     margin-right: auto;
 }
-    #priceTierOverlay{
+    /* #priceTierOverlay{
         position: absolute;
         width: 30vw;
         max-width: 60ch;
@@ -267,7 +267,7 @@
         right: 0;
         margin-left: auto;
         margin-right: auto;
-    }
+    } */
     /* Media query for mobile adjustments */
     @media (max-width: 480px) {
         #priceTierOverlay {
@@ -280,20 +280,35 @@
         }
     }
     #tiersSubmitButton{
-        border: 1px solid var(--c2);
-        padding: 0.3em 0.8em 0.5em 0.8em;
+        margin-top: 3vh;
     }
     #congratzOverlay{
+        overflow-y: auto;
+    }
+    /* Media query for mobile adjustments */
+    @media (max-width: 480px) {
+        #congratzOverlay {
+            /* Example adjustments for mobile, adjust as necessary */
+            width: 80vw;
+            height: 140vw;
+            max-width: 100%;
+            padding: 2vw;
+            margin-top: 5vh;
+            font-size: var(--mobileBookFontSize); /* Assuming you have a variable for mobile font size */
+            /* Add any other modifications for mobile here */
+        }
+    }
+    .overlay {
+        display: block;
         position: absolute;
-        width: 30vw;
-        max-width: 60ch;
-        height: 30vw;
-        overflow-y: scroll;
+        width: 90vw;
+        max-width: 80ch;
+        height: max-content;
+        max-height: 84vh;
         background-color: var(--bg);
-        z-index: 6;
+        z-index: 8;
         margin: 0 auto;
-        margin-top: 10vh;
-        padding: 3vw;
+        margin-top: 4vh;
         border: 1px solid var(--c1);
         font-size: var(--bookFontSize);
         font-family: var(--bookFontFamily);
@@ -304,26 +319,20 @@
         right: 0;
         margin-left: auto;
         margin-right: auto;
-    }
-    /* Media query for mobile adjustments */
-    @media (max-width: 480px) {
-        #congratzOverlay {
-            /* Example adjustments for mobile, adjust as necessary */
-            width: 60vw;
-            height: 70vw;
-            max-width: 100%;
-            padding: 2vw;
-            margin-top: 5vh;
-            font-size: var(--mobileBookFontSize); /* Assuming you have a variable for mobile font size */
-            /* Add any other modifications for mobile here */
-        }
-    }
-    .overlay {
         display: none;
     }
     
     .close-btn {
         display: none;
+        border-left: 1px solid var(--c1);
+        border-bottom: 1px solid var(--c1);
+        font-family: var(--displayFontFamily);
+        text-align: center;
+        width: 48px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        aspect-ratio: 1/1;
     }
     
     .overlay-content {
@@ -339,6 +348,7 @@
     .invitation-container span {
         display: block;
         margin-bottom: 10px;
+        text-align: center;
     }
 
     nav {
@@ -977,16 +987,21 @@ label {
     border: 1px solid #e0e0e0;
     padding: 10px;
     position: relative;
+    text-align: center;
 }
 
-.copy-button {
+.copy-button, .download-button {
     font-size: 1em;
     margin-top:10px;
     right: 10px;
     transform: translateY(-50%);
     cursor: pointer;
 }
-#invitation-link1, 
+#invitation-link1{
+    font-size:0.7rem;
+    margin-top: 3em;
+}
+
 #invitation-link2, 
 #invitation-link3 {
     font-size:0.7rem;
@@ -995,4 +1010,22 @@ label {
     max-width: 100%;
     display: block;
     margin-top: 20px;
+}
+/* #priceTierContent{
+    padding: 3vw;
+    margin-top: 34px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+} */
+.content{
+    padding: 3vw;
+    margin-top: 34px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.detailed-explanation{
+    margin-top: 3vh;
+    align-self: center;
 }

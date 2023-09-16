@@ -7,9 +7,9 @@ const openCongratzOverlay = async function() {
     if(congratzOverlayClose){
         congratzOverlayClose.style.display = "block";
     }
-    const congratzOverlayContent = document.getElementById('congratzOverlayContent');
+    const congratzOverlayContent = document.getElementById('congratzContent');
     if(congratzOverlayContent){
-        congratzOverlayContent.style.display = "block";
+        congratzOverlayContent.style.display = "flex";
     }
     const congratzMessage = document.getElementById('congratzMessage');
     if(congratzMessage){
