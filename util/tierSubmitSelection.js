@@ -21,6 +21,7 @@ async function submitSelection() {
     let provider;
     let connected = false;
     wallets = await connect();
+    //
 
     if(wallets){
         if(wallets[0]){
