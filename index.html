@@ -43,7 +43,7 @@
                 </ul>
             </div>
     </div>
-    <!---end aboutOverlay -->
+    <!--- priceTierOverlay -->
     <div id="priceTierOverlay" class="overlay" style="display:none">
         <button id="priceTierOverlayClose" style="display:none" class="close-btn">X</button>
         <div id="priceTierContent" class="content" style="display:none;">
@@ -60,6 +60,7 @@
                     <span></span> Tier 2 - $20
                 </label>
             </form>
+            <!-- Price Tiers Selection -->
             <br>
             <li id="tiersErrorMessage" style="display: none; margin-top:20px">
                 Error message!
@@ -71,42 +72,144 @@
             </div>
         </div>
     </div>
+    <!--- priceTierOverlay -->
+    <!--- congratzOverlay -->
     <div id="congratzOverlay" class="overlay">
         <button id="congratzOverlayClose" class="close-btn">X</button>
-            <div id="congratzContent" class="content" style="display:none;">
-                Congrats Econaut!
-                <br><br>
-                You have become a holder of a unit of postcapitalist discourse. 
-                <br><br>
-                Here is what your unit offers you:
-                <br><br>
-                1. The title of co-publisher<br>
-                (an acknowledgement that you have played for the commons)<br>
-                2. Access to the ECSA token whitelist<br>
-                3. Three invites to enrich the discourse<br>
-                4. The book PDF with a custom generative cover<br>
-                5. The print book published by Minor Compositions / Autonomedia (New York, 2023)<br>
-                6. Stake in the discourse’s future<br>
-                7. Participation in the discourse development<br>
-                <br>
-                <button class="detailed-explanation">Detailed explanation ↗</button>
+        <div id="congratzContent" class="content" style="display: flex;">
+            <b>Congrats Econaut!</b>    
+            You have become a holder of a unit of postcapitalist discourse. 
+            <br>
+            Here is what your unit offers you:
+            <br><br>
+            <p id="benefit1" class="pbenefit"> 1. The title of co-publisher → <br>(an acknowledgement that you have played for the commons)</p>
+            <p id="benefit2" class="pbenefit"> 2. Access to the ECSA token whitelist →</p>
+            <p id="benefit3" class="pbenefit"> 3. Three invites to enrich the discourse →</p>
+            <p id="benefit4" class="pbenefit"> 4. The book PDF with a custom generative cover →</p>
+            <p id="benefit5" class="pbenefit"> 5. The print book published by Minor Compositions / Autonomedia (New York, 2023)→</p>
+            <p id="benefit6" class="pbenefit"> 6. Stake in the discourse’s future →</p>
+            <p id="benefit7" class="pbenefit"> 7. Participation in the discourse development →</p>
+            <br>
+            <p id="congratzInvitationText" class="invitation-text">
+                If you'd like to engage more econauts in the discourse:
+            </p>
+            <div class="invitation-container">
+                <p class="invitation-link" id="invitation-link1">https://ecsa-book.vercel.app/?invitationId=HWjaYEr24AcMLzdhN4ycnKnhPvtRn4QNJKMuzu4BXexBHm6tsKmCQCUxqBudsxmK</p><br>
+                <p class="invitation-link" id="invitation-link2">https://ecsa-book.vercel.app/?invitationId=kQmCwci1M5JalYUS6qERTSeTBEmkikwcK7PXZCEIxcHyzJeUpxUgbtGvVdhEoRWb</p><br>
+                <p class="invitation-link" id="invitation-link3">https://ecsa-book.vercel.app/?invitationId=LQW6hmNXikOhsNPaP9v1BUBOdMqC28V7bdCBbL1MNrtPYMSx7WpdHjYCXQ0zGdsi</p><br>
+                <button class="copy-button" id="copyButton">Copy ❑</button>
+                <button class="download-button" id="downloadButton">Download ↓</button>
+            </div>
+            <a href="https://testnets.opensea.io/assets/sepolia/0x2970022E203b9466dd1dCC69B96f991DB96D63cb/242" target="_blank"><img src="https://openseauserdata.com/files/25e32536355ad2294753f294fcc24592.svg" alt="NFT Representation" class="nft-image" id="nft-image"></a>
+            <p id="connectedAccount"></p>
+        </div>  
+    </div>
+    <!--- congratzOverlay -->
 
-                <p id="congratzInvitationText" class="invitation-text">
-                    If you'd like to engage more econauts in the discourse:
-                </p>
-                <div class="invitation-container">
-                    <p class="invitation-link" id="invitation-link1">https://ecsa-book.vercel.app/?invitationId=?XfcOkv2s7gIF4D9Z2HKXpRLpvJCZUlntmWhAz6KgGe585n7kbHRYwT9lougYXaRp</p><br>
-                    <p class="invitation-link" id="invitation-link2">https://ecsa-book.vercel.app/?invitationId=?XfcOkv2s7gIF4D9Z2HKXpRLpvJCZUlntmWhAz6KgGe585n7kbHRYwT9lougYXaRp</p><br>
-                    <p class="invitation-link" id="invitation-link3">https://ecsa-book.vercel.app/?invitationId=?XfcOkv2s7gIF4D9Z2HKXpRLpvJCZUlntmWhAz6KgGe585n7kbHRYwT9lougYXaRp</p><br>
-                    <button class="copy-button" id="copyButton">Copy ❑</button>
-                    <button class="download-button" id="downloadButton">Download ↓</button>
-                </div>
-                <img src="https://openseauserdata.com/files/60c8bb28c7212ec8b987445ffa1781c9.svg" alt="NFT Representation" class="nft-image" id="nft-image">
-                <p id="connectedAccount"></p>
+    <!--- benefit1Overlay -->
+    <div id="benefit1Overlay" class="overlay">
+        <button id="benefit1OverlayClose" class="close-btn">X</button>
+            <div id="benefit1OverlayContent" class="content" style="display:none;">
+                <!-- Title -->
+                <b>1. The title of Co-Publisher (an acknowledgement that you have played for the commons)</b>
+                When all the units have been published, the book transforms into an open access publication that anybody can read, listen and circulate. As a thank you, your name / alias / wallet address will be listed as a Co-Publisher of the book at the book website and in the next PDF version of the book.
+                <br>
+                <br>
+                We will use the wallet address as the default name for the list.
+                <br>
+                <br>
+                If you would prefer your name/alias to be listed instead, please indicate it here:
+                <br>
+                <br>
+                The name you would like to be listed as a co-publisher: NNNNN
+                <br>
+                <br>
+                Thank you for co-publishing the book!
             </div>
     </div>
+    <!--- benefit1Overlay -->
+
+    <!-- <div id="benefit2Overlay" class="overlay">
+        <button id="benefit2OverlayClose" class="close-btn">X</button>
+            <div id="benefit2OverlayContent" class="content" style="display:none;">
+                <b>2. By holding this NFT, you will be eligible to invest in the ECSA token.</b>
+                Your unit grants you access to the ECSA token presale whitelist (target date: November, TBC). A certain number of ECSA tokens -- which are the project’s capital market facing governance tokens – will be allocated to an option pool divided among all the unit holders. The unit thus functions as a call option to buy a certain amount of ECSA tokens at presale price. All wallets holding a Unit of Discourse will be whitelisted when the presale starts. Please follow our messaging at the ECSA Telegram, ECSA Twitter, and unit holders’ Discord.
+                <button class="aboutOverlayBack">← back</button>
+            </div>
+    </div>
+
+    <div id="benefit3Overlay" class="overlay">
+        <button id="benefit3OverlayClose" class="close-btn">X</button>
+            <div id="benefit3OverlayContent" class="content" style="display:none;">
+                <b>3. Three invites to enrich the discourse</b>
+                As a holder of a unit of postcapitalist discourse, your next task is to expand and enrich the discourse. The project is about creating a more expressive economic language — than we currently have — to express, measure and communicate value. A discourse for postcapitalist expression. Your unit gives you the right to invite three people to join the discourse. 
+                <br>
+                <br>
+                Your invites are here (you will also receive them in your wallet as a message):
+                <br>
+                <br>
+                INVITES
+                <br>
+                <br>
+                Choose friends who you believe will be interested in the postcapitalist discourse and whose participation will increase its value. How does the value of a discourse increase? It increases if it gets spoken, shared, adopted, repeated; imitated and copied; that multiple ways of using it are invented, that it is used creatively; that different interpretations - which are always different subjective investments - are made of it. This is what we are after. Postcapital is a different paradigm of value creation. It is based on opening, sharing and inventing multiple uses (VS. restricting use by proprietary ownership); it is based on many interpretations, iterations, variations (VS. hiding the source code); it is based on collective self-organization, self-governance and right to fork (VS. external organization and control). This is now what we are organizing for.
+                <br>
+                <br>
+                [After all the units have been published, the people with invitations who didn't manage to get their own unit at this point, will have an access to the Discord where we develop the discourse.]
+                <button class="aboutOverlayBack">← back</button>
+            </div>
+    </div>
+
+    <div id="benefit4Overlay" class="overlay">
+        <button id="benefit4OverlayClose" class="close-btn">X</button>
+            <div id="benefit4OverlayContent" class="content" style="display:none;">
+                <b>4. The book PDF with a custom generative cover</b>
+                The unit gives you the right to download the book PDF with a unique generative cover. It will allow you to understand your unit of discourse’s meaning and relevance as part of the whole book. It assists you in determining the value of the token you hold.
+                <br>
+                <br>
+                Please download it here! LINK
+                <button class="aboutOverlayBack">← back</button>
+            </div>
+    </div>
+
+    <div id="benefit5Overlay" class="overlay">
+        <button id="benefit5OverlayClose" class="close-btn">X</button>
+            <div id="benefit5OverlayContent" class="content" style="display:none;">
+                <b>5. The print book published by Minor Compositions / Autonomedia (Colchester / New York / Port Watson, 2023)</b>
+                If you have chosen the Tier 2 (higher price), your unit offers you also a print copy of the book delivered to your door.
+                <br>
+                <br>
+                Please leave here your name and address where you would like it be delivered:
+                <br>
+                Name:
+                <br>
+                Mailing address:
+                <br>
+                Phone number (required by the delivery service):
+                <br>
+                <br>
+                The publisher will deliver the book to you immediately. Please notice that depending on your country, you might need to clear the customs before receiving the book.
+                <button class="aboutOverlayBack">← back</button>
+            </div>
+    </div>
+
+    <div id="benefit6Overlay" class="overlay">
+        <button id="benefit6OverlayClose" class="close-btn">X</button>
+            <div id="benefit6OverlayContent" class="content" style="display:none;">
+                <b>6. Ability to communicate economically / Stake in the discourse’s future</b>
+                You can next publish your NFT in one or more markets. This allows you to start communicating and messaging about the discourse economically. You can also fractionalize it, gift it, acquire more tokens in it (in its account – yes, it is a 6551!). This allows you to spread the discourse, contributing to its valuation and the broader discourse on economic media. In addition, when all the units have been published and the entire book is revealed for everybody to read, the entire book will also be released as a separate singular fractional NFT. Every unit will receive a fraction. As a holder of a unit of discourse, you become a stakeholder of the discourse’s value as an informational asset. 
+                <button class="aboutOverlayBack">← back</button>
+            </div>
+    </div>
+
+    <div id="benefit7Overlay" class="overlay">
+        <button id="benefit7OverlayClose" class="close-btn">X</button>
+            <div id="benefit7OverlayContent" class="content" style="display:none;">
+                <b>7. Participation in the discourse development and IRL meets</b>
+                Your unit gives you the right to access the Discourse Development Discord, i.e. to participate in the development of the discourse by sharing your insights and engaging in the dialogue. This allows you to shape the discourse and contribute to the co-publishing of the book. We have curated public discussions with interesting guests and a Discord channel where we developed the discourse. You can also just hangaround. We also organize IRL meets. The next one is going to be in New York City in early December. Please follow notifications in the ECSA Telegram, ECSA Twitter, and unit holders’ Discord.
+                <button class="aboutOverlayBack">← back</button>
+            </div>
+    </div> -->
     
-    <!---end priceTierOverlay -->
     <nav id="mainNav">
         <button class="mainNavButton" data-target="navECSA"><span>ECSA</span></button>
         <button class="mainNavButton" data-target="navBook"><span>Book</span></button>

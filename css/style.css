@@ -340,9 +340,13 @@
         text-align: center;
     }
     
-    .message, .invitation-text {
+    .message{
         margin-top: 20px;
         margin-bottom: 2em;
+    }
+    .invitation-text{
+        margin-top:0px;
+        margin-bottom:0px;
     }
     
     .invitation-container span {
@@ -1028,4 +1032,19 @@ label {
 .detailed-explanation{
     margin-top: 3vh;
     align-self: center;
+}
+.aboutOverlayBack{
+    margin-top: 3vh;
+    align-self: flex-start;
+}
+/* overriding default <p> properties */
+.pbenefit{
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: normal;
+}
+p.pbenefit:hover {
+    color: black;
+    background-color: white;
+    cursor: pointer;
 }

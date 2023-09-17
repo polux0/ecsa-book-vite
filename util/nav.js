@@ -1,5 +1,6 @@
 import { copyInvitations } from "../ux/copyInvitations";
 import { downloadInvitations } from "../ux/downloadInvitations";
+import { closeCongratzAndOpenBenefitById } from "../ux/closeCongratzAndOpenBenefitById";
 function initiateListeners(){
     document.addEventListener("DOMContentLoaded", function () {
         let aboutButton = document.getElementById("aboutButton");
@@ -11,7 +12,6 @@ function initiateListeners(){
         let priceTierOverlay = document.getElementById("priceTierOverlay");
         let priceTierOverlayClose = document.getElementById("priceTierOverlayClose");
         let priceTierContent = document.getElementById("priceTierContent");
-        let tiersSubmitButton = document.getElementById("tiersSubmitButton");
         let tiersErrorMessage = document.getElementById("tiersErrorMessage");
         let congratzOverlay = document.getElementById("congratzOverlay");
         let congratzOverlayClose = document.getElementById("congratzOverlayClose");
@@ -55,13 +55,13 @@ function initiateListeners(){
             priceTierContent.style.display = "none";
             tiersErrorMessage.innerHtml = "";
             tiersErrorMessage.style.display = "none";
-        })
+        });
         // congratz closed
         congratzOverlayClose.addEventListener("click", function () {
             congratzOverlay.style.display = "none";
             congratzOverlayClose.style.display = "none";
             congratzOverlayContent.style.display = "none";
-        })
+        });
 
         copyButton.addEventListener("click", function (event) {
             copyInvitations();
@@ -69,6 +69,20 @@ function initiateListeners(){
         downloadButton.addEventListener("click", function (event) {
             downloadInvitations();
         });
+        // adding eventListeners for `benefit{$id}`
+        for (let i = 1; i <= 7; i++) {
+            let element = document.getElementById(`benefit${i}`);
+
+            if (element) {
+                element.addEventListener("click", function (event) {
+                    let clickedBenefitElement = event.target.id;
+                    if(clickedBenefitElement){
+                        const clickedBenefitId = parseInt(clickedBenefitElement.replace(/\D/g, ''), 10);
+                        closeCongratzAndOpenBenefitById(clickedBenefitId);
+                    }
+                });
+            }
+        }
     });    
 }
 initiateListeners();
