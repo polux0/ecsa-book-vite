@@ -50,7 +50,6 @@ async function submitSelection() {
     const invitationsActive = await areInvitationsActive();
 
     try {
-        let errors = [];
         const chosenPrice = getChosenPrice();
     
         if (!chosenPrice) {
