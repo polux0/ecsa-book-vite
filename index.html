@@ -13,34 +13,50 @@
 <body>
     <div id="aboutOverlay" class="overlay">
         <button id="aboutOverlayClose" class="close-btn">X</button>
-            <div id="aboutContent" class="content">
-                Welcome to <b>'Protocols for Postcapitalist Expression'</b>. <br>
-                Co-publishing is a new format for economic media that lets you take part in the publishing process.This book is divided into collectible paragraphs which visitors can individually choose to co-publish through a symbolic financial contribution. <br>
+        <div class="aboutContent" style="display: none;">
+            Welcome to <b>'Protocols for Postcapitalist Expression'.</b>
+            Co-publishing is a new format for economic media that lets you take part in the publishing process.This book is divided into collectible paragraphs which visitors can individually choose to co-publish through a symbolic financial contribution. <br>
+            <br>
+            At the beginning, all content is obscured. Through your participation, this text will gradually be made public, one unit at a time. <br>
+            <br>
+            <button class="aboutOverlayNext">next →</button>
+        </div>
+        <div class="aboutContent" style="display: none;">
+            By acquiring a unit of this text you join a discursive community reflecting upon agency, finance and sociality in the new economic space. <br>
+            <br>
+            When browsing through the book, you will encounter blurred units of text which signals they are available for co-publishing. Click the "co-publish" button at the end of each unit, and follow the instructions from there. <br>
+            <br>
+            <div class="buttonContainer">
+                <button class="aboutOverlayPrev">← previous</button>
+                <button class="aboutOverlayNext">next →</button>
+            </div>
+        </div>
+        <div class="aboutContent" style="display: none;">
+            Your unit of discourse grants you the following rights: <br>
+            <ul>
+                <li>
+                    Access to Discourse Node: a community on a discord server, oriented towards the book itself, and new economies of text.
+                </li>
+                <li>
+                    A special PDF version of the book with a unique cover.
+                </li>
+                <li>
+                    An option to purchase ECSA token at a discount price.
+                </li>
+                <li>
+                    An opportunity to invite up to three people into this process of co-publishing.
+                </li>
+            </ul>
+                <div class="buttonContainer">
+                    <button class="aboutOverlayPrev">← previous</button>
+                    <button class="aboutOverlayNext">next →</button>
+                </div>
+            </div>
+            <div class="aboutContent" style="display: block;">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, perspiciatis incidunt adipisci quis saepe velit provident aut reiciendis harum reprehenderit officia commodi voluptatum quisquam nisi dolore tenetur? Iusto, voluptate officia! <br>
                 <br>
-                At the beginning, all content is obscured. Through your participation, this text will gradually be made public, one unit at a time. <br>
                 <br>
-                By acquiring a unit of this text you join a discursive community reflecting upon agency, finance and sociality in the new economic space. <br>
-                <br>
-                When browsing through the book, you will encounter blurred units of text which signals they are available for co-publishing. Click the "co-publish" button at the end of each unit, and follow the instructions from there. <br>
-                <br>
-                Your contribution supports the creation of the book and the development of its publishing format, making both permanently accessible online for everyone. But primarily, your unit of discourse grants you the following rights: <br>
-                <ul>
-                    <li>
-                        Access to Discourse Node: a community on a discord server, oriented towards the book itself, and new economies of text.
-                    </li>
-                    <li>
-                        A special PDF version of the book with a unique cover.
-                    </li>
-                    <li>
-                        An option to purchase ECSA token at a discount price.
-                    </li>
-                    <li>
-                        An opportunity to invite up to three people into this process of co-publishing.
-                    </li>
-                    <li>
-                        A creditation on the book page as a co-publisher.
-                    </li>
-                </ul>
+                <button class="aboutOverlayPrev">← previous</button>
             </div>
     </div>
     <!--- priceTierOverlay -->
@@ -51,13 +67,13 @@
             <form id="priceTiers" style="margin-top:2rem">
                 <label>
                     <input type="radio" name="tier" value="0.0001" class="custom-radio">
-                    <span></span> Tier 1 - $10
+                    <span></span> Tier 1 - 0.01 ETH
                 </label>
                 <br>
                 <br>
                 <label>
                     <input type="radio" name="tier" value="0.0002" class="custom-radio">
-                    <span></span> Tier 2 - $20
+                    <span></span> Tier 2 - 0.05 ETH
                 </label>
             </form>
             <!-- Price Tiers Selection -->
@@ -93,13 +109,13 @@
             <p id="congratzInvitationText" class="invitation-text">
                 If you'd like to engage more econauts in the discourse:
             </p>
-            <div class="invitation-container">
+            <!-- <div class="invitation-container">
                 <p class="invitation-link" id="invitation-link1">https://ecsa-book.vercel.app/?invitationId=HWjaYEr24AcMLzdhN4ycnKnhPvtRn4QNJKMuzu4BXexBHm6tsKmCQCUxqBudsxmK</p><br>
                 <p class="invitation-link" id="invitation-link2">https://ecsa-book.vercel.app/?invitationId=kQmCwci1M5JalYUS6qERTSeTBEmkikwcK7PXZCEIxcHyzJeUpxUgbtGvVdhEoRWb</p><br>
                 <p class="invitation-link" id="invitation-link3">https://ecsa-book.vercel.app/?invitationId=LQW6hmNXikOhsNPaP9v1BUBOdMqC28V7bdCBbL1MNrtPYMSx7WpdHjYCXQ0zGdsi</p><br>
                 <button class="copy-button" id="copyButton">Copy ❑</button>
                 <button class="download-button" id="downloadButton">Download ↓</button>
-            </div>
+            </div> -->
             <a href="https://testnets.opensea.io/assets/sepolia/0x2970022E203b9466dd1dCC69B96f991DB96D63cb/242" target="_blank"><img src="https://openseauserdata.com/files/25e32536355ad2294753f294fcc24592.svg" alt="NFT Representation" class="nft-image" id="nft-image"></a>
             <p id="connectedAccount"></p>
         </div>  

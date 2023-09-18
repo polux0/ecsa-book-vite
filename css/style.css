@@ -1051,3 +1051,6 @@ p.pbenefit:hover {
 b {
     font-family: var(--displayFontFamily);
 }
+#benefit1OverlayContent{
+    overflow-y: auto;
+}
