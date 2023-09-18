@@ -223,7 +223,7 @@
     }
 
     #aboutOverlay{
-        display: none;
+        display: flex;
         position: absolute;
         width: 90vw;
         max-width: 80ch;
