@@ -11,27 +11,31 @@
 </head>
 
 <body>
-    <div id="aboutOverlay" class="overlay">
+    <div id="aboutOverlay">
         <button id="aboutOverlayClose" class="close-btn">X</button>
-        <div class="aboutContent" style="display: none;">
-            Welcome to <b>'Protocols for Postcapitalist Expression'.</b>
+        <!-- aboutContent1 -->
+        <div class="aboutContent" id="aboutContent1" style="display: none;">
+            Welcome to 
+            <b>'Protocols for Postcapitalist Expression'.</b>
             Co-publishing is a new format for economic media that lets you take part in the publishing process.This book is divided into collectible paragraphs which visitors can individually choose to co-publish through a symbolic financial contribution. <br>
             <br>
             At the beginning, all content is obscured. Through your participation, this text will gradually be made public, one unit at a time. <br>
             <br>
-            <button class="aboutOverlayNext">next →</button>
+            <button class="aboutOverlayNext" id="aboutOverlayNext1">next →</button>
         </div>
-        <div class="aboutContent" style="display: none;">
+        <!-- aboutContent2 -->
+        <div class="aboutContent" id="aboutContent2" style="display: none;">
             By acquiring a unit of this text you join a discursive community reflecting upon agency, finance and sociality in the new economic space. <br>
             <br>
             When browsing through the book, you will encounter blurred units of text which signals they are available for co-publishing. Click the "co-publish" button at the end of each unit, and follow the instructions from there. <br>
             <br>
             <div class="buttonContainer">
-                <button class="aboutOverlayPrev">← previous</button>
-                <button class="aboutOverlayNext">next →</button>
+                <button class="aboutOverlayPrev" id="aboutOverlayPrevious2">← previous</button>
+                <button class="aboutOverlayNext" id="aboutOverlayNext2">next →</button>
             </div>
         </div>
-        <div class="aboutContent" style="display: none;">
+        <!-- aboutContent3 -->
+        <div class="aboutContent" id="aboutContent3" style="display: none;">
             Your unit of discourse grants you the following rights: <br>
             <ul>
                 <li>
@@ -48,16 +52,17 @@
                 </li>
             </ul>
                 <div class="buttonContainer">
-                    <button class="aboutOverlayPrev">← previous</button>
-                    <button class="aboutOverlayNext">next →</button>
+                    <button class="aboutOverlayPrev" id="aboutOverlayPrevious3">← previous</button>
+                    <button class="aboutOverlayNext" id="aboutOverlayNext3">next →</button>
                 </div>
-            </div>
-            <div class="aboutContent" style="display: block;">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, perspiciatis incidunt adipisci quis saepe velit provident aut reiciendis harum reprehenderit officia commodi voluptatum quisquam nisi dolore tenetur? Iusto, voluptate officia! <br>
-                <br>
-                <br>
-                <button class="aboutOverlayPrev">← previous</button>
-            </div>
+        </div>
+        <!-- aboutContent4 -->
+        <div class="aboutContent" id="aboutContent4" style="display: none;">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, perspiciatis incidunt adipisci quis saepe velit provident aut reiciendis harum reprehenderit officia commodi voluptatum quisquam nisi dolore tenetur? Iusto, voluptate officia! <br>
+            <br>
+            <br>
+            <button class="aboutOverlayPrev" id="aboutOverlayPrevious4">← previous</button>
+        </div>
     </div>
     <!--- priceTierOverlay -->
     <div id="priceTierOverlay" class="overlay" style="display:none">
@@ -7389,6 +7394,7 @@
 <script type="module" src="util/getBenefitBasedOnId.js"></script>
 
 <!-- ux -->
+<script type="module" src="ux/aboutOverlaySwitchingLogic.js"></script>
 <script type="module" src="ux/checkAndSwitchNetwork.js"></script>
 <script type="module" src="ux/closeCongratzAndOpenBenefitById.js"></script>
 <script type="module" src="ux/closeOpenBenefitAndOpenCongratz.js"></script>
