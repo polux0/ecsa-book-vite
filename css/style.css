@@ -1048,3 +1048,6 @@ p.pbenefit:hover {
     background-color: white;
     cursor: pointer;
 }
+b {
+    font-family: var(--displayFontFamily);
+}
