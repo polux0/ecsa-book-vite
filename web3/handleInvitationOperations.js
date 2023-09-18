@@ -12,7 +12,7 @@ const handleInvitationOperations = async (invitationId, signer) => {
           let element = document.getElementById(`invitation-link${i}`);
           element.innerHTML = `${import.meta.env.VITE_INVITATION_URL}${threeNewInvitations[i-1].value}`;
       }
-      }); 
+      });
       } catch (error) {
         console.log('operations with invitation storage failed...');
       }

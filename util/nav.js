@@ -60,15 +60,17 @@ function initiateListeners(){
         congratzOverlayClose.addEventListener("click", function () {
             congratzOverlay.style.display = "none";
             congratzOverlayClose.style.display = "none";
-            congratzOverlayContent.style.display = "none";
+            if(congratzOverlayContent){
+                congratzOverlayContent.style.display = "none";
+            }
         });
 
-        copyButton.addEventListener("click", function (event) {
-            copyInvitations();
-        });
-        downloadButton.addEventListener("click", function (event) {
-            downloadInvitations();
-        });
+        // copyButton.addEventListener("click", function (event) {
+        //     copyInvitations();
+        // });
+        // downloadButton.addEventListener("click", function (event) {
+        //     downloadInvitations();
+        // });
         // adding eventListeners for `benefit{$id}`
         for (let i = 1; i <= 7; i++) {
             let element = document.getElementById(`benefit${i}`);

@@ -23,7 +23,13 @@ function getBenefitBasedOnId(id){
         Your invites are here (you will also receive them in your wallet as a message):
         <br>
         <br>
-        INVITES
+        <div class="invitation-container">
+        <p class="invitation-link" id="invitation-link1">https://ecsa-book.vercel.app/?invitationId=HWjaYEr24AcMLzdhN4ycnKnhPvtRn4QNJKMuzu4BXexBHm6tsKmCQCUxqBudsxmK</p><br>
+        <p class="invitation-link" id="invitation-link2">https://ecsa-book.vercel.app/?invitationId=kQmCwci1M5JalYUS6qERTSeTBEmkikwcK7PXZCEIxcHyzJeUpxUgbtGvVdhEoRWb</p><br>
+        <p class="invitation-link" id="invitation-link3">https://ecsa-book.vercel.app/?invitationId=LQW6hmNXikOhsNPaP9v1BUBOdMqC28V7bdCBbL1MNrtPYMSx7WpdHjYCXQ0zGdsi</p><br>
+        <button class="copy-button" id="copyButton">Copy ❑</button>
+        <button class="download-button" id="downloadButton">Download ↓</button>
+        </div>
         <br>
         <br>
         Choose friends who you believe will be interested in the postcapitalist discourse and whose participation will increase its value. How does the value of a discourse increase? It increases if it gets spoken, shared, adopted, repeated; imitated and copied; that multiple ways of using it are invented, that it is used creatively; that different interpretations - which are always different subjective investments - are made of it. This is what we are after. Postcapital is a different paradigm of value creation. It is based on opening, sharing and inventing multiple uses (VS. restricting use by proprietary ownership); it is based on many interpretations, iterations, variations (VS. hiding the source code); it is based on collective self-organization, self-governance and right to fork (VS. external organization and control). This is now what we are organizing for.
