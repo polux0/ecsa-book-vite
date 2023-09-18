@@ -10,8 +10,12 @@ function getBenefitBasedOnId(id){
         If you would prefer your name/alias to be listed instead, please indicate it here:
         <br>
         <br>
-        The name you would like to be listed as a co-publisher: NNNNN
+        The name you would like to be listed as a co-publisher:
         <br>
+        <br>
+        <input type="text" placeholder="nonlinear economic space agent..." spellcheck="false" id="copublisherName">
+        <br>
+        <button class="post-publisher-button" id="postPublisherButton">Post ➹</button>
         <br>
         Thank you for co-publishing the book!`,
         `<b>2. By holding this NFT, you will be eligible to invest in the ECSA token.</b>
@@ -40,19 +44,27 @@ function getBenefitBasedOnId(id){
         The unit gives you the right to download the book PDF with a unique generative cover. It will allow you to understand your unit of discourse’s meaning and relevance as part of the whole book. It assists you in determining the value of the token you hold.
         <br>
         <br>
-        Please download it here! LINK`,
+        Please download it here!
+        <br>
+        <br>
+        <button class="download-button" id="downloadGeneratedPdfsButton">Download ↓</button>`,
         `<b>5. The print book published by Minor Compositions / Autonomedia (Colchester / New York / Port Watson, 2023)</b>
         If you have chosen the Tier 2 (higher price), your unit offers you also a print copy of the book delivered to your door.
         <br>
         <br>
         Please leave here your name and address where you would like it be delivered:
         <br>
+        <br>
         Name:
+        <input type="text" placeholder="Walter Gibson..." spellcheck="false" id="name">
         <br>
         Mailing address:
         <br>
+        <input type="text" placeholder="Rue Saint-Honoré 13/1..." spellcheck="false" id="mailingAddress">
+        <br>
         Phone number (required by the delivery service):
         <br>
+        <input type="text" placeholder="+386258472..." spellcheck="false" id="phoneNumber">
         <br>
         The publisher will deliver the book to you immediately. Please notice that depending on your country, you might need to clear the customs before receiving the book.`,
         `<b>6. Ability to communicate economically / Stake in the discourse’s future</b>
