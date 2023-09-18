@@ -225,26 +225,24 @@
     #aboutOverlay{
         display: none;
         position: absolute;
-        width: 80vw;
-        max-width: 60ch;
-        height: 60vh;
-        overflow-y: scroll;
+        width: 90vw;
+        max-width: 80ch;
+        height: max-content;
+        max-height: 84vh;
         background-color: var(--bg);
-        z-index: 6;
+        z-index: 8;
         margin: 0 auto;
-        margin-top: 10vh;
-        padding: 3vw;
+        margin-top: 4vh;
         border: 1px solid var(--c1);
         font-size: var(--bookFontSize);
         font-family: var(--bookFontFamily);
         box-shadow: 0px 0px 12px rgba(0,0,0,0.75);
         border-radius: 2px;
         line-height: 1.25em;
-
         left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
 }
     /* #priceTierOverlay{
         position: absolute;
@@ -1053,4 +1051,25 @@ b {
 }
 #benefit1OverlayContent{
     overflow-y: auto;
+}
+.aboutContent{
+    padding: 3vw;
+    margin-top: 34px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.aboutOverlayNext{
+    margin-top: 3vh;
+    align-self: flex-end;
+}
+.aboutOverlayPrev {
+    margin-top: 3vh;
+    flex-shrink: 1;
+    align-self: flex-start;
+}
+.buttonContainer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 }

@@ -1,8 +1,11 @@
-import { copyInvitations } from "../ux/copyInvitations";
-import { downloadInvitations } from "../ux/downloadInvitations";
+
+import { initiateAboutOverlayLogic } from '../ux/aboutOverlaySwitchingLogic';
 import { closeCongratzAndOpenBenefitById } from "../ux/closeCongratzAndOpenBenefitById";
 function initiateListeners(){
     document.addEventListener("DOMContentLoaded", function () {
+        initiateAboutOverlayLogic();
+
+        // here it should be display block flex for about overlay
         let aboutButton = document.getElementById("aboutButton");
         let aboutOverlay = document.getElementById("aboutOverlay");
         let aboutOverlayClose = document.getElementById("aboutOverlayClose");
@@ -16,8 +19,19 @@ function initiateListeners(){
         let congratzOverlay = document.getElementById("congratzOverlay");
         let congratzOverlayClose = document.getElementById("congratzOverlayClose");
         let congratzOverlayContent = document.getElementById("congratzOverlayContent");
-        let copyButton = document.getElementById("copyButton");
-        let downloadButton = document.getElementById("downloadButton");
+
+        // display about overlay as soon as page is loaded:
+
+        if(aboutOverlay){
+            aboutOverlay.style.display = "flex";
+        }
+        if(aboutOverlayClose){
+            aboutOverlayClose.style.display = "block";
+        } 
+        let aboutContent1 = document.getElementById("aboutContent1");
+        if(aboutContent1){
+            aboutContent1.style.display = "flex";
+        }
     
         aboutButton.addEventListener("click", function () {
             aboutOverlay.style.display = "block";
@@ -65,12 +79,6 @@ function initiateListeners(){
             }
         });
 
-        // copyButton.addEventListener("click", function (event) {
-        //     copyInvitations();
-        // });
-        // downloadButton.addEventListener("click", function (event) {
-        //     downloadInvitations();
-        // });
         // adding eventListeners for `benefit{$id}`
         for (let i = 1; i <= 7; i++) {
             let element = document.getElementById(`benefit${i}`);
