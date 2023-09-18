@@ -19,19 +19,6 @@ function initiateListeners(){
         let congratzOverlay = document.getElementById("congratzOverlay");
         let congratzOverlayClose = document.getElementById("congratzOverlayClose");
         let congratzOverlayContent = document.getElementById("congratzOverlayContent");
-
-        // display about overlay as soon as page is loaded:
-
-        if(aboutOverlay){
-            aboutOverlay.style.display = "flex";
-        }
-        if(aboutOverlayClose){
-            aboutOverlayClose.style.display = "block";
-        } 
-        let aboutContent1 = document.getElementById("aboutContent1");
-        if(aboutContent1){
-            aboutContent1.style.display = "flex";
-        }
     
         aboutButton.addEventListener("click", function () {
             aboutOverlay.style.display = "block";
