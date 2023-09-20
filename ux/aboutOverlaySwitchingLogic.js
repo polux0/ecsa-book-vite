@@ -8,7 +8,7 @@ function initiateAboutOverlayLogic(){
                 aboutOverlayContent1.style.display = "none";
                 let aboutOverlayContent2 = document.getElementById("aboutContent2");
                 if(aboutOverlayContent2){
-                    aboutOverlayContent2.style.display = "flex";
+                    aboutOverlayContent2.style.display = "block";
                 }
             }
         });
