@@ -1,6 +1,7 @@
 import { isTokenMinted } from '../web3/getMintedTokens.js'
 import { getMintedTokens } from '../web3/getMintedTokens.js';
 import { removeBlurFilter, setOrbBorderToSignalThatUnitIsPublished } from '../web3/ui-interactions/index.js';
+import { enableSlider, replaceRevealPriceButtonWithActualPriceReverse } from "../ux/revealPrice.js";
 
 
 //Get the root style to access css variables
@@ -473,6 +474,7 @@ fetch('glossary.json')
       }
       unitsPublishButtons[p].style.display = 'none';
       unitsPublishButtons[p].id = `publishUnit${p+1}`; 
+      // here we open `publish unit` popup
         if(!bool){
           unitsPublishButtons[p].innerHTML = `publish unit #${p+1}`;
           unitsPublishButtons[p].addEventListener('click', async function(event) {
@@ -488,6 +490,9 @@ fetch('glossary.json')
                 if(tiersSubmitButton){
                     tiersSubmitButton.innerHTML = "Mint";
                 }
+                enableSlider();
+                replaceRevealPriceButtonWithActualPriceReverse();
+
                 localStorage.setItem('tokenId', `${p+1}`);
               } catch (error) {
                     console.log("Trying to handle errors with magic:", error);
