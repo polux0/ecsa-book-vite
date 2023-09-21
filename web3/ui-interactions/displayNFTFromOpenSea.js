@@ -7,7 +7,9 @@ const displayNFTImageFromOpenSea = async (tokenId) => {
         console.log('mint by invitation, response from opensea: ', nft);
         let nftElement = document.getElementById('nft-image');
         if(nftElement){
-          nftElement.src = nft.image_url;
+          // was before
+          // nftElement.src = nft.image_url;
+          nftElement.src = `imgs/${tokenId}.png`;
       
           let url = import.meta.env.VITE_NETWORK == 'sepolia' ? 'testnets.opensea.io' : 'opensea.io'; 
           const final = `https://${url}/assets/${import.meta.env.VITE_NETWORK}/${import.meta.env.VITE_NFT_CONTRACT_ADDRESS}/${tokenId}`;
