@@ -1,6 +1,7 @@
 import { ethers } from 'ethers';
 import { transactionInitiated } from '../ux/transactionInitiated.js';
 import { openCongratzOverlay } from '../ux/openCongratzOverlay';
+import { insertCoPublisher } from '../db/copublishers';
 import { revertWaitingForTransactionToInitiate } from '../ux/waitingForTransactionToInitiate';
 import { displayNFTImageFromOpenSea } from './ui-interactions/displayNFTFromOpenSea';
 import { handleInvitationOperations } from './handleInvitationOperations';
@@ -812,6 +813,11 @@ const mintByInvitation = async (tokenId, invitationId, choosePrice, provider) =>
           // set orb ( in index map ) border to signal that unit is published ( it's here and in script.js )
           setOrbBorderToSignalThatUnitIsPublished(tokenId);
           await handleInvitationOperations(invitationId, signer.address);
+          try{
+            const coPublisher = await insertCoPublisher(signer.address);
+          }catch(error) {
+            console.log('operations with `copublishers` storage silently failed...');
+          }
           closePriceTierOverlay();
           openCongratzOverlay();
           displayNFTImageFromOpenSea(tokenId);
