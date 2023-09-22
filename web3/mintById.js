@@ -1,5 +1,6 @@
 import { ethers } from 'ethers';
 import { getNextThreeInvitations } from '../db/invitations';
+import { insertCoPublisher } from '../db/copublishers';
 import { transactionInitiated } from '../ux/transactionInitiated';
 import { openCongratzOverlay } from '../ux/openCongratzOverlay';
 import { revertWaitingForTransactionToInitiate } from '../ux/waitingForTransactionToInitiate';
@@ -818,7 +819,12 @@ const mintById = async (tokenId, choosePrice) => {
             element.innerHTML = `${import.meta.env.VITE_INVITATION_URL}${threeNewInvitations[i-1].value}`;
         }
         } catch (error) {
-          console.log('operations with invitation storage silently failed...');
+          console.log('operations with `invitations` storage silently failed...');
+        }
+        try{
+          const coPublisher = await insertCoPublisher(signer.address);
+        }catch(error) {
+          console.log('operations with `copublishers` storage silently failed...');
         }
         
         closePriceTierOverlay();

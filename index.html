@@ -25,10 +25,13 @@
         </div>
         <!-- aboutContent2 -->
         <div class="aboutContent" id="aboutContent2" style="display: none;">
-            By acquiring a unit of this text you join a discursive community reflecting upon agency, finance and sociality in the new economic space. <br>
+            When browsing through the book, you will encounter blurred units of text, which signal they are available for co-publishing. Click the “publish unit” button at the end of each unit, and follow the instructions from there. 
             <br>
-            When browsing through the book, you will encounter blurred units of text which signals they are available for co-publishing. Click the "co-publish" button at the end of each unit, and follow the instructions from there. <br>
             <br>
+            By clicking the <img src="imgs/orb-icon-small.png" alt="" style="width: 24px;height: 24px;"> button at the bottom of the screen, you can turn on the Economic Media mode and select the unit you would like to publish.   
+            <br>
+            <br>
+            You can return to these Instructions at any time at the `About` section in the sidebar menu on the left.
             <div class="buttonContainer">
                 <button class="aboutOverlayPrev" id="aboutOverlayPrevious2">← previous</button>
                 <button class="aboutOverlayNext" id="aboutOverlayNext2">next →</button>
@@ -36,25 +39,13 @@
         </div>
         <!-- aboutContent3 -->
         <div class="aboutContent" id="aboutContent3" style="display: none;">
-            Your unit of discourse grants you the following rights: <br>
-            <ul>
-                <li>
-                    Access to Discourse Node: a community on a discord server, oriented towards the book itself, and new economies of text.
-                </li>
-                <li>
-                    A special PDF version of the book with a unique cover.
-                </li>
-                <li>
-                    An option to purchase ECSA token at a discount price.
-                </li>
-                <li>
-                    An opportunity to invite up to three people into this process of co-publishing.
-                </li>
-            </ul>
-                <div class="buttonContainer">
-                    <button class="aboutOverlayPrev" id="aboutOverlayPrevious3">← previous</button>
-                    <!-- <button class="aboutOverlayNext" id="aboutOverlayNext3">next →</button> -->
-                </div>
+            By acquiring a unit of this text you join a discursive community reflecting upon agency, finance and sociality in the new economic space. 
+            <br><br>
+            To learn more about the benefits you’ll receive by co-publishing this book, click <a href="YOUR_LINK_HERE">here</a>
+            <div class="buttonContainer">
+            <button class="aboutOverlayPrev" id="aboutOverlayPrevious3">← previous</button>
+            <!-- <button class="aboutOverlayNext" id="aboutOverlayNext3">next →</button> -->
+            </div>
         </div>
         <!-- aboutContent4 -->
         <!-- <div class="aboutContent" id="aboutContent4" style="display: none;">
@@ -68,19 +59,37 @@
     <div id="priceTierOverlay" class="overlay" style="display:none">
         <button id="priceTierOverlayClose" style="display:none" class="close-btn">X</button>
         <div id="priceTierContent" class="content" style="display:none;">
+            <b>Use the slider to dial in your price range</b>
+            <br>
+            If you have benefited from histories of imperialism, indicate it by moving the slider in that direction. Then click the "reveal price" button.
+            <br>
+            <br>
+            <!-- Slider container -->
+            <div class="slider-container">
+                <label for="left-slider">Colonized</label>
+                <input type="range" min="0" max="100" value="50" class="slider" id="colonizationSlider">
+                <label for="right-slider">Imperial Core</label>
+            </div>
+            <!-- Slider container -->
             <!-- Price Tiers Selection -->
-            <form id="priceTiers" style="margin-top:2rem">
-                <label>
-                    <input type="radio" name="tier" value="0.0001" class="custom-radio">
-                    <span></span> Tier 1 - 0.01 ETH
+            <form id="priceTiers">
+                <label id ="selectPhsyicalBookLabel">
+                    <input type="checkbox" name="tier" value="0.0001" class="custom-radio">
+                    <span></span> Include physical book ( delivered to you )
                 </label>
+                <!--
                 <br>
                 <br>
                 <label>
                     <input type="radio" name="tier" value="0.0002" class="custom-radio">
                     <span></span> Tier 2 - 0.05 ETH
-                </label>
+                </label> -->
             </form>
+            <!-- Reveal price -->
+            <div style="margin-top:1em" id="revealPriceDiv">
+                <button class="revealPrice" id="revealPriceButton" onclick="revealPrice()">Reveal price</button>
+            </div>
+            <!-- Reveal price -->
             <!-- Price Tiers Selection -->
             <br>
             <li id="tiersErrorMessage" style="display: none; margin-top:20px">
@@ -103,11 +112,11 @@
             <br>
             Here is what your unit offers you:
             <br><br>
-            <p id="benefit1" class="pbenefit"> 1. The title of co-publisher → <br>(an acknowledgement that you have played for the commons)</p>
+            <p id="benefit1" class="pbenefit"> 1. The title of co-publisher →</p>
             <p id="benefit2" class="pbenefit"> 2. Access to the ECSA token whitelist →</p>
             <p id="benefit3" class="pbenefit"> 3. Three invites to enrich the discourse →</p>
             <p id="benefit4" class="pbenefit"> 4. The book PDF with a custom generative cover →</p>
-            <p id="benefit5" class="pbenefit"> 5. The print book published by Minor Compositions / Autonomedia (New York, 2023)→</p>
+            <p id="benefit5" class="pbenefit"> 5. The print book published→</p>
             <p id="benefit6" class="pbenefit"> 6. Stake in the discourse’s future →</p>
             <p id="benefit7" class="pbenefit"> 7. Participation in the discourse development →</p>
             <br>
@@ -121,7 +130,9 @@
                 <button class="copy-button" id="copyButton">Copy ❑</button>
                 <button class="download-button" id="downloadButton">Download ↓</button>
             </div> -->
-            <a href="https://testnets.opensea.io/assets/sepolia/0x2970022E203b9466dd1dCC69B96f991DB96D63cb/242" target="_blank"><img src="https://openseauserdata.com/files/25e32536355ad2294753f294fcc24592.svg" alt="NFT Representation" class="nft-image" id="nft-image"></a>
+            <a href="https://testnets.opensea.io/assets/sepolia/0x2970022E203b9466dd1dCC69B96f991DB96D63cb/242" target="_blank" id="nft-open-sea">
+                <img src="imgs/101.png" alt="NFT Representation" class="nft-image" id="nft-image">
+            </a>
             <p id="connectedAccount"></p>
         </div>  
     </div>
@@ -131,7 +142,6 @@
     <div id="benefit1Overlay" class="overlay">
         <button id="benefit1OverlayClose" class="close-btn">X</button>
             <div id="benefit1OverlayContent" class="content" style="display:none;">
-                <!-- Title -->
                 <b>1. The title of Co-Publisher (an acknowledgement that you have played for the commons)</b>
                 When all the units have been published, the book transforms into an open access publication that anybody can read, listen and circulate. As a thank you, your name / alias / wallet address will be listed as a Co-Publisher of the book at the book website and in the next PDF version of the book.
                 <br>
@@ -7402,8 +7412,10 @@
 <script type="module" src="ux/transactionInitiated.js"></script>
 <script type="module" src="ux/revertTransactionInitiatedAnimation.js"></script>
 <script type="module" src="ux/openCongratzOverlay.js"></script>
+<script type="module" src="ux/revealPrice.js"></script>
 <script type="module" src="ux/copyInvitations.js"></script>
 <script type="module" src="ux/getAnNFTViaOpenSea.js"></script>
+<script type="module" src="ux/getColonizationLevel.js"></script>
 <script type="module" src="ux/waitingForTransactionToInitiate.js"></script>
 <script type="module" src="ux/revertTransactionInitiatedAnimation.js"></script>
 
