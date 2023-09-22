@@ -38,7 +38,7 @@ function replaceRevealPriceButtonWithActualPrice(revealedPrice){
     if(revealPriceDiv){
         if(revealPriceButton){
             revealPriceDiv.removeChild(revealPriceButton);
-            revealPriceDiv.innerHTML = 'Price: ' + revealedPrice;
+            revealPriceDiv.innerHTML = `<p class="revealedPriceParagraph">Price: ${revealedPrice}</p>`;
         }
     }
 }
