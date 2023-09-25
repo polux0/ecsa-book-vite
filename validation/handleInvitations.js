@@ -1,7 +1,7 @@
 import { isInvitationValid } from "../db/invitations";
 import { isTokenReserved } from '../web3/isTokenReserved.js';
 import { mintByInvitation } from "../web3/mintByInvitation.js";
-async function handleInvitations(invitationId, tokenId, chosenPrice, provider, reservationsActive) {
+async function handleInvitations(invitationId, tokenId, physicalBookIncluded, chosenPrice, provider, reservationsActive) {
     if (invitationId) {
         let validInvitation = await isInvitationValid(invitationId);
         console.log('isInvitationValid', validInvitation);
@@ -10,7 +10,7 @@ async function handleInvitations(invitationId, tokenId, chosenPrice, provider, r
             if (tokenReserved && reservationsActive) {
                 return "Token is still reserved. Invitation is not enough!";
             } else {
-                mintByInvitation(parseInt(tokenId, 10), invitationId, chosenPrice, provider);
+                mintByInvitation(parseInt(tokenId, 10), invitationId, physicalBookIncluded, chosenPrice, provider);
                 return true;
             }
         } else {

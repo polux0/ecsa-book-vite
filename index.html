@@ -41,7 +41,7 @@
         <div class="aboutContent" id="aboutContent3" style="display: none;">
             By acquiring a unit of this text you join a discursive community reflecting upon agency, finance and sociality in the new economic space. 
             <br><br>
-            To learn more about the benefits you’ll receive by co-publishing this book, click <a href="YOUR_LINK_HERE">here</a>
+            To learn more about the benefits you’ll receive by co-publishing this book, click <a href="https://app.gitbook.com/o/eAnCYzsPmMF00IXCoIr0/s/1OM3PU15o3srOddEm41d/benefits" target="_blank">here</a>
             <div class="buttonContainer">
             <button class="aboutOverlayPrev" id="aboutOverlayPrevious3">← previous</button>
             <!-- <button class="aboutOverlayNext" id="aboutOverlayNext3">next →</button> -->
@@ -66,16 +66,16 @@
             <br>
             <!-- Slider container -->
             <div class="slider-container">
-                <label for="left-slider">Colonized</label>
+                <label for="left-slider"><a href="https://app.gitbook.com/o/eAnCYzsPmMF00IXCoIr0/s/1OM3PU15o3srOddEm41d/faq" target="_blank">Periphery</a></label>
                 <input type="range" min="0" max="100" value="50" class="slider" id="colonizationSlider">
-                <label for="right-slider">Imperial Core</label>
+                <label for="right-slider"><a href="https://app.gitbook.com/o/eAnCYzsPmMF00IXCoIr0/s/1OM3PU15o3srOddEm41d/faq" target="_blank">Imperial Core</a></label>
             </div>
             <!-- Slider container -->
             <!-- Price Tiers Selection -->
             <form id="priceTiers">
                 <label id ="selectPhsyicalBookLabel">
-                    <input type="checkbox" name="tier" value="0.0001" class="custom-radio">
-                    <span></span> Include physical book ( delivered to you )
+                    <input type="checkbox" name="tier" value="0.0001" class="custom-radio" id="physicalBookCheckbox">
+                    <span id="includePhysicalBookChoise"></span> Include physical book ( delivered to you )
                 </label>
                 <!--
                 <br>
@@ -112,13 +112,13 @@
             <br>
             Here is what your unit offers you:
             <br><br>
-            <p id="benefit1" class="pbenefit"> 1. The title of co-publisher →</p>
+            <p id="benefit1" class="pbenefit"> 1. Creditation as co-publisher →</p>
             <p id="benefit2" class="pbenefit"> 2. Access to the ECSA token whitelist →</p>
-            <p id="benefit3" class="pbenefit"> 3. Three invites to enrich the discourse →</p>
-            <p id="benefit4" class="pbenefit"> 4. The book PDF with a custom generative cover →</p>
-            <p id="benefit5" class="pbenefit"> 5. The print book published→</p>
-            <p id="benefit6" class="pbenefit"> 6. Stake in the discourse’s future →</p>
-            <p id="benefit7" class="pbenefit"> 7. Participation in the discourse development →</p>
+            <p id="benefit3" class="pbenefit"> 3. Participation in the discourse development →</p>
+            <p id="benefit4" class="pbenefit"> 4. Invite friends to enrich the discourse →</p>
+            <p id="benefit5" class="pbenefit"> 5. Download the book PDF with a custom generative cover →</p>
+            <p id="benefit6" class="pbenefit"> 6. Receive the Special Edition print book →</p>
+            <p id="benefit7" class="pbenefit"> 7. Exploration into economic communication →</p>
             <br>
             <p id="congratzInvitationText" class="invitation-text">
                 If you'd like to engage more econauts in the discourse:
@@ -7411,9 +7411,11 @@
 <script type="module" src="ux/insertBenefitByIdAndOpenBenefitsOverlay.js"></script>
 <script type="module" src="ux/transactionInitiated.js"></script>
 <script type="module" src="ux/revertTransactionInitiatedAnimation.js"></script>
+<script type="module" src="ux/modifyBenefits.js"></script>
 <script type="module" src="ux/openCongratzOverlay.js"></script>
 <script type="module" src="ux/revealPrice.js"></script>
 <script type="module" src="ux/copyInvitations.js"></script>
+<script type="module" src="ux/deselectPhysicalBook.js"></script>
 <script type="module" src="ux/getAnNFTViaOpenSea.js"></script>
 <script type="module" src="ux/getColonizationLevel.js"></script>
 <script type="module" src="ux/waitingForTransactionToInitiate.js"></script>
@@ -7432,7 +7434,7 @@
 
 <!-- validation -->
 <script type="module" src="validation/displayError.js"></script>
-<script type="module" src="validation/getChosenPrice.js"></script>
+<script type="module" src="validation/getPhysicalBookIncluded.js"></script>
 <script type="module" src="validation/handleInvitations.js"></script>
 <script type="module" src="validation/handleReservations.js"></script>
 <script type="module" src="validation/validateChoosePrice.js"></script>

@@ -793,11 +793,8 @@ const mintById = async (tokenId, choosePrice) => {
 
     const nftContract = new ethers.Contract(contractAddress, contractABI, signer);
 
-    let price1 = import.meta.env.VITE_PRICE1;
-    let price2 = import.meta.env.VITE_PRICE2;
-
     try {
-        let choosenPriceWei = validateChoosePrice(choosePrice, price1, price2);
+        let choosenPriceWei = validateChoosePrice(choosePrice);
         clearMintingError();
         const transaction = await nftContract.mintById(tokenId, choosenPriceWei, {
             gasLimit: 12000000,
@@ -828,7 +825,7 @@ const mintById = async (tokenId, choosePrice) => {
         }
         
         closePriceTierOverlay();
-        openCongratzOverlay();
+        openCongratzOverlay(physicalBookIncluded);
         displayNFTImageFromOpenSea(tokenId);
       }
     }

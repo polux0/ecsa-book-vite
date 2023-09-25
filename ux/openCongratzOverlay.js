@@ -1,4 +1,9 @@
-const openCongratzOverlay = async function() {
+import {modifyBenefits} from './modifyBenefits';
+
+const openCongratzOverlay = async function(physicalBookIncluded) {
+    if (!physicalBookIncluded){
+        modifyBenefits(); 
+    }
     const congratzOverlay = document.getElementById('congratzOverlay');
     if(congratzOverlay){
         congratzOverlay.style.display = "block";

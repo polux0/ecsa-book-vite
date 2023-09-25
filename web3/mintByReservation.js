@@ -7,7 +7,7 @@ import { openCongratzOverlay } from '../ux/openCongratzOverlay';
 import { revertWaitingForTransactionToInitiate } from '../ux/waitingForTransactionToInitiate';
 import { displayNFTImageFromOpenSea } from './ui-interactions/displayNFTFromOpenSea';
 import {validateChoosePrice} from '../validation/validateChoosePrice.js';
-const mintByReservation = async (tokenId, reservationId, choosePrice) => {
+const mintByReservation = async (tokenId, reservationId, physicalBookIncluded, choosePrice) => {
 
     const provider = new ethers.BrowserProvider(window.ethereum);
     const signer = await provider.getSigner();
@@ -791,11 +791,8 @@ const mintByReservation = async (tokenId, reservationId, choosePrice) => {
       ];
     const nftContract = new ethers.Contract(contractAddress, contractABI, signer);
 
-    let price1 = import.meta.env.VITE_PRICE1;
-    let price2 = import.meta.env.VITE_PRICE2;
-
     try {
-        let choosenPriceWei = validateChoosePrice(choosePrice, price1, price2);
+        let choosenPriceWei = validateChoosePrice(choosePrice);
         clearMintingError();
         
         const transaction = await nftContract.mintByReservation(tokenId, reservationId, choosenPriceWei, {
@@ -818,7 +815,7 @@ const mintByReservation = async (tokenId, reservationId, choosePrice) => {
             console.log('operations with `copublishers` storage silently failed...');
           }
           closePriceTierOverlay();
-          openCongratzOverlay();
+          openCongratzOverlay(physicalBookIncluded);
           displayNFTImageFromOpenSea(tokenId);
           openCongratzOverlay();
         }
