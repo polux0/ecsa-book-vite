@@ -901,9 +901,11 @@
 /* Style the label to position the custom radio and text */
 #selectPhsyicalBookLabel {
     position: relative;
-    padding-left: 30px;
     cursor: pointer;
     display: inline-block;
+}
+#includePhysicalBookChoise{
+    margin-right: 35px;
 }
 
 /* Create a new custom radio circle */
@@ -921,6 +923,7 @@
 }
 
 /* Create the radio circle when checked */
+/* Was before */
 .custom-radio:checked + span:before {
     content: '';
     position: absolute;
@@ -930,8 +933,19 @@
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background-color: #333;
+    background-color: #dcdcdc;
 }
+/* .custom-radio:checked + span:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #dcdcdc;
+} */
 
 /* attempt of animation with three dots */
 
@@ -1175,3 +1189,7 @@ input:focus{
 } */
 
 /* thumb color */
+
+#name, #mailingAddress, #phoneNumber{
+    margin-left: 0px;
+}

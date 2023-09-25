@@ -1,10 +1,12 @@
-function getChosenPrice() {
+function getPhysicalBookIncluded() {
     const checkbox = document.querySelector('#priceTiers input[type="checkbox"]:checked');
     if (checkbox) {
         if(checkbox.checked){
+            console.log('1');
             return true;
         }
         else{
+            console.log('2');
             return false;
         }
     } else {
@@ -12,4 +14,4 @@ function getChosenPrice() {
         return false;
     }
 }
-export {getChosenPrice}
+export {getPhysicalBookIncluded}

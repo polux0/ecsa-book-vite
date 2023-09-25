@@ -2,7 +2,7 @@
 
 import { isTokenReserved } from "../web3/isTokenReserved";
 import { mintById } from "../web3/mintById";
-async function handleWithoutInvitationOrReservation(reservationsActive, invitationsActive, tokenId, choosenPrice) {
+async function handleWithoutInvitationOrReservation(reservationsActive, invitationsActive, tokenId, physicalBookIncluded, choosenPrice) {
     let tokenReserved = await isTokenReserved(tokenId);
     if(tokenReserved){
         if(reservationsActive){
@@ -17,7 +17,7 @@ async function handleWithoutInvitationOrReservation(reservationsActive, invitati
         return "Invitations are still active!";
     }
     else{
-        mintById(tokenId, choosenPrice);
+        mintById(tokenId, physicalBookIncluded, choosenPrice);
         return true;
     }
 }

@@ -1,16 +1,17 @@
 import { getColonizationLevel } from './getColonizationLevel.js';
-import { getChosenPrice } from '../validation/getChosenPrice.js';
+import { getPhysicalBookIncluded } from '../validation/getPhysicalBookIncluded.js';
 
-// this should become enviornment variables
-let colonizedPrice = 0.005;
-let colonizedBookPrice = 0.035;
-let imperialCorePrice = 0.01;
-let imperialCoreBookPrice = 0.07;
+let periphery = import.meta.env.VITE_PERIPHERY_PRICE;
+let peripheryBookPrice = import.meta.env.VITE_PERIPHERY_BOOK_PRICE;
+let imperialCorePrice = import.meta.env.VITE_IMPERIAL_CORE_PRICE;
+let imperialCoreBookPrice = import.meta.env.VITE_IMPERIAL_CORE_BOOK_PRICE;
+
 function calculateRevealPrice(){
 
     disableSlider();
+    disableCheckbox();
     let colonisationLevel = getColonizationLevel();
-    let bookSelected = getChosenPrice();
+    let bookSelected = getPhysicalBookIncluded();
     let finalPrice;
 
     if(bookSelected){
@@ -18,7 +19,7 @@ function calculateRevealPrice(){
             finalPrice = imperialCorePrice + imperialCoreBookPrice;
         }
         else{
-            finalPrice = colonizedPrice + colonizedBookPrice;
+            finalPrice = periphery + peripheryBookPrice;
         }
     }
     else{
@@ -26,19 +27,46 @@ function calculateRevealPrice(){
             finalPrice = imperialCorePrice;
         }
         else{
-            finalPrice = colonizedPrice;
+            finalPrice = periphery;
         }
     }
     return finalPrice;
 
 }
+// technical debt
+function getFinalPrice(){
+    let colonisationLevel = getColonizationLevel();
+    let bookSelected = getPhysicalBookIncluded();
+    let finalPrice;
+
+    if(bookSelected){
+        if(colonisationLevel >= 50){
+            finalPrice = imperialCorePrice + imperialCoreBookPrice;
+        }
+        else{
+            finalPrice = periphery + peripheryBookPrice;
+        }
+    }
+    else{
+        if(colonisationLevel >= 50){
+            finalPrice = imperialCorePrice;
+        }
+        else{
+            finalPrice = periphery;
+        }
+    }
+    return finalPrice;
+}
 function replaceRevealPriceButtonWithActualPrice(revealedPrice){
     let revealPriceDiv = document.getElementById('revealPriceDiv');
     let revealPriceButton = document.getElementById('revealPriceButton');
     if(revealPriceDiv){
+        // if(revealPriceButton){
+        //     revealPriceDiv.removeChild(revealPriceButton);
+        //     revealPriceDiv.innerHTML = `<p class="revealedPriceParagraph">Price: ${revealedPrice}</p>`;
+        // }
         if(revealPriceButton){
-            revealPriceDiv.removeChild(revealPriceButton);
-            revealPriceDiv.innerHTML = `<p class="revealedPriceParagraph">Price: ${revealedPrice}</p>`;
+            revealPriceButton.innerHTML = `Price: ${revealedPrice} ETH`;
         }
     }
 }
@@ -61,6 +89,19 @@ function enableSlider(){
         slider.disabled = false;
     }
 }
+function disableCheckbox(){
+    const checkbox = document.getElementById('physicalBookCheckbox');
+    if(checkbox){
+        checkbox.disabled = true;
+    }
+}
+
+function enableCheckbox(){
+    const checkbox = document.getElementById('physicalBookCheckbox');
+    if(checkbox){
+        checkbox.disabled = false;
+    }
+}
 
 function revealPrice(){
     let price = calculateRevealPrice();
@@ -68,4 +109,4 @@ function revealPrice(){
 }
 
 window.revealPrice = revealPrice;
-export {revealPrice, enableSlider, replaceRevealPriceButtonWithActualPriceReverse};
+export {revealPrice, getFinalPrice, enableSlider, enableCheckbox, replaceRevealPriceButtonWithActualPriceReverse};

@@ -8,7 +8,7 @@ import { handleInvitationOperations } from './handleInvitationOperations';
 import { clearMintingError, closePriceTierOverlay, removePublishButton, removeBlurFilter, setOrbBorderToSignalThatUnitIsPublished,  handleTransactionError } from './ui-interactions/index.js';
 import { validateChoosePrice } from '../validation/validateChoosePrice.js';
 
-const mintByInvitation = async (tokenId, invitationId, choosePrice, provider) => {
+const mintByInvitation = async (tokenId, invitationId, physicalBookIncluded, choosePrice, provider) => {
 
     const signer = await provider.getSigner();
     const contractAddress = import.meta.env.VITE_NFT_CONTRACT_ADDRESS;
@@ -791,11 +791,8 @@ const mintByInvitation = async (tokenId, invitationId, choosePrice, provider) =>
       ];
     const nftContract = new ethers.Contract(contractAddress, contractABI, signer);
 
-    let price1 = import.meta.env.VITE_PRICE1;
-    let price2 = import.meta.env.VITE_PRICE2;
-
     try {
-        let choosenPriceWei = validateChoosePrice(choosePrice, price1, price2);
+        let choosenPriceWei = validateChoosePrice(choosePrice);
         clearMintingError();
 
         const transaction = await nftContract.mintByInvitation(tokenId, invitationId, choosenPriceWei, {
@@ -819,7 +816,7 @@ const mintByInvitation = async (tokenId, invitationId, choosePrice, provider) =>
             console.log('operations with `copublishers` storage silently failed...');
           }
           closePriceTierOverlay();
-          openCongratzOverlay();
+          openCongratzOverlay(physicalBookIncluded);
           displayNFTImageFromOpenSea(tokenId);
         }
     }

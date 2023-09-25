@@ -21,7 +21,7 @@ import { mintByReservation} from "../web3/mintByReservation";
 
 // more sophisticated one
 
-async function handleReservations(reservationsActive, reservationId, tokenId, choosenPrice){
+async function handleReservations(reservationsActive, reservationId, tokenId, physicalBookIncluded, choosenPrice){
 
     let tokenReserved = await isTokenReserved(tokenId);
 
@@ -32,7 +32,7 @@ async function handleReservations(reservationsActive, reservationId, tokenId, ch
                 if(validReservation){
                     let validReservationForTokenId = await isReservationValidForTokenId(reservationId, parseInt(tokenId, 10));
                     if(validReservationForTokenId){
-                        await mintByReservation(parseInt(tokenId, 10), reservationId, choosenPrice);
+                        await mintByReservation(parseInt(tokenId, 10), reservationId, physicalBookIncluded, choosenPrice);
                         return true;
                     }
                     else{
