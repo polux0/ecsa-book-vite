@@ -400,7 +400,7 @@
         margin-left: 3rem;
         min-width: 128px;
         z-index: 8;
-        height: calc(100vh - 3em);  
+        height: calc(100vh - 2.5em);  
         pointer-events: none; 
     }
 
@@ -456,7 +456,7 @@
         grid-column: 1 / 6;
         display: grid;
         grid-template-columns: var(--pageGridColumns5);
-        z-index: 6;
+        z-index: 10;
         border-top: 1px solid var(--c1);
     }
 
