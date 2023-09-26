@@ -8,7 +8,7 @@ import { clearMintingError, closePriceTierOverlay, removePublishButton, removeBl
 import { validateChoosePrice } from '../validation/validateChoosePrice.js';
 import { displayNFTImageFromOpenSea } from './ui-interactions/displayNFTFromOpenSea';
 
-const mintById = async (tokenId, choosePrice) => {
+const mintById = async (tokenId, physicalBookIncluded, choosePrice) => {
 
     const provider = new ethers.BrowserProvider(window.ethereum);
     const signer = await provider.getSigner();
