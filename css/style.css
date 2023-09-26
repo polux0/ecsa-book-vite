@@ -457,6 +457,7 @@
         grid-template-columns: var(--pageGridColumns5);
         z-index: 6;
         border-top: 1px solid var(--c1);
+        height: 1px;
     }
 
     footer button {
@@ -469,7 +470,7 @@
         grid-row: 1;
         display: grid;
         grid-auto-flow: column;
-
+        overflow-y: hidden;
     }
 
     #bookTools button {
