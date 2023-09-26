@@ -50,7 +50,7 @@ async function submitSelection() {
     const invitationsActive = await areInvitationsActive();
 
     try {
-        const chosenPrice = getFinalPrice();
+        let chosenPrice = getFinalPrice();
         let physicalBookIncluded = getPhysicalBookIncluded();
 
         // if (!chosenPrice) {
@@ -87,8 +87,6 @@ async function submitSelection() {
             }
             else{
                 let withoutReservationAndInvitationError;
-                // let actually = isTokenReserved(tokenId);
-                // console.log("actually: ", actually);
                 if(!reserved){
                     if(!reservationsActive){
                         withoutReservationAndInvitationError = await handleWithoutInvitationOrReservation(reservationsActive, invitationsActive, tokenId, physicalBookIncluded, chosenPrice);

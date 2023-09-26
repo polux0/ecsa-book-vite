@@ -16,10 +16,11 @@ function calculateRevealPrice(){
 
     if(bookSelected){
         if(colonisationLevel >= 50){
-            finalPrice = imperialCorePrice + imperialCoreBookPrice;
+            finalPrice = Number(imperialCorePrice) + Number(imperialCoreBookPrice);
         }
         else{
-            finalPrice = periphery + peripheryBookPrice;
+            let finalPriceBeforeRounding = Number(periphery) + Number(peripheryBookPrice);
+            finalPrice = Number(finalPriceBeforeRounding.toFixed(4));
         }
     }
     else{
@@ -41,10 +42,11 @@ function getFinalPrice(){
 
     if(bookSelected){
         if(colonisationLevel >= 50){
-            finalPrice = imperialCorePrice + imperialCoreBookPrice;
+            finalPrice = Number(imperialCorePrice) + Number(imperialCoreBookPrice);
         }
         else{
-            finalPrice = periphery + peripheryBookPrice;
+            let finalPriceBeforeRounding = Number(periphery) + Number(peripheryBookPrice);
+            finalPrice = Number(finalPriceBeforeRounding.toFixed(4));
         }
     }
     else{
