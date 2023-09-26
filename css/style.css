@@ -1082,6 +1082,18 @@ p.pbenefit:hover {
 b {
     font-family: var(--displayFontFamily);
 }
+
+#forewordSummary{
+    font-size: clamp(1.3em, 1.6vw, 1.8em);
+    text-align: center;
+    margin-top: 0.25em;
+}
+
+#forewordSummary span{
+    font-family: var(--displayFontFamily);
+    margin-bottom: 0.1em;
+}
+
 #benefit1OverlayContent{
     overflow-y: auto;
 }
