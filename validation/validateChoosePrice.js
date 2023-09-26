@@ -24,7 +24,7 @@ const validateChoosePrice = (choosenPriceWei) => {
       choosenPriceWei = ethers.parseEther(imperialPackage.toString());
     }
     else{
-      choosenPriceWei = peripheryPackage;
+      choosenPriceWei = ethers.parseEther(imperialCorePrice.toString());
     }
     return choosenPriceWei;
 };
