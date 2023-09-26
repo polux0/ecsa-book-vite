@@ -138,6 +138,7 @@
         grid-template-rows: 1fr max-content;
 
         transition: color 300ms, background-color 250ms;
+        overflow-y: hidden;
     }
 
     em{
@@ -457,7 +458,6 @@
         grid-template-columns: var(--pageGridColumns5);
         z-index: 6;
         border-top: 1px solid var(--c1);
-        height: 1px;
     }
 
     footer button {
@@ -470,11 +470,11 @@
         grid-row: 1;
         display: grid;
         grid-auto-flow: column;
-        overflow-y: hidden;
     }
 
     #bookTools button {
         position: relative;
+        font-size: 24px;
     }
 
     #bookTools button::after {
@@ -483,7 +483,7 @@
         pointer-events: none;
         position: absolute;
         bottom: 100%;
-        margin-bottom: 6px;
+        margin-bottom: 8px;
         left: 50%;
         transform: translateX(-50%);
         padding: 8px;
