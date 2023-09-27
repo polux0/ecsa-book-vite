@@ -270,8 +270,8 @@
     /* Media query for mobile adjustments */
     @media (max-width: 480px) {
         #priceTierOverlay {
-            width: 60vw;
-            height: 70vw;
+            width: 90vw;
+            height: 130vw;
             max-width: 100%;
             padding: 2vw;
             margin-top: 5vh;
