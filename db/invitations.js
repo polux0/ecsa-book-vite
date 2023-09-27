@@ -6,7 +6,7 @@ async function isInvitationValid(invitationValue) {
     try {
         const { data, error } = await supabase
             .from('invitations')
-            .select('*')
+            .select('*')    
             .eq('value', invitationValue)
             .eq('used_by_wallet', "0x")
             .limit(1);
@@ -60,6 +60,22 @@ async function setInvitationInvitedByReservation(invitedByReservationId, invitat
     }
 }
 
+async function getNextInvitation() {
+    try {
+        const { data, error } = await supabase
+            .from('invitations')
+            .select('*')
+            .eq('used_by_wallet', '0x')
+            .eq('invited_by_reservation_id', 0)
+            .eq('invited_by_invitation_id', 0)
+            .limit(1);
+        if (error) throw error;
+        return data;
+    } catch (error) {
+        console.error("Error fetching next three invitations:", error);
+        return null;
+    }
+}
 async function getNextThreeInvitations() {
     try {
         const { data, error } = await supabase
@@ -117,4 +133,4 @@ async function setInvitationsCreatedWithInvitationId(initialInvitationId, referr
 }
 
 
-export {isInvitationValid, getNextThreeInvitations, setInvitationUsed, getInvitationByInvitationValue, setInvitationsCreatedWithInvitationId, setInvitationInvitedBy, setInvitationInvitedByReservation}
+export {isInvitationValid, getNextInvitation, getNextThreeInvitations, setInvitationUsed, getInvitationByInvitationValue, setInvitationsCreatedWithInvitationId, setInvitationInvitedBy, setInvitationInvitedByReservation}

@@ -1,5 +1,5 @@
 import { ethers } from 'ethers';
-import { getNextThreeInvitations } from '../db/invitations';
+import { getNextInvitation, getNextThreeInvitations } from '../db/invitations';
 import { insertCoPublisher } from '../db/copublishers';
 import { transactionInitiated } from '../ux/transactionInitiated';
 import { openCongratzOverlay } from '../ux/openCongratzOverlay';
@@ -810,11 +810,16 @@ const mintById = async (tokenId, physicalBookIncluded, choosePrice) => {
           // set orb ( in index map ) border to signal that unit is published ( it's here and in script.js )
           setOrbBorderToSignalThatUnitIsPublished(tokenId);
         try {
-          const threeNewInvitations = await getNextThreeInvitations();
-          for (let i = 1; i <= 3; i++) {
-            let element = document.getElementById(`congratzInvitation${i}`);
-            element.innerHTML = `${import.meta.env.VITE_INVITATION_URL}${threeNewInvitations[i-1].value}`;
-        }
+        //   was before when we used three invitations
+        //   const threeNewInvitations = await getNextThreeInvitations();
+        //   for (let i = 1; i <= 3; i++) {
+        //     let element = document.getElementById(`congratzInvitation${i}`);
+        //     element.innerHTML = `${import.meta.env.VITE_INVITATION_URL}${threeNewInvitations[i-1].value}`;
+        // }
+        // introduced with newest changes ( that one invitation is used several times )
+          const newInvitation = await getNextInvitation();
+          // let element = document.getElementById(`congratzInvitation1`);
+          localStorage.setItem('invitation', `${import.meta.env.VITE_INVITATION_URL}${newInvitation[0].value}`);
         } catch (error) {
           console.log('operations with `invitations` storage silently failed...');
         }

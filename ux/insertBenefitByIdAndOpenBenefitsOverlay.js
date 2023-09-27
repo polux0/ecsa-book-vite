@@ -4,6 +4,7 @@ import { downloadInvitations } from "./downloadInvitations";
 import { insertOrder } from "../db/orders.js";
 import { validateOrders } from "../validation/validateOrders.js";
 
+// technical debt - code should be modularized!
 const insertBenefitByIdAndOpenBenefitsOverlay = async function(content) {
     const benefitsOverlay = document.getElementById('benefit1Overlay');
     if(benefitsOverlay){
@@ -76,20 +77,20 @@ const insertBenefitByIdAndOpenBenefitsOverlay = async function(content) {
             });
         }
 
+        // invitations related
+        let invitationLinkElement = document.getElementById(`invitation-link1`);
+        let invitation = localStorage.getItem('invitation');
+        if(invitation){
+            invitationLinkElement.innerHTML = invitation;
+        }
+        // invitations related
+
         benefitsOverlayContent.style.display = "flex";
     }
 
+
     // delivery details related
-    let deliveryName = document.getElementById("name");
-    let deliveryMailing = document.getElementById("mailingAddress");
-    let deliveryPhoneNumber = document.getElementById("phoneNumber");
 
-    
-    let deliveryError = document.getElementById("detailsError");
-
-
-
-    let sendButton = document.getElementById("postDeliveryDetails");
 
 }
 export {insertBenefitByIdAndOpenBenefitsOverlay} 
