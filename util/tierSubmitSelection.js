@@ -50,7 +50,7 @@ async function submitSelection() {
     const invitationsActive = await areInvitationsActive();
 
     try {
-        const chosenPrice = getFinalPrice();
+        let chosenPrice = getFinalPrice();
         let physicalBookIncluded = getPhysicalBookIncluded();
 
         // if (!chosenPrice) {
@@ -69,16 +69,12 @@ async function submitSelection() {
             }
             else if (invitationsActive && invitationId) {
                 let invitationError;
-                if(!reserved){
-                    if(!reservationsActive){
-                        invitationError = await handleInvitations(invitationId, tokenId, physicalBookIncluded, chosenPrice, provider, reservationsActive);
-                    }
-                    else{
-                        invitationError = "Token is still reserved";
-                    }
+                console.log("Is reserved? ", reserved)
+                if(reserved && reservationsActive){
+                    invitationError = "Token is still reserved";
                 }
                 else{
-                    invitationError = "Token is still reserved";
+                    invitationError = await handleInvitations(invitationId, tokenId, physicalBookIncluded, chosenPrice, provider, reservationsActive);
                 }
                 if (invitationError !== true){
                     revertWaitingForTransactionToInitiate();
@@ -87,18 +83,14 @@ async function submitSelection() {
             }
             else{
                 let withoutReservationAndInvitationError;
-                // let actually = isTokenReserved(tokenId);
-                // console.log("actually: ", actually);
-                if(!reserved){
-                    if(!reservationsActive){
-                        withoutReservationAndInvitationError = await handleWithoutInvitationOrReservation(reservationsActive, invitationsActive, tokenId, physicalBookIncluded, chosenPrice);
-                    }
-                    else{
-                        withoutReservationAndInvitationError = "Token is still reserved";
-                    }
+                if(reservationsActive && reservationId){
+                    withoutReservationAndInvitationError = "Token is still reserved";
+                }
+                else if(invitationsActive){
+                    withoutReservationAndInvitationError = "Invitations are stil active";
                 }
                 else{
-                    withoutReservationAndInvitationError = "Token is still reserved";
+                    withoutReservationAndInvitationError = await handleWithoutInvitationOrReservation(reservationsActive, invitationsActive, tokenId, physicalBookIncluded, chosenPrice);
                 }
                 if (withoutReservationAndInvitationError !== true){
                     revertWaitingForTransactionToInitiate();

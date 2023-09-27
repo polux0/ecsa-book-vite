@@ -6,20 +6,25 @@ let imperialCorePrice = import.meta.env.VITE_IMPERIAL_CORE_PRICE;
 let imperialCoreBookPrice = import.meta.env.VITE_IMPERIAL_CORE_BOOK_PRICE;
 
 const validateChoosePrice = (choosenPriceWei) => {
-    if(choosenPriceWei != periphery || choosenPriceWei != periphery + peripheryBookPrice || choosenPriceWei != imperialCorePrice || choosenPriceWei != imperialCorePrice + imperialCoreBookPrice){
-      choosenPriceWei = periphery;
-    }
+
+    let peripheryPackageBeforeRounding = Number(periphery) + Number(peripheryBookPrice);
+    let peripheryPackage = Number(peripheryPackageBeforeRounding.toFixed(4));
+    let imperialPackage = Number(imperialCorePrice) + Number(imperialCoreBookPrice);
+
     if(choosenPriceWei == periphery){
       choosenPriceWei = ethers.parseEther(periphery.toString());
     }
-    if(choosenPriceWei == periphery + peripheryBookPrice){
-      choosenPriceWei = ethers.parseEther(peripheryBookPrice.toString());
+    else if(choosenPriceWei == peripheryPackage){
+      choosenPriceWei = ethers.parseEther(peripheryPackage.toString());
     }
-    if(choosenPriceWei == imperialCorePrice){
+    else if(choosenPriceWei == imperialCorePrice){
       choosenPriceWei = ethers.parseEther(imperialCorePrice.toString());
     }
-    if(choosenPriceWei == imperialCorePrice + imperialCoreBookPrice){
-      choosenPriceWei = ethers.parseEther(imperialCoreBookPrice.toString());
+    else if(choosenPriceWei == imperialPackage){
+      choosenPriceWei = ethers.parseEther(imperialPackage.toString());
+    }
+    else{
+      choosenPriceWei = ethers.parseEther(imperialCorePrice.toString());
     }
     return choosenPriceWei;
 };
