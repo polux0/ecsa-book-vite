@@ -360,7 +360,7 @@
     }
 
     button {
-        font-size: 28px;
+        font-size: 24px;
         background-color: var(--bg);
         color: var(--c1);
         border: none;
@@ -409,7 +409,7 @@
     }
 
     #secondaryNav a {
-            font-size: 28px;
+            font-size: 24px;
             background-color: var(--bg);
             color: var(--c1);
             border: none;
