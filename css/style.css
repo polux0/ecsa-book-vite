@@ -872,6 +872,34 @@
     cursor: pointer;
 }
 
+#coPulbishers{
+    grid-column: 1 / -1;
+    border-top: 1px solid var(--c1);
+}
+
+#coPublishersList{
+    margin-top: 1em;
+    padding: calc(1em + 2vw);
+    background-color: var(--c1);
+    color: var(--bg);
+}
+
+.coPublisher{
+    margin-bottom: 1em;
+    padding-bottom: 1em;
+    margin-top: 1em;
+    border-bottom: 1px solid var(--bg);
+}
+
+.coPublisherAddress {
+    display: block;
+    overflow-x: hidden;
+}
+
+.coPublisherUnit {
+    color: var(--bg);
+}
+
 #glossary{
     grid-column: 1 / -1;
     border-top: 1px solid var(--c1);
