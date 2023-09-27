@@ -7395,6 +7395,16 @@
         map.appendChild(orbsAs[o]);
        
     }
+    // Get the element with id="fn3" and find its position in the NodeList
+    let startingElement = document.getElementById('fn3');
+    let allFootNotes = document.querySelectorAll('.footNoteEx');
+    let startIndex = Array.from(allFootNotes).indexOf(startingElement);
+
+    // Loop through the NodeList of .footNoteEx elements starting from startIndex
+    // and update the content of their child sup tags
+    for (let i = startIndex; i < allFootNotes.length; i++) {
+        allFootNotes[i].querySelector('sup').innerHTML = i - startIndex + 1;
+    }
 </script>
 
 <!-- util -->
