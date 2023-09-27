@@ -940,6 +940,18 @@
     background-color: var(--bg);
     color: var(--c4);
 }
+
+#credits{
+    grid-column: 1 / -1;
+    border-top: 1px solid var(--c1);
+}
+
+#projectCredits{
+    margin-top: 1em;
+    padding: calc(1em + 2vw);
+    line-height: 1.45em;
+}
+
 .buttonload {
     background-color: #000000; /* Green background */
     border: none; /* Remove borders */
