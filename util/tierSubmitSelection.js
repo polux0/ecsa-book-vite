@@ -69,7 +69,6 @@ async function submitSelection() {
             }
             else if (invitationsActive && invitationId) {
                 let invitationError;
-                console.log("Is reserved? ", reserved)
                 if(reserved && reservationsActive){
                     invitationError = "Token is still reserved";
                 }
