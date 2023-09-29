@@ -22,11 +22,13 @@ async function submitSelection() {
     let provider;
     let connected = false;
     wallets = await connect();
+    let address = null;
 
     if(wallets){
         if(wallets[0]){
             connected = true;
             provider = new ethers.BrowserProvider(wallets[0].provider, 'any');
+            address = wallets[0].accounts[0].address;
             try {
                 await checkAndSwitchNetwork(provider);
             } catch (error) {
@@ -61,7 +63,7 @@ async function submitSelection() {
         if(connected){
             let reserved = await isTokenReserved(tokenId);
             if (reservationsActive && reservationId) {
-                const reservationError = await handleReservations(reservationsActive, reservationId, tokenId, physicalBookIncluded, chosenPrice);
+                const reservationError = await handleReservations(address, reservationsActive, reservationId, tokenId, physicalBookIncluded, chosenPrice);
                 if (reservationError !== true){
                     revertWaitingForTransactionToInitiate();
                     displayError(reservationError);
@@ -73,7 +75,7 @@ async function submitSelection() {
                     invitationError = "Token is still reserved";
                 }
                 else{
-                    invitationError = await handleInvitations(invitationId, tokenId, physicalBookIncluded, chosenPrice, provider, reservationsActive);
+                    invitationError = await handleInvitations(address, invitationId, tokenId, physicalBookIncluded, chosenPrice, provider, reservationsActive);
                 }
                 if (invitationError !== true){
                     revertWaitingForTransactionToInitiate();
@@ -89,7 +91,7 @@ async function submitSelection() {
                     withoutReservationAndInvitationError = "Invitations are stil active";
                 }
                 else{
-                    withoutReservationAndInvitationError = await handleWithoutInvitationOrReservation(reservationsActive, invitationsActive, tokenId, physicalBookIncluded, chosenPrice);
+                    withoutReservationAndInvitationError = await handleWithoutInvitationOrReservation(address, reservationsActive, invitationsActive, tokenId, physicalBookIncluded, chosenPrice);
                 }
                 if (withoutReservationAndInvitationError !== true){
                     revertWaitingForTransactionToInitiate();
