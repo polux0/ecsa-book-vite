@@ -76,13 +76,17 @@ const insertBenefitByIdAndOpenBenefitsOverlay = async function(content) {
                 // }
             });
         }
-
-        // invitations related
-        let invitationLinkElement = document.getElementById(`invitation-link1`);
-        let invitation = localStorage.getItem('invitation');
-        if(invitation){
-            invitationLinkElement.innerHTML = invitation;
-        }
+        // if (content.contains("4.")){
+            // invitations related
+            let invitationLinkElement = document.getElementById(`invitation-link1`);
+            let invitation = localStorage.getItem('invitation');
+            console.log("invitation: ", invitation);
+            if(invitation){
+                if(invitationLinkElement){
+                    invitationLinkElement.innerHTML = invitation;
+                }
+            }   
+        // }
         // invitations related
 
         benefitsOverlayContent.style.display = "flex";
