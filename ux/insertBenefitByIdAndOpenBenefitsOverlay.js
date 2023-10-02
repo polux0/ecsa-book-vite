@@ -3,6 +3,7 @@ import { copyInvitations } from "./copyInvitations";
 import { downloadInvitations } from "./downloadInvitations";
 import { insertOrder } from "../db/orders.js";
 import { validateOrders } from "../validation/validateOrders.js";
+// import { downloadBook } from "./downloadBook.js";
 
 // technical debt - code should be modularized!
 const insertBenefitByIdAndOpenBenefitsOverlay = async function(content) {
@@ -40,6 +41,14 @@ const insertBenefitByIdAndOpenBenefitsOverlay = async function(content) {
                 downloadInvitations();
             });
         }
+        // downloadBook
+        // let downloadBook = document.getElementById('downloadGeneratedPdfsButton')
+        // if(downloadBook){
+        //     downloadBook.addEventListener("click", function (event) {
+        //         downloadBook();
+        //     });
+        // }
+
         let sendButton = document.getElementById("postDeliveryDetails");
 
         let deliveryName = document.getElementById("name");
