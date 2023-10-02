@@ -19,9 +19,33 @@ function getBenefitBasedOnId(id){
         <br>
         <br>
         <div class="invitation-container">
-        <p class="invitation-link" id="invitation-link1">https://ecsa-book.vercel.app/?invitationId=HWjaYEr24AcMLzdhN4ycnKnhPvtRn4QNJKMuzu4BXexBHm6tsKmCQCUxqBudsxmK</p><br>
-        <button class="copy-button" id="copyButton">Copy ❑</button>
-        <button class="download-button" id="downloadButton">Download ↓</button>
+        <pre class="asci" id="asciProtocols">
+░█▀█░█▀▄░█▀█░▀█▀░█▀█░█▀▀░█▀█░█░░░█▀▀░░                    
+░█▀▀░█▀▄░█░█░░█░░█░█░█░░░█░█░█░░░▀▀█░░                    
+░▀░░░▀░▀░▀▀▀░░▀░░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀▀▀░░                    
+░█▀▀░█▀█░█▀▄░░                                            
+░█▀▀░█░█░█▀▄░░                                            
+░▀░░░▀▀▀░▀░▀░░                                            
+░█▀█░█▀█░█▀▀░▀█▀░█▀▀░█▀█░█▀█░▀█▀░▀█▀░█▀█░█░░░▀█▀░█▀▀░▀█▀░░
+░█▀▀░█░█░▀▀█░░█░░█░░░█▀█░█▀▀░░█░░░█░░█▀█░█░░░░█░░▀▀█░░█░░░
+░▀░░░▀▀▀░▀▀▀░░▀░░▀▀▀░▀░▀░▀░░░▀▀▀░░▀░░▀░▀░▀▀▀░▀▀▀░▀▀▀░░▀░░░
+░█▀▀░█░█░█▀█░█▀▄░█▀▀░█▀▀░█▀▀░▀█▀░█▀█░█▀█                  
+░█▀▀░▄▀▄░█▀▀░█▀▄░█▀▀░▀▀█░▀▀█░░█░░█░█░█░█                  
+░▀▀▀░▀░▀░▀░░░▀░▀░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀░▀                     
+        </pre>
+        <p class="discourse-unit-on-open-sea-text" id="discourse-unit-on-open-sea-text"> Your discourse unit on OpenSea: </p>
+        <p class="discourse-unit-on-open-sea-link" id="openSeaLink"> ipfs://QmcHt8YqmA8Vhnfg946kDPRVUfRFo5y7T75nuJPBbXCAMV/token.id </p>
+        <p class="invitation-link-text" id="invitation-link-text"> Your invitation link: </p>
+        <p class="invitation-link" id="invitation-link1">
+        https://ecsa-book.vercel.app/?invitationId=HWjaYEr24AcMLzdhN4ycnKnhPvtRn4QNJKMuzu4BXexBHm6tsKmCQCUxqBudsxmK
+        </p>
+        <p class="unique-pdf-link-text" id="unique-pdf-link-text"> Your unique pdf: </p>
+        <p class="unique-pdf-link" id="ipfsBookDownloadLink"> ipfs://QmcHt8YqmA8Vhnfg946kDPRVUfRFo5y7T75nuJPBbXCAMV/token.id </p>
+        <br>
+        <div class="copyAndInvitationButtons">
+            <button class="copy-button" id="copyButton">Copy ❑</button>
+            <button class="download-button" id="downloadButton">Download ↓</button>
+        </div>
         </div>
         <br>
         <br>
