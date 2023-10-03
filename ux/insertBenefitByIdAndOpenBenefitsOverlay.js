@@ -3,6 +3,7 @@ import { copyInvitations } from "./copyInvitations";
 import { downloadInvitations } from "./downloadInvitations";
 import { insertOrder } from "../db/orders.js";
 import { validateOrders } from "../validation/validateOrders.js";
+// import { downloadBook } from "./downloadBook.js";
 
 // technical debt - code should be modularized!
 const insertBenefitByIdAndOpenBenefitsOverlay = async function(content) {
@@ -40,6 +41,14 @@ const insertBenefitByIdAndOpenBenefitsOverlay = async function(content) {
                 downloadInvitations();
             });
         }
+        // downloadBook
+        // let downloadBook = document.getElementById('downloadGeneratedPdfsButton')
+        // if(downloadBook){
+        //     downloadBook.addEventListener("click", function (event) {
+        //         downloadBook();
+        //     });
+        // }
+
         let sendButton = document.getElementById("postDeliveryDetails");
 
         let deliveryName = document.getElementById("name");
@@ -93,11 +102,22 @@ const insertBenefitByIdAndOpenBenefitsOverlay = async function(content) {
                 const final = `https://${url}/assets/${import.meta.env.VITE_NETWORK}/${import.meta.env.VITE_NFT_CONTRACT_ADDRESS}/${tokenId}`;
                 elementContainingOpenSeaLink.innerHTML = final;
             }
-            // fetch element that holds IPFS link:
+            // fetch element that holds Pinnata / IPFS link:
             let ipfsBookDownloadLink = document.getElementById('ipfsBookDownloadLink');
+            let pinnataGateway = import.meta.env.VITE_PINATA_GATEWAY;
+            let resourceName = `book_with_cover_${tokenId}.pdf/`;
+            let accessToken = `?pinataGatewayToken=${import.meta.env.VITE_PINATA_ACCESS_TOKEN}`;
+            let downloadURL = pinnataGateway + resourceName + accessToken;
+
             if(tokenId && ipfsBookDownloadLink){
-                let downloadURL = import.meta.env.IPFS_DOWNLOAD_LINK = `ipfs://QmcHt8YqmA8Vhnfg946kDPRVUfRFo5y7T75nuJPBbXCAMV/${tokenId}`;
                 ipfsBookDownloadLink.innerHTML = downloadURL;
+            }
+
+
+            let dl = document.getElementById('dl');
+            console.log("This happened: ", dl);
+            if(tokenId && dl){
+                dl.href = downloadURL;
             }
 
         benefitsOverlayContent.style.display = "flex";

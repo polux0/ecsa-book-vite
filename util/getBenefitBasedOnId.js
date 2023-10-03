@@ -58,11 +58,10 @@ function getBenefitBasedOnId(id){
         The unit gives you the right to download the book PDF with a unique generative cover. It will allow you to understand your unit of discourse’s meaning and relevance as part of the whole book. It assists you in determining the value of the token you hold.
         <br>
         <br>
-        Please download it here!
+        Please download it <a id="dl" href="ipfs://QmcHt8YqmA8Vhnfg946kDPRVUfRFo5y7T75nuJPBbXCAMV" target="_blank">here!</a>
         <br>
         <br>
-        <button class="download-button" id="downloadGeneratedPdfsButton">Download ↓</button>`,
-
+        `,
         `<b>6. The print book published by Minor Compositions / Autonomedia (Colchester / New York / Port Watson, 2023)</b>
         If you have so selected, your unit offers you also a print copy of the book delivered to your door.
         <br>
