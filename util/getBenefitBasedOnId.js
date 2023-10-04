@@ -5,12 +5,12 @@ function getBenefitBasedOnId(id){
         <br>
         Thank you for co-publishing the book!`,
         
-        `<b>2. Access to the ECSA token whitelist</b>
+        `<b>2. Access to the ECSA token multistake whitelist</b>
         Your unit grants you access to the ECSA token presale whitelist (target date: November, TBC). A certain number of ECSA tokens -- which are the project’s capital market facing governance tokens – will be allocated to an option pool divided among all the unit holders. The unit thus functions as a call option to buy a certain amount of ECSA tokens at presale price. All wallets holding a Unit of Discourse will be whitelisted when the presale starts. Please follow our messaging at the ECSA Telegram, ECSA Twitter, and Discourse Development Discord.`,
 
         `<b>3. Participation in the discourse development and IRL meets</b>Your unit gives you the right to access the Discourse Development Discord, i.e., to participate in the development of the discourse by sharing your insights and engaging in the dialogue. This allows you to shape the discourse and contribute to the co-publishing of the book. We have curated public discussions with interesting guests and a Discord channel where we developed the discourse. You can also just hangaround. We also organise IRL meets. The next one is going to be in New York City in early December. Please follow notifications in the ECSA Telegram, ECSA Twitter, and in the Discourse Discord.<br>`,
 
-        `<b>4. Invites to enrich the discourse</b>
+        `<b>4. Network curation </b>
         As a holder of a unit of postcapitalist discourse your next task is to expand and enrich the discourse. Your unit makes you a curator of this project. The aim is to turn the book-object into alive spoken discourse on postcapitalist expression. It is about creating a more expressive economic language — than we currently have — to express, measure and communicate value. The three first people using your invitations will have the opportunity to participate in co-publishing the remaining units and become core members of the discourse’s development.
 
         <br>
@@ -54,7 +54,7 @@ function getBenefitBasedOnId(id){
         <br>
         [After all the units have been published, the people with invitations who didn't manage to get their own unit at this point, will have an access to the Discord where we develop the discourse.]`,
 
-        `<b>5. The book PDF with a custom generative cover</b>
+        `<b>5. The book PDF with a unique generative cover </b>
         The unit gives you the right to download the book PDF with a unique generative cover. It will allow you to understand your unit of discourse’s meaning and relevance as part of the whole book. It assists you in determining the value of the token you hold.
         <br>
         <br>
@@ -83,12 +83,6 @@ function getBenefitBasedOnId(id){
         <br>
         <button class="postDeliveryDetails" id="postDeliveryDetails">Send ➹</button>
         Please notice that depending on your country, you might need to clear the customs before receiving the book.`,
-
-        `<b>7. Ability to explore economic communication</b>
-        You can next publish your NFT in one or more markets. This allows you to start communicating and messaging about the discourse economically. You can also fractionalize it, gift it, acquire more tokens in it. This allows you to spread the discourse, contributing to its valuation and the broader discourse on economic media.`,
-        
-        `<b>8. Participation in the discourse development and IRL meets</b>
-        Your unit gives you the right to access the Discourse Development Discord, i.e. to participate in the development of the discourse by sharing your insights and engaging in the dialogue. This allows you to shape the discourse and contribute to the co-publishing of the book. We have curated public discussions with interesting guests and a Discord channel where we developed the discourse. You can also just hangaround. We also organize IRL meets. The next one is going to be in New York City in early December. Please follow notifications in the ECSA Telegram, ECSA Twitter, and unit holders’ Discord.`
     ];
     return benefitsHigherTier[id];
 

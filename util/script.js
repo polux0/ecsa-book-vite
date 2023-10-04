@@ -489,7 +489,7 @@ fetch('glossary.json')
                     mintingError.innerHTML = "";
                 }
                 if(tiersSubmitButton){
-                    tiersSubmitButton.innerHTML = "Mint";
+                    tiersSubmitButton.innerHTML = "Co-publish";
                 }
                 enableSlider();
                 enableCheckbox();
