@@ -1,17 +1,21 @@
 function getBenefitBasedOnId(id){
     const benefitsHigherTier = [
-        `<b>1. Creditation as a Co-Publisher (an acknowledgement that you have played for the commons)</b>When all the units have been published, the book transforms into an open access publication that anybody can read, listen and circulate. As a thank you, your wallet address will be listed as a Co-Publisher of the book at the book website and in the next PDF version of the book.
+        `<b>1. Creditation as a Co-Publisher (an acknowledgement that you have played for the commons)</b>
+        Co-publishing the units transforms the book-commodity into an open access publication that everyone can read, listen and circulate. As a thank you, you (your wallet address or your chosen name) will be listed as a Co-Publisher of the book at the book website and in the next PDF version of the book.
         <br>
         <br>
-        Thank you for co-publishing the book!`,
-        
+        <input type="text" placeholder="nonlinear economic space agent..." spellcheck="false" id="copublisherName">
+        <br>
+        <button class="post-publisher-button" id="postPublisherButton">Post ➹</button>
+        `,
         `<b>2. Access to the ECSA token multistake whitelist</b>
-        Your unit grants you access to the ECSA token presale whitelist (target date: November, TBC). A certain number of ECSA tokens -- which are the project’s capital market facing governance tokens – will be allocated to an option pool divided among all the unit holders. The unit thus functions as a call option to buy a certain amount of ECSA tokens at presale price. All wallets holding a Unit of Discourse will be whitelisted when the presale starts. Please follow our messaging at the ECSA Telegram, ECSA Twitter, and Discourse Development Discord.`,
+        Your unit grants you access to the ECSA token presale whitelist (target date: November, TBC). A certain number of ECSA tokens -- which are the project’s capital market facing governance tokens – will be allocated to an option pool divided among all the unit holders. The unit thus functions as a call option to buy a certain amount of ECSA tokens at presale price. All wallets holding a Unit of Discourse will be whitelisted when the presale starts. Please follow our messaging at the <a href="https://t.me/economicspaceagency" target="_blank"> ECSA Telegram </a>, <a href="https://twitter.com/ecospaceagency" target="_blank"> ECSA Twitter </a>, and <a href="https://discord.gg/DuJEju5z" target="_blank"> Discourse Development Discord. </a>`,
 
-        `<b>3. Participation in the discourse development and IRL meets</b>Your unit gives you the right to access the Discourse Development Discord, i.e., to participate in the development of the discourse by sharing your insights and engaging in the dialogue. This allows you to shape the discourse and contribute to the co-publishing of the book. We have curated public discussions with interesting guests and a Discord channel where we developed the discourse. You can also just hangaround. We also organise IRL meets. The next one is going to be in New York City in early December. Please follow notifications in the ECSA Telegram, ECSA Twitter, and in the Discourse Discord.<br>`,
+        `<b>3. Participation in the discourse development and IRL meets</b>Your unit gives you the right to access the Discourse Development Discord, i.e., to participate in the development of the discourse by sharing your insights and engaging in the dialogue. This allows you to shape the discourse and contribute to the co-publishing of the book. We have curated public discussions with interesting guests and a Discord channel where we developed the discourse. You can also just hangaround. We also organise IRL meets. The next one is going to be in New York City in early December. Please follow notifications in the <a href="https://t.me/economicspaceagency" target="_blank"> ECSA Telegram </a>, <a href="https://twitter.com/ecospaceagency" target="_blank"> ECSA Twitter </a>, and <a href="https://discord.gg/DuJEju5z" target="_blank"> Discourse Development Discord. </a>.<br>`,
 
         `<b>4. Network curation </b>
-        As a holder of a unit of postcapitalist discourse your next task is to expand and enrich the discourse. Your unit makes you a curator of this project. The aim is to turn the book-object into alive spoken discourse on postcapitalist expression. It is about creating a more expressive economic language — than we currently have — to express, measure and communicate value. The three first people using your invitations will have the opportunity to participate in co-publishing the remaining units and become core members of the discourse’s development.
+        Your unit makes you a curator of this project. It offers you a code-link which can be used to invite friends to join the project. The first five people to use your invite-code will have the opportunity to participate in co-publishing the remaining units and become core members of the discourse’s development (i.e. the invite-code can be used by max 5 different people to acquire one unit). Your invitees gain all the unit holder's rights after acquiring their unit. 
+The aim is to turn the book-object into a network: a living, spoken discourse on postcapitalist expression.
 
         <br>
         <br>
@@ -48,11 +52,7 @@ function getBenefitBasedOnId(id){
         </div>
         </div>
         <br>
-        <br>
-        Choose friends who you believe will be interested in the postcapitalist discourse and whose participation will increase its value. How does the value of a discourse increase? It increases if it gets spoken, shared, adopted, repeated; imitated and copied; that multiple ways of using it are invented, that it is used creatively; that different interpretations - which are always different subjective investments - are made of it. This is what we are after. Postcapital is a different paradigm of value creation. In this paradigm value is created with opening, sharing and inventing multiple uses (VS. restricting use by proprietary ownership); with many interpretations, iterations, variations (VS. hiding the source code); with collective self-organization, self-governance and the right to fork (VS. external organization and management). This is what we are organizing for.
-        <br>
-        <br>
-        [After all the units have been published, the people with invitations who didn't manage to get their own unit at this point, will have an access to the Discord where we develop the discourse.]`,
+        <br>`,
 
         `<b>5. The book PDF with a unique generative cover </b>
         The unit gives you the right to download the book PDF with a unique generative cover. It will allow you to understand your unit of discourse’s meaning and relevance as part of the whole book. It assists you in determining the value of the token you hold.
