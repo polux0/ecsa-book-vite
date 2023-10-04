@@ -7,7 +7,7 @@ const waitingForTransactionToInitiate = async function() {
 const revertWaitingForTransactionToInitiate = async function() {
     const tiersSubmitButton = document.getElementById('tiersSubmitButton');
     if(tiersSubmitButton){
-        tiersSubmitButton.innerHTML = 'Mint';
+        tiersSubmitButton.innerHTML = 'Co-publish';
     }
 }
 export {waitingForTransactionToInitiate, revertWaitingForTransactionToInitiate};
