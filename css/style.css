@@ -1212,3 +1212,6 @@ input:focus{
 #name, #mailingAddress, #phoneNumber{
     margin-left: 0px;
 }
+#aboutContent3{
+    overflow-y: auto;
+}
