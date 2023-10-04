@@ -88,7 +88,7 @@ async function submitSelection() {
                     withoutReservationAndInvitationError = "Token is still reserved";
                 }
                 else if(invitationsActive){
-                    withoutReservationAndInvitationError = "Invitations are stil active";
+                    withoutReservationAndInvitationError = "Invitations are still active";
                 }
                 else{
                     withoutReservationAndInvitationError = await handleWithoutInvitationOrReservation(address, reservationsActive, invitationsActive, tokenId, physicalBookIncluded, chosenPrice);
