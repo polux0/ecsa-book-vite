@@ -3,10 +3,10 @@ import { isTokenReserved } from '../web3/isTokenReserved.js';
 import { mintByInvitation } from "../web3/mintByInvitation.js";
 import { hasMinted } from "../web3/hasMinted";
 async function handleInvitations(address, invitationId, tokenId, physicalBookIncluded, chosenPrice, provider, reservationsActive) {
-    let hasMintedR = await hasMinted(address);
-    if(hasMintedR){
-        return "You have already minted an NFT from this collection.";
-    }
+    // let hasMintedR = await hasMinted(address);
+    // if(hasMintedR){
+    //     return "You have already minted an NFT from this collection.";
+    // }
     if (invitationId) {
         let validInvitation = await isInvitationValid(invitationId);
         console.log('isInvitationValid', validInvitation);
