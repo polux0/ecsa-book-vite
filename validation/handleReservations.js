@@ -3,31 +3,12 @@ import { isTokenReserved } from "../web3/isTokenReserved";
 import { mintByReservation} from "../web3/mintByReservation";
 import { hasMinted } from "../web3/hasMinted";
 
-// previous version
-// async function handleReservations(reservationId, tokenId, chosenPrice) {
-
-//     // if (reservationId) {
-//         let validReservation = await isReservationValidForTokenId(reservationId, parseInt(tokenId, 10));
-//         console.log('isValidReservation', validReservation);
-//         if (validReservation) {
-//             mintByReservation(parseInt(tokenId, 10), reservationId, chosenPrice);
-//             return true;
-//         } else {
-//             return "Invalid reservation!";
-//         }
-//     // } else {
-//     //     return "Reservations are active but no reservation is provided.";
-//     // }
-// }
-
-// more sophisticated one
-
 async function handleReservations(reservationsActive, reservationId, tokenId, physicalBookIncluded, choosenPrice){
 
-    let hasMintedR = await hasMinted(address);
-    if(hasMintedR){
-        return "You have already minted an NFT from this collection.";
-    }
+    // let hasMintedR = await hasMinted(address);
+    // if(hasMintedR){
+    //     return "You have already minted an NFT from this collection.";
+    // }
     let tokenReserved = await isTokenReserved(tokenId);
 
     if(tokenReserved){
