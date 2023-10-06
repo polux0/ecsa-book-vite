@@ -18,6 +18,7 @@ async function handleReservations(reservationsActive, reservationId, tokenId, ph
                 if(validReservation){
                     let validReservationForTokenId = await isReservationValidForTokenId(reservationId, parseInt(tokenId, 10));
                     if(validReservationForTokenId){
+                        localStorage.setItem('pbi', physicalBookIncluded);
                         await mintByReservation(parseInt(tokenId, 10), reservationId, physicalBookIncluded, choosenPrice);
                         return true;
                     }
