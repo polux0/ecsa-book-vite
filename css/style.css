@@ -1209,7 +1209,7 @@ input:focus{
 
 /* thumb color */
 
-#name, #mailingAddress, #phoneNumber{
+#name, #mailingAddress, #phoneNumber, #contact{
     margin-left: 0px;
 }
 #aboutContent3{

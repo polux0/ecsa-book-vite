@@ -79,6 +79,10 @@ The aim is to turn the book-object into a network: a living, spoken discourse on
         Phone number (required by the delivery service):
         <br>
         <input type="text" placeholder="+386258472..." spellcheck="false" id="phoneNumber">
+        <br>
+        Contact:
+        <br>
+        <input type="text" placeholder="contact@gmail.com / @telegram" spellcheck="false" id="contact">
         <p class="detailsError" id="detailsError">Please fill all the fields</p>
         <br>
         <button class="postDeliveryDetails" id="postDeliveryDetails">Send ➹</button>
