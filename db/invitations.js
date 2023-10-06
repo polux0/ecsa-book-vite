@@ -8,10 +8,11 @@ async function isInvitationValid(invitationValue) {
             .from('invitations')
             .select('*')    
             .eq('value', invitationValue)
-            .eq('used_by_wallet', "0x")
+            .lt('used_times', 6)
             .limit(1);
         
         if (error) throw error;
+                console.log('isInvitationValid', data);
         return data && data.length > 0;
     } catch (error) {
         console.error("Error checking invitation validity:", error);
@@ -20,12 +21,31 @@ async function isInvitationValid(invitationValue) {
 }
 async function setInvitationUsed(invitationValue, usedByWallet) {
     try {
-        const { error } = await supabase
+        // 1. Retrieve the current used_times value
+        const { data, error } = await supabase
             .from('invitations')
-            .update({ used_by_wallet: usedByWallet })
-            .eq('value', invitationValue);
+            .select('used_times')
+            .eq('value', invitationValue)
+            .limit(1);
         
         if (error) throw error;
+        if (data.length === 0) throw new Error("Invitation not found");
+        
+        const currentUsedTimes = data[0].used_times;
+        
+        // 2. Increment that value
+        const newUsedTimes = currentUsedTimes + 1;
+
+        // 3. Update the table with the incremented value
+        const updateResponse = await supabase
+            .from('invitations')
+            .update({ 
+                used_by_wallet: usedByWallet,
+                used_times: newUsedTimes
+            })
+            .eq('value', invitationValue);
+
+        if (updateResponse.error) throw updateResponse.error;
 
         console.log('Invitation marked as used.');
     } catch (error) {

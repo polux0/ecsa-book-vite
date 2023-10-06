@@ -14,6 +14,7 @@ async function handleWithoutInvitationOrReservation(address, reservationsActive,
             return "Unit is reserved, and reservations are still active!";
         }
         else{
+            localStorage.setItem('pbi', physicalBookIncluded);
             mintById(tokenId, choosenPrice);
             return true;
         }

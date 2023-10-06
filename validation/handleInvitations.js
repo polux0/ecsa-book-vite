@@ -15,6 +15,7 @@ async function handleInvitations(address, invitationId, tokenId, physicalBookInc
             if (tokenReserved && reservationsActive) {
                 return "Token is still reserved. Invitation is not enough!";
             } else {
+                localStorage.setItem('pbi', physicalBookIncluded);
                 mintByInvitation(parseInt(tokenId, 10), invitationId, physicalBookIncluded, chosenPrice, provider);
                 return true;
             }

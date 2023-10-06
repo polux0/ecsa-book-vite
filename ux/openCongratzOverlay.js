@@ -1,7 +1,10 @@
 import {modifyBenefits} from './modifyBenefits';
 
 const openCongratzOverlay = async function(physicalBookIncluded) {
-    if (!physicalBookIncluded){
+    console.log('physicalBookIncluded: ', physicalBookIncluded);
+    if (physicalBookIncluded == false || localStorage.getItem('pbi') == false){
+        console.log('physicalBookIncluded: ', physicalBookIncluded);
+        console.log('pbi: ', localStorage.getItem('pbi'));
         modifyBenefits(); 
     }
     const congratzOverlay = document.getElementById('congratzOverlay');

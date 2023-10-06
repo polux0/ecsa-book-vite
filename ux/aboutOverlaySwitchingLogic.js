@@ -79,5 +79,13 @@ function initiateAboutOverlayLogic(){
             }
         });
     }
+    let letsGoButton = document.getElementById("aboutOverlayLetsGo");
+    letsGoButton.addEventListener("click", function(){
+        let aboutOverlayContent3 = document.getElementById("aboutOverlay");
+        if(aboutOverlayContent3){
+            aboutOverlayContent3.style.display = "none";
+        }
+
+    })
 }
 export {initiateAboutOverlayLogic}

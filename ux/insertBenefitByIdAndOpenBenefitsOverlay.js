@@ -3,6 +3,7 @@ import { copyInvitations } from "./copyInvitations";
 import { downloadInvitations } from "./downloadInvitations";
 import { insertOrder } from "../db/orders.js";
 import { validateOrders } from "../validation/validateOrders.js";
+import { modifyBenefits } from "./modifyBenefits.js";
 // import { downloadBook } from "./downloadBook.js";
 
 // technical debt - code should be modularized!
@@ -120,6 +121,10 @@ const insertBenefitByIdAndOpenBenefitsOverlay = async function(content) {
                 dl.href = downloadURL;
             }
 
+        if (localStorage.getItem('pbi') == false){
+            console.log('pbi: ', localStorage.getItem('pbi'));
+            modifyBenefits(); 
+        }
         benefitsOverlayContent.style.display = "flex";
     }
 

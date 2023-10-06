@@ -1,5 +1,10 @@
 import { openCongratzOverlay } from "./openCongratzOverlay";
 function closeOpenBenefitAndOpenCongratz() {
+    console.log("closeOpenBenefitAndOpenCongratz() happened!")
+    if (localStorage.getItem('pbi') == false){
+        console.log('this should not modify benefits!');
+        modifyBenefits(); 
+    }
     let benefit1Overlay = document.getElementById("benefit1Overlay");
     let benefit1OverlayClose = document.getElementById("benefit1OverlayClose");
     let benefit1OverlayContent = document.getElementById("benefit1OverlayContent");
