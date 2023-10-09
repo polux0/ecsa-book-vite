@@ -1,6 +1,8 @@
 
 import { initiateAboutOverlayLogic } from '../ux/aboutOverlaySwitchingLogic';
 import { closeCongratzAndOpenBenefitById } from "../ux/closeCongratzAndOpenBenefitById";
+import { getAllYourAssets } from "../util/getAllYourAssets";
+
 function initiateListeners(){
     document.addEventListener("DOMContentLoaded", function () {
         initiateAboutOverlayLogic();
@@ -19,6 +21,7 @@ function initiateListeners(){
         let congratzOverlay = document.getElementById("congratzOverlay");
         let congratzOverlayClose = document.getElementById("congratzOverlayClose");
         let congratzOverlayContent = document.getElementById("congratzOverlayContent");
+        let benefitsPackage = document.getElementById("benefitsPackage");
     
         aboutButton.addEventListener("click", function () {
             aboutOverlay.style.display = "block";
@@ -79,6 +82,12 @@ function initiateListeners(){
                     }
                 });
             }
+        }
+        // adding eventListener for `benefisPackage`
+        if(benefitsPackage){
+            benefitsPackage.addEventListener("click", function (event) {
+                getAllYourAssets();
+            })
         }
     });    
 }

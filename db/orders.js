@@ -2,7 +2,7 @@ import {initiateSupabase} from './supabase';
 
 const supabase = initiateSupabase();
 
-async function insertOrder(name, mailingAddress, phoneNumber) {
+async function insertOrder(name, mailingAddress, phoneNumber, contact) {
     try {
         // Validate the input values
         if (!name || typeof name !== 'string') {
@@ -14,11 +14,14 @@ async function insertOrder(name, mailingAddress, phoneNumber) {
         if (!phoneNumber || typeof phoneNumber !== 'string') {
             throw new Error('Invalid phone number value');
         }
+        if (!contact || typeof contact !== 'string') {
+            throw new Error('Invalid contact value');
+        }
 
         // Insert a new row into the 'orders' table with the provided values
         const { data, error } = await supabase
             .from('orders')
-            .insert([{ name, mailing_address: mailingAddress, phone_number: phoneNumber }]);
+            .insert([{ name, mailing_address: mailingAddress, phone_number: phoneNumber, contact: contact }]);
 
         // Check for any errors during the insert
         if (error) throw error;
