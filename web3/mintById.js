@@ -791,6 +791,7 @@ const mintById = async (tokenId, physicalBookIncluded, choosePrice) => {
         }
       ];
 
+    localStorage.setItem('wallet', signer.address);  
     const nftContract = new ethers.Contract(contractAddress, contractABI, signer);
 
     try {

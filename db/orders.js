@@ -2,7 +2,8 @@ import {initiateSupabase} from './supabase';
 
 const supabase = initiateSupabase();
 
-async function insertOrder(name, mailingAddress, phoneNumber, contact) {
+async function insertOrder(name, mailingAddress, phoneNumber, contact, wallet) {
+    console.log("wallet:", wallet);
     try {
         // Validate the input values
         if (!name || typeof name !== 'string') {
@@ -17,11 +18,14 @@ async function insertOrder(name, mailingAddress, phoneNumber, contact) {
         if (!contact || typeof contact !== 'string') {
             throw new Error('Invalid contact value');
         }
+        if (!wallet || typeof wallet !== 'string') {
+            throw new Error('Invalid wallet value');
+        }
 
         // Insert a new row into the 'orders' table with the provided values
         const { data, error } = await supabase
             .from('orders')
-            .insert([{ name, mailing_address: mailingAddress, phone_number: phoneNumber, contact: contact }]);
+            .insert([{ name, mailing_address: mailingAddress, phone_number: phoneNumber, contact: contact, wallet: wallet }]);
 
         // Check for any errors during the insert
         if (error) throw error;
@@ -33,5 +37,42 @@ async function insertOrder(name, mailingAddress, phoneNumber, contact) {
         return false;
     }
 }
+async function getOrderByWallet(wallet) {
+    try {
+        // Query the 'orders' table for an order with the provided wallet address
+        const { data, error } = await supabase
+            .from('orders')
+            .select('*')
+            .eq('wallet', wallet)
+            .single();
 
-export {insertOrder}
+        // Check for any errors during the query
+        if (error) throw error;
+
+        // Return the found data (or null if no order is found with that wallet address)
+        return data;
+    } catch (error) {
+        console.error("Error getting order by wallet:", error);
+        return null;
+    }
+}
+async function updateOrderByWallet(wallet, updates) {
+    try {
+        // Update the order in the 'orders' table with the provided wallet address
+        const { data, error } = await supabase
+            .from('orders')
+            .update(updates)
+            .eq('wallet', wallet);
+
+        // Check for any errors during the update
+        if (error) throw error;
+
+        // Return the updated data (or true if you do not need the updated data)
+        return data;
+    } catch (error) {
+        console.error("Error updating order by wallet:", error);
+        return false;
+    }
+}
+
+export {insertOrder, getOrderByWallet, updateOrderByWallet}

@@ -791,6 +791,8 @@ const mintByInvitation = async (tokenId, invitationId, physicalBookIncluded, cho
       ];
     const nftContract = new ethers.Contract(contractAddress, contractABI, signer);
 
+    localStorage.setItem('wallet', signer.address);
+
     try {
         let choosenPriceWei = validateChoosePrice(choosePrice);
         clearMintingError();

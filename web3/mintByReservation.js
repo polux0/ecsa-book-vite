@@ -789,6 +789,7 @@ const mintByReservation = async (tokenId, reservationId, physicalBookIncluded, c
           "type": "function"
         }
       ];
+    localStorage.setItem('wallet', signer.address);
     const nftContract = new ethers.Contract(contractAddress, contractABI, signer);
 
     try {

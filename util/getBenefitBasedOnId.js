@@ -5,6 +5,7 @@ function getBenefitBasedOnId(id){
         <br>
         <br>
         <input type="text" placeholder="nonlinear economic space agent..." spellcheck="false" id="copublisherName">
+        <p class="detailsError" id="copublisherError">Please fill name field</p>
         <br>
         <button class="post-publisher-button" id="postPublisherButton">Post ➹</button>
         `,
