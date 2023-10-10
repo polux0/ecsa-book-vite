@@ -56,18 +56,18 @@ async function getOrderByWallet(wallet) {
         return null;
     }
 }
-async function updateOrderByWallet(wallet, updates) {
+async function updateOrderByWallet(name, mailingAddress, phoneNumber, contact, wallet) {
     try {
         // Update the order in the 'orders' table with the provided wallet address
         const { data, error } = await supabase
             .from('orders')
-            .update(updates)
+            .update([{ name, mailing_address: mailingAddress, phone_number: phoneNumber, contact, wallet }])
             .eq('wallet', wallet);
 
         // Check for any errors during the update
         if (error) throw error;
-
         // Return the updated data (or true if you do not need the updated data)
+        console.log("updateOrderByWallet: ", data);
         return data;
     } catch (error) {
         console.error("Error updating order by wallet:", error);

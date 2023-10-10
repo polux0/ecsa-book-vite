@@ -1,6 +1,5 @@
 import { openCongratzOverlay } from "./openCongratzOverlay";
 function closeOpenBenefitAndOpenCongratz() {
-    console.log("closeOpenBenefitAndOpenCongratz() happened!")
     if (localStorage.getItem('pbi') == false){
         console.log('this should not modify benefits!');
         modifyBenefits(); 

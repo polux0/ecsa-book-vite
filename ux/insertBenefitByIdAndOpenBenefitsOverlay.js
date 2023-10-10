@@ -46,6 +46,8 @@ const insertBenefitByIdAndOpenBenefitsOverlay = async function(content) {
                 downloadInvitations();
             });
         }
+        benefitsOverlayContent.style.display = "flex";
+
         // downloadBook
         // let downloadBook = document.getElementById('downloadGeneratedPdfsButton')
         // if(downloadBook){
@@ -67,51 +69,75 @@ const insertBenefitByIdAndOpenBenefitsOverlay = async function(content) {
         if(sendButton){
 
             let wallet = localStorage.getItem("wallet");
-            console.log("WALLET: ", wallet);
             let existingOrder = await getOrderByWallet(wallet);
+            let orderUpdateOrPost;
             if(existingOrder){
                 console.log("existing order: ", existingOrder);
-                sendButton.textContent = "Update!";
+                sendButton.textContent = "Update ➹";
+                
+                deliveryName.value = existingOrder.name;
+                deliveryMailing.value = existingOrder.mailing_address;
+                deliveryPhoneNumber.value = existingOrder.phone_number;
+                deliveryContact.value = existingOrder.contact;
+                orderUpdateOrPost = "Update";
+            }
+            else{
+                orderUpdateOrPost = "Post";
             }
             sendButton.addEventListener("click", async function (event) {
 
-                if (isSendClicked) {
-                    // Exit the function to prevent additional sending of orders
-                    return;
-                }
-
                 deliveryError.style.display = "none";
                 validateOrders();
-                console.log("WALLET: ", wallet);
-                await insertOrder(deliveryName.value.trim(), deliveryMailing.value.trim(), deliveryPhoneNumber.value.trim(), deliveryContact.value.trim(), localStorage.getItem("wallet"));
-                //disable button `send` function
-                //possibly disable deliveryName, deliveryMailing, deliveryPhoneNumber
-                if(deliveryError){
-                    if(deliveryError.style.display !== "block"){
-                        sendButton.textContent = "Thanks!";
-                        isSendClicked = true; // Set the flag to true
-                        return;
+                if(existingOrder){
+                    let updateOrderSuccess = await updateOrderByWallet(deliveryName.value.trim(), deliveryMailing.value.trim(), deliveryPhoneNumber.value.trim(), deliveryContact.value.trim(), localStorage.getItem("wallet"));
+                    if(updateOrderSuccess == null){
+                        sendButton.textContent = "Updated!";
+                    }
+                    else{
+                        deliveryError.innerHTML = "It seems there is an issue with the delivery, please contact us!";
+                        deliveryError.style.display = "block"
                     }
                 }
+                else{
+                    let insertOrderSuccess = await insertOrder(deliveryName.value.trim(), deliveryMailing.value.trim(), deliveryPhoneNumber.value.trim(), deliveryContact.value.trim(), localStorage.getItem("wallet"));
+                    if(insertOrderSuccess == null){
+                        sendButton.textContent = "Updated";
+                    }
+                    else{
+                        deliveryError.innerHTML = "It seems there is an issue with the delivery, please contact us!";
+                        deliveryError.style.display = "block"
+                    }
+                }
+                //disable button `send` function
+                //possibly disable deliveryName, deliveryMailing, deliveryPhoneNumber
+                // if(deliveryError){
+                //     if(deliveryError.style.display !== "block"){
+                //         sendButton.textContent = "Thanks!";
+                //         isSendClicked = true; // Set the flag to true
+                //         return;
+                //     }
+                // }
             });
         }
 
         // tehnical debt
-        if(content.includes("creditation")){
-            console.log("1 was included");
-            let updateOrPost;
-            // insert copublisher in database
+        let postPublisherButton = document.getElementById("postPublisherButton");
+        if(postPublisherButton){
+            let copublisherName = document.getElementById("copublisherName");
+            let copublisherUpdateOrPost;
+
             let existingCopublisher = await getCopublisherByWallet(wallet);
-            let postPublisherButton = document.getElementById("postPublisherButton");
+            console.log("Is it existing copublisher?", existingCopublisher);
             
             if(postPublisherButton){
                 if(existingCopublisher){
                     postPublisherButton.innerHTML = "Update ➹";
-                    updateOrPost = "Update";
+                    copublisherName.value = existingCopublisher.name;
+                    copublisherUpdateOrPost = "Update";
                 }
                 else{
                     postPublisherButton.innerHTML = "Send ➹";
-                    updateOrPost = "Send";
+                    copublisherUpdateOrPost = "Send";
                 }
             }
             let copublisherError = document.getElementById("copublisherError");
@@ -119,27 +145,30 @@ const insertBenefitByIdAndOpenBenefitsOverlay = async function(content) {
                 postPublisherButton.addEventListener("click", async function (event) {
                     copublisherError.style.display = "none";
                     validateCopublisher();
-                    let name = document.getElementById("copublisherName").value;
-                    console.log("wallet", wallet);
-                    console.log("name", name);
-                    if(updateOrPost = "Update"){
-                        updateCopublisher(wallet, name);
+                    let name = copublisherName.value;
+                    if(copublisherUpdateOrPost = "Update"){
+                        let copublisherUpdateSuccess = await updateCopublisher(wallet, name);
+                        if(copublisherUpdateSuccess == null){
+                            console.log("copublisherUpdateSuccess", copublisherUpdateSuccess);
+                            postPublisherButton.innerHTML = "Updated!";
+                        }
+                        else{
+                            deliveryError.innerHTML = "It seems there is an issue with updating copublisher name, please contact us!";
+                            deliveryError.style.display = "block"
+                        }
                     }
                     else{
-                        insertCoPublisher(wallet, name);
+                        let copublisherInsertSuccess = await insertCoPublisher(wallet, name);
+                        console.log("copublisherInsertSuccess", copublisherInsertSuccess);
                     }
                 })
             }
         }
-        // see if copublisher exists
-        // insert copublisher
-        // update copublisher
-
 
         // invitations related
         let invitationLinkElement = document.getElementById(`invitation-link1`);
         let invitation = localStorage.getItem('invitation');
-        console.log("invitation: ", invitation);
+        // console.log("invitation: ", invitation);
         if(invitation && invitationLinkElement){
             invitationLinkElement.innerHTML = invitation;
         }
@@ -164,9 +193,7 @@ const insertBenefitByIdAndOpenBenefitsOverlay = async function(content) {
             ipfsBookDownloadLink.innerHTML = downloadURL;
         }
 
-
         let dl = document.getElementById('dl');
-        console.log("This happened: ", dl);
         if(tokenId && dl){
             dl.href = downloadURL;
         }
@@ -175,7 +202,6 @@ const insertBenefitByIdAndOpenBenefitsOverlay = async function(content) {
             console.log('pbi: ', localStorage.getItem('pbi'));
             modifyBenefits(); 
         }
-        benefitsOverlayContent.style.display = "flex";
     }
 
 

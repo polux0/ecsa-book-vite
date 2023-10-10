@@ -1023,6 +1023,7 @@
 .detailsError{
     display: none;
     margin: 6px;
+    margin-left: 0px;
 }
 .revealPrice{
     font-size: 1em;

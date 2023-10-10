@@ -824,11 +824,11 @@ const mintById = async (tokenId, physicalBookIncluded, choosePrice) => {
         } catch (error) {
           console.log('operations with `invitations` storage silently failed...');
         }
-        try{
-          const coPublisher = await insertCoPublisher(signer.address);
-        }catch(error) {
-          console.log('operations with `copublishers` storage silently failed...');
-        }
+        // try{
+        //   const coPublisher = await insertCoPublisher(signer.address);
+        // }catch(error) {
+        //   console.log('operations with `copublishers` storage silently failed...');
+        // }
         
         closePriceTierOverlay();
         openCongratzOverlay(physicalBookIncluded);
