@@ -8,7 +8,7 @@ async function isInvitationValid(invitationValue) {
             .from('invitations')
             .select('*')    
             .eq('value', invitationValue)
-            .lt('used_times', 6)
+            .lt('used_times', 4)
             .limit(1);
         
         if (error) throw error;

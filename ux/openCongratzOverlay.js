@@ -6,6 +6,9 @@ const openCongratzOverlay = async function(physicalBookIncluded) {
         console.log('pbi: ', localStorage.getItem('pbi'));
         modifyBenefits(); 
     }
+    else{
+        console.log("physicalBook is included! : ", physicalBookIncluded);
+    }
     const congratzOverlay = document.getElementById('congratzOverlay');
     if(congratzOverlay){
         congratzOverlay.style.display = "block";
