@@ -136,7 +136,7 @@
         display: grid;
         grid-template-columns: var(--pageGridColumns5);
         grid-template-rows: 1fr max-content;
-
+        overflow-y: hidden;
         transition: color 300ms, background-color 250ms;
     }
 
