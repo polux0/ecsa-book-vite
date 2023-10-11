@@ -22,13 +22,14 @@ import { setInvitationUsed, getInvitationByInvitationValue, getNextThreeInvitati
 // introducing, with 1 invitation that can be used multiple times ( 3 )
 const handleInvitationOperations = async (invitationId, signer) => {
   try {
-      await setInvitationUsed(invitationId, `,${signer}`);
+
       let initial = await getInvitationByInvitationValue(invitationId);
+      let previousWallets = initial[0].used_by_wallet;
       const newInvitation = await getNextInvitation();
-      console.log('new invitation: ' + newInvitation);
+      let final = previousWallets + `,${signer}`;
+      await setInvitationUsed(invitationId, final);
       // let invitedByInvitationId = `,${newInvitation[0].value}`;
-      setInvitationInvitedBy(initial[0].id, newInvitation[0].value);
-      localStorage.setItem('invitation', newInvitation[0].value);
+      await setInvitationInvitedBy(initial[0].id, newInvitation[0].value);
       // let invitationLinkElement = document.getElementById(`invitation-link1`);
       // invitationLinkElement.innerHTML = `${import.meta.env.VITE_INVITATION_URL}${newInvitation[0].value}`;
       localStorage.setItem('invitation', `${import.meta.env.VITE_INVITATION_URL}${newInvitation[0].value}`);
