@@ -42,6 +42,8 @@ The aim is to turn the book-object into a network: a living, spoken discourse on
         </pre>
         <p class="discourse-unit-on-open-sea-text" id="discourse-unit-on-open-sea-text"> Your discourse unit on OpenSea: </p>
         <p class="discourse-unit-on-open-sea-link" id="openSeaLink"> ipfs://QmcHt8YqmA8Vhnfg946kDPRVUfRFo5y7T75nuJPBbXCAMV/token.id </p>
+        <p class="discourse-node" id="discourse-node"> Your discourse node invitation link: </p>
+        <p class="discourse-node-link" id="discourse-node-link"> https://discord.gg/DpSb58ZqeS </p>
         <p class="invitation-link-text" id="invitation-link-text"> Your invitation link: </p>
         <p class="invitation-link" id="invitation-link1">
         https://ecsa-book.vercel.app/?invitationId=HWjaYEr24AcMLzdhN4ycnKnhPvtRn4QNJKMuzu4BXexBHm6tsKmCQCUxqBudsxmK
