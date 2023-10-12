@@ -138,6 +138,7 @@
         grid-template-rows: 1fr max-content;
         overflow-y: hidden;
         transition: color 300ms, background-color 250ms;
+        overflow-y: hidden;
     }
 
     em{
@@ -269,8 +270,8 @@
     /* Media query for mobile adjustments */
     @media (max-width: 480px) {
         #priceTierOverlay {
-            width: 60vw;
-            height: 70vw;
+            width: 90vw;
+            height: 130vw;
             max-width: 100%;
             padding: 2vw;
             margin-top: 5vh;
@@ -359,7 +360,7 @@
     }
 
     button {
-        font-size: 28px;
+        font-size: 24px;
         background-color: var(--bg);
         color: var(--c1);
         border: none;
@@ -399,7 +400,7 @@
         margin-left: 3rem;
         min-width: 128px;
         z-index: 8;
-        height: calc(100vh - 3em);  
+        height: calc(100vh - 2.5em);  
         pointer-events: none; 
     }
 
@@ -408,7 +409,7 @@
     }
 
     #secondaryNav a {
-            font-size: 28px;
+            font-size: 24px;
             background-color: var(--bg);
             color: var(--c1);
             border: none;
@@ -455,7 +456,7 @@
         grid-column: 1 / 6;
         display: grid;
         grid-template-columns: var(--pageGridColumns5);
-        z-index: 6;
+        z-index: 10;
         border-top: 1px solid var(--c1);
     }
 
@@ -469,7 +470,32 @@
         grid-row: 1;
         display: grid;
         grid-auto-flow: column;
+    }
 
+    #bookTools button {
+        position: relative;
+        font-size: 24px;
+    }
+
+    #bookTools button::after {
+        content: attr(data-tooltip);
+        opacity: 0;
+        pointer-events: none;
+        position: absolute;
+        bottom: 100%;
+        margin-bottom: 8px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 8px;
+        background-color: var(--c1);
+        color: var(--bg);
+        white-space: nowrap;
+        font-size: var(--bookFontSize);
+        box-shadow: 0px 0px 6px rgba(0,0,0,0.5);
+        transition: opacity 250ms 100ms, color 250ms, background-color 250ms;
+    }
+    #bookTools button:hover::after {
+        opacity: 1;
     }
 
     #bookOrbsButton img{
@@ -846,6 +872,34 @@
     cursor: pointer;
 }
 
+#coPulbishers{
+    grid-column: 1 / -1;
+    border-top: 1px solid var(--c1);
+}
+
+#coPublishersList{
+    margin-top: 1em;
+    padding: calc(1em + 2vw);
+    background-color: var(--c1);
+    color: var(--bg);
+}
+
+.coPublisher{
+    margin-bottom: 1em;
+    padding-bottom: 1em;
+    margin-top: 1em;
+    border-bottom: 1px solid var(--bg);
+}
+
+.coPublisherAddress {
+    display: block;
+    overflow-x: hidden;
+}
+
+.coPublisherUnit {
+    color: var(--bg);
+}
+
 #glossary{
     grid-column: 1 / -1;
     border-top: 1px solid var(--c1);
@@ -886,6 +940,18 @@
     background-color: var(--bg);
     color: var(--c4);
 }
+
+#credits{
+    grid-column: 1 / -1;
+    border-top: 1px solid var(--c1);
+}
+
+#projectCredits{
+    margin-top: 1em;
+    padding: calc(1em + 2vw);
+    line-height: 1.45em;
+}
+
 .buttonload {
     background-color: #000000; /* Green background */
     border: none; /* Remove borders */
@@ -1108,6 +1174,7 @@ b {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    line-height: 1.45em;
 }
 .aboutOverlayNext{
     margin-top: 3vh;

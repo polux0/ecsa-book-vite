@@ -14,10 +14,10 @@
     <div id="aboutOverlay">
         <button id="aboutOverlayClose" class="close-btn" style="display:block">X</button>
         <!-- aboutContent1 -->
-        <div class="aboutContent" id="aboutContent1" style="display: flex;">
-            Welcome to 
-            <b>'Protocols for Postcapitalist Expression'.</b>
-            Co-publishing is a new format for economic media that lets you take part in the publishing process.This book is divided into collectible paragraphs which visitors can individually choose to co-publish through a symbolic financial contribution. <br>
+        <div class="aboutContent" id="aboutContent1" style="display: block;">
+            Welcome to <b>'Protocols for Postcapitalist Expression'.</b> <br>
+            <br>
+            Co-publishing is a new format for economic media that lets you take part in the publishing process. This book is divided into collectible paragraphs which visitors can individually choose to co-publish through a symbolic financial contribution. <br>
             <br>
             At the beginning, all content is obscured. Through your participation, this text will gradually be made public, one unit at a time. <br>
             <br>
@@ -282,21 +282,28 @@
     <nav id="mainNav">
         <button class="mainNavButton" data-target="navECSA"><span>ECSA</span></button>
         <button class="mainNavButton" data-target="navBook"><span>Book</span></button>
+        <button class="mainNavButton" data-target="navAbout"><span>About</span></button>
     </nav>
     
     <div id="secondaryNav">
         <nav class="secondaryNavMenu" id="navECSA">
             <a href="https://economicspace.agency/" target="_blank">home</a>
-            <a href="https://discourse.ecsa.io/" target="_blank">discourse</a>
-            <a href="#" target="_blank">community</a>
+            <a href="#" target="_blank">discourse</a>
+            <a href="https://t.me/economicspaceagency" target="_blank">telegram</a>
         </nav>
     
         <nav class="secondaryNavMenu" id="navBook">
-            <button id="aboutButton">about</button>
-            <a href="#" target="_blank">physical<br>book</a>
-            <a href="#" target="_blank">audio<br>book</a>
+            <a href="https://www.minorcompositions.info/?p=1195" target="_blank">physical<br>book</a>
+            <a href="https://matslats.net/ecsa-economic-grammar-multitude-protocols-postcapitalist-economic-espression-audiobook" target="_blank">audio<br>book</a>
             <a href="#" target="_blank">epub</a>
             <a href="#" target="_blank">pdf</a>
+        </nav>
+
+        <nav class="secondaryNavMenu" id="navAbout">
+            <button id="aboutButton">instructions</button>
+            <a href="#" target="_blank">benefits</a>
+            <a href="#" target="_blank">FAQ</a>
+            <a href="#" target="_blank">CoPu</a>
         </nav>
     
     </div><!-- end secondaryNav-->
@@ -574,7 +581,12 @@
                 <br>
             </details>
             <br>
-            <a href="#glossary">Glossary</a>
+            <a href="#coPublishers">Co-publishers</a> <br>
+            <br>
+            <a href="#glossary">Glossary</a> <br>
+            <br>
+            <a href="#credits">Credits</a> <br>
+            <br>
             </section>
             <br>
             <br>
@@ -7386,24 +7398,73 @@
     </div>
 </article>
         </section> <!--end mainBookText-->
+
+        <section id=coPulbishers>
+            <div class="sticky">
+                <h5>Co-publishers</h5>
+            </div>
+                <div id="coPublishersList">
+
+                    <div class="coPublisher">
+                        <b class="coPublisherName">Name of Person</b><br> <span class="coPublisherAddress">0xc0ffee254729296a45a3885639AC7E10F9d54979</span> <br>
+                        <a class="coPublisherUnit" href="#u36">Unit 36</a>
+                    </div>
+                    
+                </div>
+
+            </section>
+
         <section id=glossary>
         <div class="sticky">
             <h5>Glossary</h5>
         </div>
             <div id="bookGlossary"></div>
         </section>
+
+        <section id=credits>
+            <div class="sticky">
+                <h5>Credits</h5>
+            </div>
+                <div id="projectCredits">
+                    <h2>Physical Book</h2>
+                    <br>
+                    <b>Authors</b> | <a href="#">Dick Bryan</a>, <a href="#">Jorge López</a>, <a href="#">Akseli Virtanen</a> <br>
+                    <br>
+                    <b>Foreword</b> | <a href="#">Jonathan Beller</a><br>
+                    <br>
+                    <b>Cover & diagrams design</b> | <a href="#">Pablo Somonte Ruano</a><br>
+                    <br>
+                    <b>Typesetting, printing & publishing</b> | <a href="#">Minor Compositions</a><br>
+                    <br>
+                    <h2>Book Platform</h2>
+                    <br>
+                    <b>Design, coding & graphics</b> | <a href="#">Pablo Somonte Ruano</a> <br> <br>
+                    <b>Web3 integration & NFT deployment</b> | <a href="#">Aleksa Stojanović</a> <br> <br>
+                    <b>On-chain NFT design</b> | <a href="#">Catherine Schmidt </a> <br> <br>
+                    <b>Audiobook</b> | <a href="#">Mat Slater</a><br>
+                    <br>
+                    <b>epub & html parser</b> | <a href="#">Daniel Shinbaum</a><br>
+                    <br>
+                    <b>Texts, documentation & glossary</b> | <a href="#">Daniel Shinbaum</a> & <a href="#">Akseli Virtanen</a> <br> <br>
+                    <b>Discourse Node</b> | <a href="#">Rüzgar Imski</a> & <a href="#">Carolina Carvalho</a> <br> <br>
+                    <b>Support & Feedback</b> | <a href="#">Pekko Koskinen</a>, <a href="#">Rüzgar Imski</a>, <a href="#">Mikael Brygger</a>, <a href="#">Michele</a>, <a href="#">Jonathan Beller</a> & <a href="#">Joel Mason</a> <br> <br> 
+                    <br>
+                    <b>Conceptualization</b> | All of the above!
+                </div>
+            </section>
+
     </section> <!--end bookContent-->
 
     <footer>
         <nav id="bookTools">
-            <button id="bookOrbsButton"> <img src="imgs/orb-icon-small.png" alt=""></button>
-            <button id="buttonIndex">☰</button>
-            <button id="buttonFootNotes">[ ]</button>
-            <button id="buttonGlossary">i</button>
-            <button id="bookColorButton">●<sub id="bookColorIndicator">5</sub></button>
-            <button id="bookFontButton">T<sub id="bookFontIndicator">4</sub></button>
-            <button id="bookBiggerFontButton">+</button>
-            <button id="bookSmallerFontButton">-</button>
+            <button id="bookOrbsButton" data-tooltip="Economic-media mode"> <img src="imgs/orb-icon-small.png" alt=""></button>
+            <button id="buttonIndex" data-tooltip="Table of contents">☰</button>
+            <button id="buttonFootNotes" data-tooltip="Footnotes">[ ]</button>
+            <button id="buttonGlossary" data-tooltip="Glossary terms">i</button>
+            <button id="bookColorButton" data-tooltip="Change color scheme">●<sub id="bookColorIndicator">5</sub></button>
+            <button id="bookFontButton" data-tooltip="Change font scheme">T<sub id="bookFontIndicator">4</sub></button>
+            <button id="bookBiggerFontButton" data-tooltip="Bigger font">+</button>
+            <button id="bookSmallerFontButton" data-tooltip="Smaller font">-</button>
         </nav>
 
         <nav id="showTools">

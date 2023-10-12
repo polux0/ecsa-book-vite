@@ -48,7 +48,7 @@ function initiateAboutOverlayLogic(){
                 aboutOverlayContent2.style.display = "none";
                 let aboutOverlayContent1 = document.getElementById("aboutContent1");
                 if(aboutOverlayContent1){
-                    aboutOverlayContent1.style.display = "flex";
+                    aboutOverlayContent1.style.display = "block";
                 }
             }
         });
