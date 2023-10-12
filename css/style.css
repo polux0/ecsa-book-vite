@@ -280,6 +280,7 @@
     }
     #tiersSubmitButton{
         margin-top: 3vh;
+        float: right;
     }
     #congratzOverlay{
         overflow-y: auto;
@@ -1213,12 +1214,28 @@ input:focus{
     display: flex;
     align-items: center;
     gap: 10px; /* This adds spacing between the flex items. You can adjust as needed. */
+    margin-bottom: 1em;
+}
+
+.slider-container label{
+    text-align: center;
 }
 
 .slider {
     width: 60%;
     vertical-align: middle;
 }
+
+.content button{
+    border: 1px solid var(--c1);
+    padding: 4px 12px;
+}
+
+.content b{
+    font-size: 1.2em;
+    line-height: 1.25em;
+}
+
 #priceTiers{
     margin-top: 1.1rem;
 }
