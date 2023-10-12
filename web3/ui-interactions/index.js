@@ -47,7 +47,8 @@ const removeBlurFilter = (tokenId) => {
 const setOrbBorderToSignalThatUnitIsPublished = (tokenId) => {
     const unit = document.getElementById(`orb_${tokenId}`);
     if(unit){
-        unit.style.border = '4px solid #611212';
+        unit.style.filter = 'blur(4px)';
+        unit.style.opacity = '0.75';
     }
 }
 

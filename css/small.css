@@ -113,6 +113,10 @@
         height: calc(100dvh - 2.5em);
     }
 
+    #bookTools button:hover::after {
+        display: none !important;
+    }
+
 }
 
 @media(max-width: 500px){

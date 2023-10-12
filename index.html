@@ -14,10 +14,10 @@
     <div id="aboutOverlay">
         <button id="aboutOverlayClose" class="close-btn" style="display:block">X</button>
         <!-- aboutContent1 -->
-        <div class="aboutContent" id="aboutContent1" style="display: flex;">
-            Welcome to 
-            <b>'Protocols for Postcapitalist Expression'.</b>
-            Co-publishing is a new format for economic media that lets you take part in the publishing process.This book is divided into collectible paragraphs which visitors can individually choose to co-publish through a symbolic financial contribution. <br>
+        <div class="aboutContent" id="aboutContent1" style="display: block;">
+            Welcome to <b>'Protocols for Postcapitalist Expression'.</b> <br>
+            <br>
+            Co-publishing is a new format for economic media that lets you take part in the publishing process. This book is divided into collectible paragraphs which visitors can individually choose to co-publish through a symbolic financial contribution. <br>
             <br>
             At the beginning, all content is obscured. Through your participation, this text will gradually be made public, one unit at a time. <br>
             <br>
@@ -97,16 +97,19 @@
     <div id="priceTierOverlay" class="overlay" style="display:none">
         <button id="priceTierOverlayClose" style="display:none" class="close-btn">X</button>
         <div id="priceTierContent" class="content" style="display:none;">
-            <b>Use the slider to dial in your price range</b>
-            <br>
-            If you have benefited from histories of imperialism, indicate it by moving the slider in that direction. Then click the "reveal price" button.
-            <br>
-            <br>
+            <p>
+                <b>Use the slider to dial in your price range</b>
+                <br>
+                <br>
+                If you have benefited from histories of imperialism, indicate it by moving the slider in that direction. Then click the "reveal price" button.
+                <br>
+                <br>
+            </p>
             <!-- Slider container -->
             <div class="slider-container">
-                <label for="left-slider"><a href="https://economic-space-agency.gitbook.io/about-co-publishing-units-of-discourse/faq#how-much-does-it-cost-to-acquire-a-unit-of-discourse" target="_blank">More colonized</a></label>
+                <label for="left-slider"><a href="https://economic-space-agency.gitbook.io/about-co-publishing-units-of-discourse/faq#how-much-does-it-cost-to-acquire-a-unit-of-discourse" target="_blank">Periphery</a></label>
                 <input type="range" min="0" max="100" value="50" class="slider" id="colonizationSlider">
-                <label for="right-slider"><a href="https://economic-space-agency.gitbook.io/about-co-publishing-units-of-discourse/faq#how-much-does-it-cost-to-acquire-a-unit-of-discourse" target="_blank">More imperial Core</a></label>
+                <label for="right-slider"><a href="https://economic-space-agency.gitbook.io/about-co-publishing-units-of-discourse/faq#how-much-does-it-cost-to-acquire-a-unit-of-discourse" target="_blank">Imperial Core</a></label>
             </div>
             <!-- Slider container -->
             <!-- Price Tiers Selection -->
@@ -145,11 +148,17 @@
     <div id="congratzOverlay" class="overlay">
         <button id="congratzOverlayClose" class="close-btn">X</button>
         <div id="congratzContent" class="content" style="display: flex;">
-            <b>Congrats Econaut!</b>    
+        <p>
+            <b>Congrats Econaut!</b>
+            <br>   
             You have become a holder of a unit of postcapitalist discourse. 
             <br>
+            <a href="https://testnets.opensea.io/assets/sepolia/0x2970022E203b9466dd1dCC69B96f991DB96D63cb/242" target="_blank" id="nft-open-sea">
+                <img src="imgs/101.png" alt="NFT Representation" class="nft-image" id="nft-image">
+            </a>
+            <br>
             Here is what your unit offers you:
-            <br><br>
+            <br>
             <p id="benefit1" class="pbenefit"> 1. Creditation as co-publisher →</p>
             <p id="benefit2" class="pbenefit"> 2. Access to the ECSA token multistake whitelist →</p>
             <p id="benefit3" class="pbenefit"> 3. Participation in the discourse development and IRL meets →</p>
@@ -158,6 +167,8 @@
             <p id="benefit6" class="pbenefit"> 6. Receiving the Special Edition print book →</p>
             <br>
             <p id="benefitsPackage" class="pbenefit">Here are the links to your assets (Unit, PDF, Invitation-code) collected together →</p>
+            <br>
+            <br>
             <!-- <p id="congratzInvitationText" class="invitation-text">
                 If you'd like to engage more econauts in the discourse:
             </p> -->
@@ -168,10 +179,8 @@
                 <button class="copy-button" id="copyButton">Copy ❑</button>
                 <button class="download-button" id="downloadButton">Download ↓</button>
             </div> -->
-            <a href="https://testnets.opensea.io/assets/sepolia/0x2970022E203b9466dd1dCC69B96f991DB96D63cb/242" target="_blank" id="nft-open-sea">
-                <img src="imgs/101.png" alt="NFT Representation" class="nft-image" id="nft-image">
-            </a>
             <p id="connectedAccount"></p>
+        </p>
         </div>  
     </div>
     <!--- congratzOverlay -->
@@ -282,21 +291,28 @@
     <nav id="mainNav">
         <button class="mainNavButton" data-target="navECSA"><span>ECSA</span></button>
         <button class="mainNavButton" data-target="navBook"><span>Book</span></button>
+        <button class="mainNavButton" data-target="navAbout"><span>About</span></button>
     </nav>
     
     <div id="secondaryNav">
         <nav class="secondaryNavMenu" id="navECSA">
             <a href="https://economicspace.agency/" target="_blank">home</a>
-            <a href="https://discourse.ecsa.io/" target="_blank">discourse</a>
-            <a href="#" target="_blank">community</a>
+            <a href="#" target="_blank">discourse</a>
+            <a href="https://t.me/economicspaceagency" target="_blank">telegram</a>
         </nav>
     
         <nav class="secondaryNavMenu" id="navBook">
-            <button id="aboutButton">about</button>
-            <a href="#" target="_blank">physical<br>book</a>
-            <a href="#" target="_blank">audio<br>book</a>
+            <a href="https://www.minorcompositions.info/?p=1195" target="_blank">physical<br>book</a>
+            <a href="https://matslats.net/ecsa-economic-grammar-multitude-protocols-postcapitalist-economic-espression-audiobook" target="_blank">audio<br>book</a>
             <a href="#" target="_blank">epub</a>
             <a href="#" target="_blank">pdf</a>
+        </nav>
+
+        <nav class="secondaryNavMenu" id="navAbout">
+            <button id="aboutButton">instructions</button>
+            <a href="#" target="_blank">benefits</a>
+            <a href="#" target="_blank">FAQ</a>
+            <a href="#" target="_blank">CoPu</a>
         </nav>
     
     </div><!-- end secondaryNav-->
@@ -574,7 +590,12 @@
                 <br>
             </details>
             <br>
-            <a href="#glossary">Glossary</a>
+            <a href="#coPublishers">Co-publishers</a> <br>
+            <br>
+            <a href="#glossary">Glossary</a> <br>
+            <br>
+            <a href="#credits">Credits</a> <br>
+            <br>
             </section>
             <br>
             <br>
@@ -7386,24 +7407,75 @@
     </div>
 </article>
         </section> <!--end mainBookText-->
+
+        <section id=coPulbishers>
+            <div class="sticky">
+                <h5>Co-publishers</h5>
+            </div>
+                <div id="coPublishersList">
+
+                    <div class="coPublisher">
+                        <b class="coPublisherName">Name of Person</b><br> <span class="coPublisherAddress">0xc0ffee254729296a45a3885639AC7E10F9d54979</span> <br>
+                        <a class="coPublisherUnit" href="#u36">Unit 36</a>
+                    </div>
+                    
+                </div>
+
+            </section>
+
         <section id=glossary>
         <div class="sticky">
             <h5>Glossary</h5>
         </div>
             <div id="bookGlossary"></div>
         </section>
+
+        <section id=credits>
+            <div class="sticky">
+                <h5>Credits</h5>
+            </div>
+                <div id="projectCredits">
+                    <h2>Physical Book</h2>
+                    <br>
+                    <b>Authors</b> | Dick Bryan, Jorge López, Akseli Virtanen <br>
+                    <br>
+                    <b>Foreword</b> | Jonathan Beller<br>
+                    <br>
+                    <b>Cover & diagrams design</b> | Pablo Somonte Ruano<br>
+                    <br>
+                    <b>Interior design</b> | Casandra Johns<br>
+                    <br>
+                    <b>Printing & publishing</b> | Minor Compositions<br>
+                    <br>
+                    <h2>Book Platform</h2>
+                    <br>
+                    <b>Design, coding & graphics</b> | Pablo Somonte Ruano <br> <br>
+                    <b>Web3 integration & NFT deployment</b> | Aleksa Stojanović <br> <br>
+                    <b>On-chain NFT design</b> | Catherine Schmidt  <br> <br>
+                    <b>Audiobook</b> | Mat Slater<br>
+                    <br>
+                    <b>epub & html parser</b> | Daniel Shinbaum<br>
+                    <br>
+                    <b>Texts, documentation & glossary</b> | Daniel Shinbaum & Akseli Virtanen <br> <br>
+                    <b>Discourse Node</b> | Rüzgar Imski & Carolina Carvalho <br> <br>
+                    <b>Support & Feedback</b> | Pekko Koskinen, Rüzgar Imski, Mikael Brygger, Jorge López, Michele Iovino, Jonathan Beller & Joel Mason <br> <br> 
+                    <br>
+                    <b>Conceptualization</b> | ECSA Labs
+                </div>
+            </section>
+
     </section> <!--end bookContent-->
 
     <footer>
         <nav id="bookTools">
-            <button id="bookOrbsButton"> <img src="imgs/orb-icon-small.png" alt=""></button>
-            <button id="buttonIndex">☰</button>
-            <button id="buttonFootNotes">[ ]</button>
-            <button id="buttonGlossary">i</button>
-            <button id="bookColorButton">●<sub id="bookColorIndicator">5</sub></button>
-            <button id="bookFontButton">T<sub id="bookFontIndicator">4</sub></button>
-            <button id="bookBiggerFontButton">+</button>
-            <button id="bookSmallerFontButton">-</button>
+            <button id="bookOrbsButton" data-tooltip="Economic-media mode"> <img src="imgs/orb-icon-small.png" alt=""></button>
+            <button id="buttonIndex" data-tooltip="Table of contents">☰</button>
+            <button id="buttonFootNotes" data-tooltip="Footnotes">[ ]</button>
+            <button id="buttonGlossary" data-tooltip="Glossary terms">i</button>
+            <button id="bookColorButton" data-tooltip="Change color scheme">●<sub id="bookColorIndicator">5</sub></button>
+            <button id="bookFontButton" data-tooltip="Change font scheme">T<sub id="bookFontIndicator">4</sub></button>
+            <button id="bookBiggerFontButton" data-tooltip="Bigger font">+</button>
+            <button id="bookSmallerFontButton" data-tooltip="Smaller font">-</button>
         </nav>
 
         <nav id="showTools">
