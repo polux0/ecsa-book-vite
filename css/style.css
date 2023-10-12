@@ -271,10 +271,10 @@
     @media (max-width: 480px) {
         #priceTierOverlay {
             width: 90vw;
-            height: 130vw;
+            max-height: 87vh;
             max-width: 100%;
             padding: 2vw;
-            margin-top: 5vh;
+            margin-top: 2vh;
             font-size: var(--mobileBookFontSize);
         }
     }
