@@ -291,14 +291,12 @@
     /* Media query for mobile adjustments */
     @media (max-width: 480px) {
         #congratzOverlay {
-            /* Example adjustments for mobile, adjust as necessary */
-            width: 80vw;
-            height: 140vw;
+            width: 90vw;
+            max-height: 87vh;
             max-width: 100%;
             padding: 2vw;
-            margin-top: 5vh;
-            font-size: var(--mobileBookFontSize); /* Assuming you have a variable for mobile font size */
-            /* Add any other modifications for mobile here */
+            margin-top: 2vh;
+            font-size: var(--mobileBookFontSize);
         }
     }
     .overlay {
