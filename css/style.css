@@ -285,6 +285,9 @@
     #congratzOverlay{
         overflow-y: auto;
     }
+    #congratzContent{
+        margin-top: 0 !important;
+    }
     /* Media query for mobile adjustments */
     @media (max-width: 480px) {
         #congratzOverlay {
@@ -1113,11 +1116,19 @@
     font-size:0.7rem;
 }
 .nft-image {
-    max-width: 100%;
-    display: block;
+    max-width: 50%;
+    margin-left: 25%;
     margin-top: 20px;
-    border: 1px solid white;
+    border: 1px solid var(--c1);
+    box-shadow: 0px 0px 6px rgba(0,0,0,0.75);
+    transition: box-shadow 300ms, transform 330ms;
 }
+
+.nft-image:hover {
+    box-shadow: 0px 0px 12px rgba(0,0,0,0.75);
+    transform: scale(105%);
+}
+
 /* #priceTierContent{
     padding: 3vw;
     margin-top: 34px;
@@ -1145,12 +1156,23 @@
     margin-top: 0;
     margin-bottom: 0;
     line-height: normal;
+    color: var(--c1);
+    background-color: var(--bg);
+    border: 1px solid var(--c1);
+    border-bottom: none;
+    padding: 6px;
+    transition: color 250ms, background-color 250ms;
 }
 p.pbenefit:hover {
-    color: black;
-    background-color: white;
+    color: var(--bg);
+    background-color: var(--c1);
     cursor: pointer;
 }
+
+#benefitsPackage{
+    border-bottom: 1px solid var(--c1);
+}
+
 b {
     font-family: var(--displayFontFamily);
 }
