@@ -46,7 +46,7 @@ const insertBenefitByIdAndOpenBenefitsOverlay = async function(content) {
                 downloadInvitations();
             });
         }
-        benefitsOverlayContent.style.display = "flex";
+        benefitsOverlayContent.style.display = "block";
 
         // downloadBook
         // let downloadBook = document.getElementById('downloadGeneratedPdfsButton')

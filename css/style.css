@@ -1075,10 +1075,12 @@
 .invitation-container {
     display: block; 
     margin-top: 20px;
-    font-size: 18px; /* adjust as needed */
+    font-size: 16px; /* adjust as needed */
     border: 1px solid #e0e0e0;
     padding: 10px;
     position: relative;
+    height: 40vh;
+    overflow-x: scroll;
     /* text-align: center; */
 }
 
@@ -1147,7 +1149,7 @@
 .content{
     padding: 3vw;
     margin-top: 34px;
-    display: flex;
+    display: block;
     flex-direction: column;
     justify-content: space-between;
 }
