@@ -1,13 +1,19 @@
 function getBenefitBasedOnId(id){
     const benefitsHigherTier = [
-        `<b>1. Creditation as a Co-Publisher (an acknowledgement that you have played for the commons)</b>
+        `
+        <p>
+        <b>1. Creditation as a Co-Publisher <br> (an acknowledgement that you have played for the commons)</b>
+        <br>
+        <br>
         Co-publishing the units transforms the book-commodity into an open access publication that everyone can read, listen and circulate. As a thank you, you (your wallet address or your chosen name) will be listed as a Co-Publisher of the book at the book website and in the next PDF version of the book.
         <br>
         <br>
         <input type="text" placeholder="nonlinear economic space agent..." spellcheck="false" id="copublisherName">
         <p class="detailsError" id="copublisherError">Please fill name field</p>
         <br>
+        <br>
         <button class="post-publisher-button" id="postPublisherButton">Post ➹</button>
+        </p>
         `,
         `<b>2. Access to the ECSA token multistake whitelist</b>
         Your unit grants you access to the ECSA token presale whitelist (target date: TBC). A certain number of ECSA tokens – which are the project’s capital market facing governance tokens – will be allocated to an option pool divided among all the unit holders. The unit thus functions as an early access right to ECSA token multistake. Please follow our messaging at the <a href="https://t.me/economicspaceagency" target="_blank"> ECSA Telegram </a>, <a href="https://twitter.com/ecospaceagency" target="_blank"> ECSA Twitter </a>, and <a href="https://discord.gg/DuJEju5z" target="_blank"> Discourse Development Discord. </a>`,

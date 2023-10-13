@@ -893,6 +893,14 @@
     border-bottom: 1px solid var(--bg);
 }
 
+#copublisherName{
+    width: 50%;
+    margin: 0 auto;
+    display: block;
+    min-width: 240px;
+    margin-bottom: 1em;
+}
+
 .coPublisherAddress {
     display: block;
     overflow-x: hidden;
@@ -1080,6 +1088,8 @@
     right: 10px;
     transform: translateY(-50%);
     cursor: pointer;
+    width: max-content;
+    align-self: center;
 }
 .postDeliveryDetails{
     font-size: 1em;
@@ -1212,10 +1222,10 @@ b {
     width: 100%;
 }
 input{
-    background-color: black;
-    color: white;
-    border: 1px solid;
-    padding: 5px 7px;
+    background-color: var(--bg);
+    color: var(--c1);
+    border: 1px solid var(--c1);
+    padding: 5px 10px;
     margin: 5px;
     font-size: 1rem;
     outline: none; 
@@ -1223,11 +1233,11 @@ input{
 }
 input::placeholder{
     font-family: var(--interfaceFontFamily);
-    color:rgb(219, 207, 207);
+    color: var(--c2);
 }
 input:focus{
     cursor: pointer;
-    border: 1px solid rgb(219, 207, 207);
+    border: 1px solid var(--c2);
 }
 
 .slider-container {
@@ -1249,6 +1259,7 @@ input:focus{
 .content button{
     border: 1px solid var(--c1);
     padding: 4px 12px;
+    width: max-content;
 }
 
 .content b{
