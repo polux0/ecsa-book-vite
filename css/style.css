@@ -1095,8 +1095,8 @@
 }
 .postDeliveryDetails{
     font-size: 1em;
-    margin: 6px;
-    right: 10px;
+    margin: 0 auto;
+    display: block;
     transform: translateY(-50%);
     cursor: pointer;
 }

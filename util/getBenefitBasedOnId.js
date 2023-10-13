@@ -88,21 +88,26 @@ function getBenefitBasedOnId(id){
         <br>
         <br>
         `,
-        `<b>6. The print book published by Minor Compositions / Autonomedia (Colchester / New York / Port Watson, 2023)</b>
-        If you have so selected, your unit offers you also a print copy of the book delivered to your door.
+        `
+        <p>
+        <b>6. The print book published by Minor Compositions / Autonomedia (Colchester / New York / Port Watson, 2023)</b>
+        <br>
+        <br>
+        If you have so selected, your unit offers you also a special edition physical copy of the book delivered to your door.
         <br>
         <br>
         Please leave here your name and address where you would like it be delivered:
         <br>
         <br>
-        Name:
+        Name
+        <br>
         <input type="text" placeholder="Walter Gibson..." spellcheck="false" id="name">
         <br>
-        Mailing address:
+        Mailing address
         <br>
         <input type="text" placeholder="Rue Saint-Honoré 13/1..." spellcheck="false" id="mailingAddress">
         <br>
-        Phone number (required by the delivery service):
+        Phone number (required by the delivery service)
         <br>
         <input type="text" placeholder="+386258472..." spellcheck="false" id="phoneNumber">
         <br>
@@ -112,7 +117,10 @@ function getBenefitBasedOnId(id){
         <p class="detailsError" id="detailsError">Please fill all the fields</p>
         <br>
         <button class="postDeliveryDetails" id="postDeliveryDetails">Send ➹</button>
-        Please notice that depending on your country, you might need to clear the customs before receiving the book.`,
+        <br>
+        Please notice that depending on your country, you might need to clear the customs before receiving the book.
+        </p>
+        `,
     ];
     return benefitsHigherTier[id];
 
