@@ -72,10 +72,10 @@ function getBenefitBasedOnId(id){
         <p class="unique-pdf-link-text" id="unique-pdf-link-text"> Your unique pdf: </p>
         <p class="unique-pdf-link" id="ipfsBookDownloadLink"> ipfs://QmcHt8YqmA8Vhnfg946kDPRVUfRFo5y7T75nuJPBbXCAMV/token.id </p>
         <br>
+        </div>
         <div class="copyAndInvitationButtons">
             <button class="copy-button" id="copyButton">Copy ❑</button>
             <button class="download-button" id="downloadButton">Download ↓</button>
-        </div>
         </div>
         <br>
         <br>`,

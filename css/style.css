@@ -1086,12 +1086,12 @@
 
 .copy-button, .download-button, .post-publisher-button {
     font-size: 1em;
-    margin-top:10px;
-    right: 10px;
     transform: translateY(-50%);
     cursor: pointer;
     width: max-content;
-    align-self: center;
+    margin: 0 auto;
+    display: block;
+    margin-bottom: 12px;
 }
 .postDeliveryDetails{
     font-size: 1em;
@@ -1118,6 +1118,7 @@
     text-align: center;
 } */
 .copyAndInvitationButtons{
+    margin-top: 2em;
     text-align:center;
 }
 
