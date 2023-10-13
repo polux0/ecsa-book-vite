@@ -119,6 +119,19 @@
 
 }
 
+@media(max-width: 550px){
+
+#bookContent{
+    width: calc(100dvw - 2em); 
+ }
+
+ #mainBookText{
+     width: 86dvw;
+     margin-left: 4px !important;
+ }
+
+}
+
 @media(max-width: 500px){
     #tableContainer{
         max-width: 314px;
