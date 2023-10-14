@@ -460,6 +460,8 @@
         grid-template-columns: var(--pageGridColumns5);
         z-index: 10;
         border-top: 1px solid var(--c1);
+        max-width: 100%;
+        overflow:hidden
     }
 
     footer button {
@@ -712,6 +714,8 @@
         background-color: var(--bg);
         z-index: 4;
         transition: background-color 250ms;
+        margin-left: -4px;
+        padding-left: 4px;
     }
 
     h6{
@@ -1075,26 +1079,31 @@
 .invitation-container {
     display: block; 
     margin-top: 20px;
-    font-size: 18px; /* adjust as needed */
-    border: 1px solid #e0e0e0;
+    font-size: 16px; /* adjust as needed */
+    border: 1px solid var(--c1);
+    color: var(--bg);
+    background-color: var(--c2);
     padding: 10px;
     position: relative;
+    height: 40vh;
+    overflow-x: scroll;
+    box-shadow: 0px 0px 8px rgba(0,0,0,0.75);
     /* text-align: center; */
 }
 
 .copy-button, .download-button, .post-publisher-button {
     font-size: 1em;
-    margin-top:10px;
-    right: 10px;
     transform: translateY(-50%);
     cursor: pointer;
     width: max-content;
-    align-self: center;
+    margin: 0 auto;
+    display: block;
+    margin-bottom: 12px;
 }
 .postDeliveryDetails{
     font-size: 1em;
-    margin: 6px;
-    right: 10px;
+    margin: 0 auto;
+    display: block;
     transform: translateY(-50%);
     cursor: pointer;
 }
@@ -1116,6 +1125,7 @@
     text-align: center;
 } */
 .copyAndInvitationButtons{
+    margin-top: 2em;
     text-align:center;
 }
 
@@ -1147,7 +1157,7 @@
 .content{
     padding: 3vw;
     margin-top: 34px;
-    display: flex;
+    display: block;
     flex-direction: column;
     justify-content: space-between;
 }
