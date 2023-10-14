@@ -1,5 +1,5 @@
 import { closeOpenBenefitAndOpenCongratz } from "./closeOpenBenefitAndOpenCongratz.js";
-import { copyInvitations } from "./copyInvitations";
+import { copyInvitations } from "./copyInvitations.js";
 import { downloadInvitations } from "./downloadInvitations";
 import { insertOrder, getOrderByWallet, updateOrderByWallet } from "../db/orders.js";
 import { validateOrders } from "../validation/validateOrders.js";

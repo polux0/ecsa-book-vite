@@ -1,5 +1,5 @@
-import { copyInvitations } from "../ux/copyInvitations";
-import { downloadInvitations } from "../ux/downloadInvitations";
+import { copyBenefits } from "../ux/copyBenefits";
+import { downloadBenefits } from "../ux/downloadBenefits";
 import {closeOpenBenefitAndOpenCongratz} from '../ux/closeOpenBenefitAndOpenCongratz';
 
 function getAllYourAssets(){
@@ -65,12 +65,12 @@ function getAllYourAssets(){
         let downloadButton = document.getElementById("downloadButton");
         if(copyButton){
             copyButton.addEventListener("click", function (event) {
-                copyInvitations();
+                copyBenefits();
             });
         }
         if(downloadButton){
             downloadButton.addEventListener("click", function (event) {
-                downloadInvitations();
+                downloadBenefits();
             });
         }
     }
