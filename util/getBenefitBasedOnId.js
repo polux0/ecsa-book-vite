@@ -111,7 +111,7 @@ function getBenefitBasedOnId(id){
         <br>
         <input type="text" placeholder="+386258472..." spellcheck="false" id="phoneNumber">
         <br>
-        Contact:
+        Contact
         <br>
         <input type="text" placeholder="contact@gmail.com / @telegram" spellcheck="false" id="contact">
         <p class="detailsError" id="detailsError">Please fill all the fields</p>
