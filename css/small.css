@@ -137,4 +137,15 @@
         max-width: 314px;
         overflow-x: scroll;
     }
+
+    .unitPublishButton{
+        margin-left: 55%;
+    }
+}
+
+@media(max-width: 400px){
+
+    .unitPublishButton{
+        margin-left: 45%;
+    }
 }
