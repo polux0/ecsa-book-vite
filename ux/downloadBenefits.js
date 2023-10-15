@@ -28,13 +28,6 @@ function downloadBenefits() {
     tempLink.click();
     document.body.removeChild(tempLink);
 
-    // Assuming you want a similar feedback mechanism as the copy function
-    // let downloadButton = document.getElementById('downloadButton');
-    // let originalHtml = downloadButton.innerHTML;
-    // downloadButton.innerHTML = "Downloaded";
-    // setTimeout(() => {
-    //     downloadButton.innerHTML = originalHtml;
-    // }, 5000);  // 5000 milliseconds = 5 seconds
 }
 
 export { downloadBenefits };
