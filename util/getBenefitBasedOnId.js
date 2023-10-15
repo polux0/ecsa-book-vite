@@ -8,6 +8,9 @@ function getBenefitBasedOnId(id){
         Co-publishing the units transforms the book-commodity into an open access publication that everyone can read, listen and circulate. As a thank you, you (your wallet address or your chosen name) will be listed as a Co-Publisher of the book at the book website and in the next PDF version of the book.
         <br>
         <br>
+        If you'd prefer to have in the Co-publisher credits a human readable name, instead of your wallet adresss, please write it here:
+        <br>
+        <br>
         <input type="text" placeholder="nonlinear economic space agent..." spellcheck="false" id="copublisherName">
         <p class="detailsError" id="copublisherError">Please fill name field</p>
         <br>

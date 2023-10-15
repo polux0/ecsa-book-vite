@@ -3,6 +3,8 @@ import { getMintedTokens } from '../web3/getMintedTokens.js';
 import { removeBlurFilter, setOrbBorderToSignalThatUnitIsPublished } from '../web3/ui-interactions/index.js';
 import { enableSlider, enableCheckbox, replaceRevealPriceButtonWithActualPriceReverse } from "../ux/revealPrice.js";
 import { deselectPhysicalBook } from '../ux/deselectPhysicalBook.js';
+import { blurAndPreventScroll, disableBlurAndEnableScroll } from "../ux/blurAndPreventScrolling.js";
+
 import { resetBenefits } from '../ux/modifyBenefits.js';
 
 //Get the root style to access css variables
@@ -483,6 +485,7 @@ fetch('glossary.json')
                 document.getElementById('priceTierOverlay').style.display = 'block';
                 document.getElementById('priceTierOverlayClose').style.display = 'block';
                 document.getElementById('priceTierContent').style.display = 'flex';
+                blurAndPreventScroll();
                 const mintingError = document.getElementById('tiersErrorMessage');
                 const tiersSubmitButton = document.getElementById('tiersSubmitButton');
                 if(mintingError){

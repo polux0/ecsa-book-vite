@@ -6,6 +6,7 @@ import { validateOrders } from "../validation/validateOrders.js";
 import { validateCopublisher } from "../validation/validateCopublisher";
 import { modifyBenefits } from "./modifyBenefits.js";
 import { insertCoPublisher, getCopublisherByWallet, updateCopublisher } from "../db/copublishers.js";
+import { blurAndPreventScroll, disableBlurAndEnableScroll } from "./blurAndPreventScrolling.js";
 // import { downloadBook } from "./downloadBook.js";
 
 
@@ -47,6 +48,8 @@ const insertBenefitByIdAndOpenBenefitsOverlay = async function(content) {
             });
         }
         benefitsOverlayContent.style.display = "block";
+        blurAndPreventScroll();
+        
 
         // downloadBook
         // let downloadBook = document.getElementById('downloadGeneratedPdfsButton')

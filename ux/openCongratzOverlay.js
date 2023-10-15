@@ -1,4 +1,5 @@
 import {modifyBenefits} from './modifyBenefits';
+import { blurAndPreventScroll, disableBlurAndEnableScroll } from "./blurAndPreventScrolling.js";
 
 const openCongratzOverlay = async function(physicalBookIncluded) {
     if (physicalBookIncluded == false || localStorage.getItem('pbi') == false){
@@ -12,6 +13,7 @@ const openCongratzOverlay = async function(physicalBookIncluded) {
     const congratzOverlay = document.getElementById('congratzOverlay');
     if(congratzOverlay){
         congratzOverlay.style.display = "block";
+        blurAndPreventScroll();
     }
     const congratzOverlayClose = document.getElementById('congratzOverlayClose');
     if(congratzOverlayClose){
