@@ -7,6 +7,7 @@ import { validateCopublisher } from "../validation/validateCopublisher";
 import { modifyBenefits } from "./modifyBenefits.js";
 import { insertCoPublisher, getCopublisherByWallet, updateCopublisher } from "../db/copublishers.js";
 import { blurAndPreventScroll, disableBlurAndEnableScroll } from "./blurAndPreventScrolling.js";
+import { updateCopublishers } from "./displayCopublishers.js";
 // import { downloadBook } from "./downloadBook.js";
 
 
@@ -154,6 +155,7 @@ const insertBenefitByIdAndOpenBenefitsOverlay = async function(content) {
                         if(copublisherUpdateSuccess == null){
                             console.log("copublisherUpdateSuccess", copublisherUpdateSuccess);
                             postPublisherButton.innerHTML = "Updated!";
+                            updateCopublishers(wallet, name);
                         }
                         else{
                             deliveryError.innerHTML = "It seems there is an issue with updating copublisher name, please contact us!";
