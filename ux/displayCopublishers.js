@@ -37,7 +37,6 @@ async function displayCopublishers(){
 async function updateCopublishers(wallet, name){
 
     let latest = await getCopublisherByWalletAndName(wallet, name);
-    console.log('latest: ', latest);
     const coPublishersList = document.getElementById("coPublishersList");
     if(coPublishersList){
             const coPublisherDiv = document.createElement("div");
