@@ -1,3 +1,4 @@
+import { blurAndPreventScroll, disableBlurAndEnableScroll } from "./blurAndPreventScrolling.js";
 function initiateAboutOverlayLogic(){
     // next buttons
     let aboutOverlayNext1Button = document.getElementById("aboutOverlayNext1");
@@ -6,9 +7,11 @@ function initiateAboutOverlayLogic(){
             let aboutOverlayContent1 = document.getElementById("aboutContent1");
             if(aboutOverlayContent1){
                 aboutOverlayContent1.style.display = "none";
+                disableBlurAndEnableScroll();
                 let aboutOverlayContent2 = document.getElementById("aboutContent2");
                 if(aboutOverlayContent2){
                     aboutOverlayContent2.style.display = "block";
+                    blurAndPreventScroll();
                 }
             }
         });
@@ -32,9 +35,11 @@ function initiateAboutOverlayLogic(){
             let aboutOverlayContent3 = document.getElementById("aboutContent3");
             if(aboutOverlayContent3){
                 aboutOverlayContent3.style.display = "none";
+                disableBlurAndEnableScroll();
                 let aboutOverlayContent4 = document.getElementById("aboutContent4");
                 if(aboutOverlayContent4){
                     aboutOverlayContent4.style.display = "block";
+                    blurAndPreventScroll();
                 }
             }
         });
@@ -46,9 +51,11 @@ function initiateAboutOverlayLogic(){
             let aboutOverlayContent2 = document.getElementById("aboutContent2");
             if(aboutOverlayContent2){
                 aboutOverlayContent2.style.display = "none";
+                disableBlurAndEnableScroll();
                 let aboutOverlayContent1 = document.getElementById("aboutContent1");
                 if(aboutOverlayContent1){
                     aboutOverlayContent1.style.display = "block";
+                    blurAndPreventScroll();
                 }
             }
         });
@@ -59,9 +66,11 @@ function initiateAboutOverlayLogic(){
             let aboutOverlayContent3 = document.getElementById("aboutContent3");
             if(aboutOverlayContent3){
                 aboutOverlayContent3.style.display = "none";
+                disableBlurAndEnableScroll();
                 let aboutOverlayContent2 = document.getElementById("aboutContent2");
                 if(aboutOverlayContent2){
                     aboutOverlayContent2.style.display = "block";
+                    blurAndPreventScroll();
                 }
             }
         });
@@ -72,9 +81,11 @@ function initiateAboutOverlayLogic(){
             let aboutOverlayContent4 = document.getElementById("aboutContent4");
             if(aboutOverlayContent4){
                 aboutOverlayContent4.style.display = "none";
+                disableBlurAndEnableScroll();
                 let aboutOverlayContent3 = document.getElementById("aboutContent3");
                 if(aboutOverlayContent3){
                     aboutOverlayContent3.style.display = "block";
+                    blurAndPreventScroll();
                 }
             }
         });
@@ -84,6 +95,7 @@ function initiateAboutOverlayLogic(){
         let aboutOverlayContent3 = document.getElementById("aboutOverlay");
         if(aboutOverlayContent3){
             aboutOverlayContent3.style.display = "none";
+            disableBlurAndEnableScroll();
         }
 
     })

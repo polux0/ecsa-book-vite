@@ -2,6 +2,8 @@
 import { initiateAboutOverlayLogic } from '../ux/aboutOverlaySwitchingLogic';
 import { closeCongratzAndOpenBenefitById } from "../ux/closeCongratzAndOpenBenefitById";
 import { getAllYourAssets } from "../util/getAllYourAssets";
+import { blurAndPreventScroll, disableBlurAndEnableScroll } from "../ux/blurAndPreventScrolling.js";
+
 
 function initiateListeners(){
     document.addEventListener("DOMContentLoaded", function () {
@@ -25,6 +27,7 @@ function initiateListeners(){
     
         aboutButton.addEventListener("click", function () {
             aboutOverlay.style.display = "block";
+            blurAndPreventScroll();
             // Add blur class to each element
             bookIndex.classList.add('blur-background'); 
             bookContent.classList.add('blur-background');
@@ -33,6 +36,7 @@ function initiateListeners(){
     
         aboutOverlayClose.addEventListener("click", function () {
             aboutOverlay.style.display = "none";
+            disableBlurAndEnableScroll();
             // Remove blur class from each element
             bookIndex.classList.remove('blur-background'); 
             bookContent.classList.remove('blur-background');
@@ -49,12 +53,14 @@ function initiateListeners(){
             }
         });
         // Add blur class to each element immediately when page loads
+        blurAndPreventScroll();
         bookIndex.classList.add('blur-background'); 
         bookContent.classList.add('blur-background');
         footNotesAndAudiobook.classList.add('blur-background'); 
 
         // web3 related
         priceTierOverlayClose.addEventListener("click", function () {
+            disableBlurAndEnableScroll();
             priceTierOverlay.style.display = "none";
             priceTierContent.style.display = "none";
             tiersErrorMessage.innerHtml = "";
@@ -62,6 +68,7 @@ function initiateListeners(){
         });
         // congratz closed
         congratzOverlayClose.addEventListener("click", function () {
+            disableBlurAndEnableScroll();
             congratzOverlay.style.display = "none";
             congratzOverlayClose.style.display = "none";
             if(congratzOverlayContent){
