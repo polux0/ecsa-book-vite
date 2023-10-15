@@ -63,10 +63,6 @@ function replaceRevealPriceButtonWithActualPrice(revealedPrice){
     let revealPriceDiv = document.getElementById('revealPriceDiv');
     let revealPriceButton = document.getElementById('revealPriceButton');
     if(revealPriceDiv){
-        // if(revealPriceButton){
-        //     revealPriceDiv.removeChild(revealPriceButton);
-        //     revealPriceDiv.innerHTML = `<p class="revealedPriceParagraph">Price: ${revealedPrice}</p>`;
-        // }
         if(revealPriceButton){
             revealPriceButton.innerHTML = `Price: ${revealedPrice} ETH`;
         }
