@@ -6,7 +6,7 @@ import { validateOrders } from "../validation/validateOrders.js";
 import { validateCopublisher } from "../validation/validateCopublisher";
 import { modifyBenefits } from "./modifyBenefits.js";
 import { insertCoPublisher, getCopublisherByWallet, updateCopublisher } from "../db/copublishers.js";
-import { blurAndPreventScroll, disableBlurAndEnableScroll } from "./blurAndPreventScrolling.js";
+import { blurAndPreventScroll } from "./blurAndPreventScrolling.js";
 import { updateCopublishers } from "./displayCopublishers.js";
 // import { downloadBook } from "./downloadBook.js";
 
@@ -68,13 +68,11 @@ const insertBenefitByIdAndOpenBenefitsOverlay = async function(content) {
         let deliveryContact = document.getElementById("contact");
         let deliveryError = document.getElementById("detailsError");
         
-        let isSendClicked = false; // flag to check if the send button is clicked
 
         if(sendButton){
 
             let wallet = localStorage.getItem("wallet");
             let existingOrder = await getOrderByWallet(wallet);
-            let orderUpdateOrPost;
             if(existingOrder){
                 console.log("existing order: ", existingOrder);
                 sendButton.textContent = "Update ➹";

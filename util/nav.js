@@ -4,13 +4,14 @@ import { closeCongratzAndOpenBenefitById } from "../ux/closeCongratzAndOpenBenef
 import { getAllYourAssets } from "../util/getAllYourAssets";
 import { blurAndPreventScroll, disableBlurAndEnableScroll } from "../ux/blurAndPreventScrolling.js";
 import { displayCopublishers } from '../ux/displayCopublishers';
+import { closeSubmenus } from '../ux/closeSubmenus.js';
 
 
 function initiateListeners(){
     document.addEventListener("DOMContentLoaded", function () {
         initiateAboutOverlayLogic();
-
         displayCopublishers();
+        closeSubmenus();
         // here it should be display block flex for about overlay
         let aboutButton = document.getElementById("aboutButton");
         let aboutOverlay = document.getElementById("aboutOverlay");

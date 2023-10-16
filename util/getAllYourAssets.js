@@ -3,7 +3,10 @@ import { downloadBenefits } from "../ux/downloadBenefits";
 import {closeOpenBenefitAndOpenCongratz} from '../ux/closeOpenBenefitAndOpenCongratz';
 
 function getAllYourAssets(){
-
+    let congratzOvelay = document.getElementById('congratzOverlay');
+    if(congratzOvelay){
+        congratzOvelay.style.display = 'none';
+    }
     let content = 
     `
     <div class="invitation-container">
