@@ -1,7 +1,7 @@
 import Onboard from '@web3-onboard/core'
 import injectedModule, { ProviderLabel } from '@web3-onboard/injected-wallets'
 import walletConnectModule from '@web3-onboard/walletconnect'
-import coinbaseModule from '@web3-onboard/coinbase'
+import coinbaseWalletModule from '@web3-onboard/coinbase'
 import magicModule from '@web3-onboard/magic'
 
 const injected = injectedModule({
@@ -11,7 +11,7 @@ const injected = injectedModule({
 const walletConnect = walletConnectModule({projectId: `${import.meta.env.VITE_WALLET_CONNECT_API_KEY}`,   qrcodeModalOptions: {
   mobileLinks: ['rainbow', 'metamask', 'argent', 'trust', 'imtoken', 'pillar', 'coinbase']
 }}, )
-const coinbaseWallet = coinbaseModule()
+const coinbaseWallet = coinbaseWalletModule()
 const magicWallet = magicModule({apiKey: `${import.meta.env.VITE_MAGIC_AUTH_MODULE_API_KEY}`});
 
 const wallets = [injected, walletConnect, coinbaseWallet, magicWallet]
