@@ -29,8 +29,15 @@ function initiateListeners(){
         let benefitsPackage = document.getElementById("benefitsPackage");
     
         aboutButton.addEventListener("click", function () {
-            aboutOverlay.style.display = "block";
+            if(aboutOverlay){
+                aboutOverlay.style.display = "flex";
+            }
+            console.log("Instructions opened");
             blurAndPreventScroll();
+            let activeMenu = document.getElementById('navAbout');
+            if(activeMenu){
+                activeMenu.classList.remove('activeSecondaryMenu');
+            }
             // Add blur class to each element
             bookIndex.classList.add('blur-background'); 
             bookContent.classList.add('blur-background');
@@ -128,6 +135,11 @@ for (let i = 0; i < mainNavButtons.length; i++) {
             mainNavButtons[j].classList.remove('activeButton');
         }
         button.classList.add('activeButton');
+        // if it's mobile, open submenu
+        const mobileView = window.matchMedia('(max-width: 680px)');
+        if(mobileView.matches){
+            activateNav();
+        }
     });
 
     button.addEventListener('click', function () {

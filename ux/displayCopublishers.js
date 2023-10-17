@@ -3,8 +3,6 @@ import { getAllCopublishers, getCopublisherByWalletAndName } from "../db/copubli
 async function displayCopublishers(){
     // get all copublishers
     let copublishers = await getAllCopublishers();
-    console.log(copublishers);
-
     const coPublishersList = document.getElementById("coPublishersList");
     if(coPublishersList){
         copublishers.forEach(copublisher => {
