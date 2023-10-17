@@ -60,6 +60,7 @@ function initiateListeners(){
                 bookIndex.classList.remove('blur-background'); 
                 bookContent.classList.remove('blur-background');
                 footNotesAndAudiobook.classList.remove('blur-background');
+                disableBlurAndEnableScroll();
             }
         });
         // Add blur class to each element immediately when page loads
