@@ -989,6 +989,7 @@
 }
 
 /* Create a new custom radio circle */
+
 .custom-radio + span:before {
     content: '';
     position: absolute;
@@ -997,7 +998,7 @@
     transform: translateY(-50%);
     width: 20px;
     height: 20px;
-    border: 2px solid #333;
+    border: 2px solid #cbc7c7;
     border-radius: 50%;
     background-color: transparent;
 }
@@ -1018,14 +1019,26 @@
 }
 
 @media (max-width: 768px) {
+    .custom-radio + span:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 23%;
+        transform: translateY(-50%);
+        width: 17px;
+        height: 17px;
+        border: 2px solid #cbc7c7;
+        border-radius: 50%;
+        background-color: transparent;
+    }
     .custom-radio:checked + span:before {
         content: '';
         position: absolute;
         left: 6px;
-        top: 20%;
+        top: 23%;
         transform: translateY(-50%);
-        width: 12px;
-        height: 12px;
+        width: 13px;
+        height: 13px;
         border-radius: 50%;
         background-color: #dcdcdc;
     }
@@ -1365,4 +1378,24 @@ input:focus{
 }
 #benefit6{
     border:1px solid;
+}
+
+#tiersErrorMessage{
+    display: none; 
+    margin-top:20px;
+}
+#copublishButtonDiv{
+    margin-top:1em;
+}
+
+@media (max-width: 680px) {
+    #copublishButtonDiv{
+        margin-top:0.2em;
+    }
+    #tiersErrorMessage{
+        margin-top:15px;
+    }
+    #includePhysicalBookChoise{
+        margin-right: 27px;
+    }
 }
