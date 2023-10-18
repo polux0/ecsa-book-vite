@@ -9,7 +9,7 @@ const injected = injectedModule({
   displayUnavailable: false,
   filter: {
     // allow only on non android mobile
-    [ProviderLabel.Detected]: ['Android', 'desktop']
+    [ProviderLabel.Detected]: ['desktop']
   }
   // sort: wallets => {
   //   const metaMask = wallets.find(
