@@ -26,13 +26,13 @@ function initiateListeners(){
         let congratzOverlay = document.getElementById("congratzOverlay");
         let congratzOverlayClose = document.getElementById("congratzOverlayClose");
         let congratzOverlayContent = document.getElementById("congratzOverlayContent");
+        let benefitOverlayClose = document.getElementById("benefitOverlayClose");
         let benefitsPackage = document.getElementById("benefitsPackage");
     
         aboutButton.addEventListener("click", function () {
             if(aboutOverlay){
                 aboutOverlay.style.display = "flex";
             }
-            console.log("Instructions opened");
             blurAndPreventScroll();
             let activeMenu = document.getElementById('navAbout');
             if(activeMenu){
@@ -47,6 +47,7 @@ function initiateListeners(){
         aboutOverlayClose.addEventListener("click", function () {
             aboutOverlay.style.display = "none";
             disableBlurAndEnableScroll();
+
             // Remove blur class from each element
             bookIndex.classList.remove('blur-background'); 
             bookContent.classList.remove('blur-background');
@@ -54,15 +55,18 @@ function initiateListeners(){
         });
     
         document.addEventListener("click", function (event) {
-            if (!aboutOverlay.contains(event.target) && event.target !== aboutButton) {
-                aboutOverlay.style.display = "none";
-                // Remove blur class from each element
-                bookIndex.classList.remove('blur-background'); 
-                bookContent.classList.remove('blur-background');
-                footNotesAndAudiobook.classList.remove('blur-background');
-                disableBlurAndEnableScroll();
+            if(aboutOverlay.style.display == "block"){
+                if (!aboutOverlay.contains(event.target) && event.target !== aboutButton) {
+                    aboutOverlay.style.display = "none";
+                    // Remove blur class from each element
+                    bookIndex.classList.remove('blur-background'); 
+                    bookContent.classList.remove('blur-background');
+                    footNotesAndAudiobook.classList.remove('blur-background');
+                    disableBlurAndEnableScroll();
+                }
             }
         });
+
         // Add blur class to each element immediately when page loads
         blurAndPreventScroll();
         bookIndex.classList.add('blur-background'); 

@@ -43,7 +43,7 @@ function getBenefitBasedOnId(id){
         Your unit makes you a curator of this project. It offers you a code-link which can be used to invite friends to join the project. The first five people to use your invite-code will have the opportunity to participate in co-publishing the remaining units and become core members of the discourse’s development (i.e. the invite-code can be used by max 5 different people to acquire one unit). Your invitees gain all the unit holder's rights after acquiring their unit. 
         The aim is to turn the book-object into a network: a living, spoken discourse on postcapitalist expression.
         <br>
-        We hope you will choose friends who you believe will be interested in the postcapitalist discourse and whose participation will increase its value. But tell them to be decisive, there are only 601 units available!
+        We hope you will choose friends who you believe will be interested in the postcapitalist discourse and whose participation will increase its value. But be quick, there are only 601 units available!
         <br>
         <br>
         Your sharable invite-link is here, it can be used by max 5 different people to acquire one unit:
