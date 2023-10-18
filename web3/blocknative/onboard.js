@@ -18,18 +18,18 @@ const wallets = [injected, walletConnect, coinbaseWallet, magicWallet]
 
 // technical debt - enviornment variables
 const chains = [
-  // {
-  //   id: 11155111,
-  //   token: 'ETH Sepolia',
-  //   label: 'Sepolia Testnet',
-  //   rpcUrl: `https://eth-sepolia.g.alchemy.com/v2/-tMMu3AHudsbSzy1OJNFuhoiFCgHLKwE`
-  // },
   {
-    id: 137,
-    token: 'MATIC',
-    label: 'Matic Mainnet',
-    rpcUrl: 'https://matic-mainnet.chainstacklabs.com'
+    id: 11155111,
+    token: 'ETH Sepolia',
+    label: 'Sepolia Testnet',
+    rpcUrl: `https://eth-sepolia.g.alchemy.com/v2/-tMMu3AHudsbSzy1OJNFuhoiFCgHLKwE`
   },
+  // {
+  //   id: 137,
+  //   token: 'MATIC',
+  //   label: 'Matic Mainnet',
+  //   rpcUrl: 'https://matic-mainnet.chainstacklabs.com'
+  // },
 ]
 
 const appMetadata = {
