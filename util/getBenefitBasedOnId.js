@@ -57,9 +57,7 @@ function getBenefitBasedOnId(id){
         <div class="copyAndInvitationButtons">
             <button class="copy-button" id="copyButton">Copy ❑</button>
             <button class="download-button" id="downloadButton">Download ↓</button>
-        </div>
-        <br>
-        <br>`,
+        </div>`,
 
         `<b>5. The book PDF with a unique generative cover </b>
         <br>
