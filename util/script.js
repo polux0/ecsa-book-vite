@@ -3,7 +3,7 @@ import { getMintedTokens } from '../web3/getMintedTokens.js';
 import { removeBlurFilter, setOrbBorderToSignalThatUnitIsPublished } from '../web3/ui-interactions/index.js';
 import { enableSlider, enableCheckbox, replaceRevealPriceButtonWithActualPriceReverse } from "../ux/revealPrice.js";
 import { deselectPhysicalBook } from '../ux/deselectPhysicalBook.js';
-import { blurAndPreventScroll, disableBlurAndEnableScroll } from "../ux/blurAndPreventScrolling.js";
+import { blurAndPreventScroll } from "../ux/blurAndPreventScrolling.js";
 
 import { resetBenefits } from '../ux/modifyBenefits.js';
 
