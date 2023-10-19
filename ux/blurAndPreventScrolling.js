@@ -1,50 +1,39 @@
-function blurAndPreventScroll(){
-    let bookContentSection = document.getElementById('bookContent');
-    if(bookContentSection){
-        bookContentSection.style.filter = `blur(5px)`;
-        bookContentSection.style.overflow = 'hidden';
+// Utility function to apply styles to an element
+function applyStylesToElement(elementId, styles) {
+    let element = document.getElementById(elementId);
+    if (element) {
+        for (let style in styles) {
+            element.style[style] = styles[style];
+        }
+    } else {
+        console.warn(`could not find element with id ${elementId}`);
     }
-    else{
-        console.log('could not find element with id `bookContent`');
-    }
-    let bookIndex = document.getElementById('bookIndex');
-    if(bookIndex){
-        bookIndex.style.filter = `blur(5px)`;
-    }
-    else{
-        console.log('could not find element with id `bookIndex`');
-    }
-    let footNotesAndAudiobook = document.getElementById('footNotesAndAudiobook');
-    if(footNotesAndAudiobook){
-        footNotesAndAudiobook.style.filter = `blur(5px)`;
-    }
-    else{
-        console.log('could not find element with id `footNotesAndAudiobook`');
-    }
+}
 
+function blurAndPreventScroll() {
+    applyStylesToElement('bookContent', {
+        filter: 'blur(5px)',
+        overflow: 'hidden'
+    });
+    applyStylesToElement('bookIndex', {
+        filter: 'blur(5px)'
+    });
+    applyStylesToElement('footNotesAndAudiobook', {
+        filter: 'blur(5px)'
+    });
 }
-function disableBlurAndEnableScroll(){
-    let bookContentSection = document.getElementById('bookContent');
-    if(bookContentSection){
-        bookContentSection.style.filter = '';
-        bookContentSection.style.overflow = ''; 
-    }
-    else{
-        console.warn('could not find element with id `bookContent`');
-    }
-    let bookIndex = document.getElementById('bookIndex');
-    if(bookIndex){
-        bookIndex.style.filter = ``;
-    }
-    else{
-        console.warn('could not find element with id `bookIndex`');
-    }
-    let footNotesAndAudiobook = document.getElementById('footNotesAndAudiobook');
-    if(footNotesAndAudiobook){
-        footNotesAndAudiobook.style.filter = `none`;
-    }
-    else{
-        console.warn('could not find element with id `footNotesAndAudiobook`');
-    }
+
+function disableBlurAndEnableScroll() {
+    applyStylesToElement('bookContent', {
+        filter: '',
+        overflow: ''
+    });
+    applyStylesToElement('bookIndex', {
+        filter: ''
+    });
+    applyStylesToElement('footNotesAndAudiobook', {
+        filter: 'none'
+    });
 }
-export {blurAndPreventScroll, disableBlurAndEnableScroll}
+
+export { blurAndPreventScroll, disableBlurAndEnableScroll };

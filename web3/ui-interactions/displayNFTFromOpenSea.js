@@ -2,10 +2,6 @@ import {getAnNFTViaOpenSea } from '../../ux/getAnNFTViaOpenSea';
 
 const displayNFTImageFromOpenSea = async (tokenId) => {
     try {
-        // we won't need this anymore
-        // await new Promise(resolve => setTimeout(resolve, 2000));
-        // we won't need this anymore
-        // let nft = await getAnNFTViaOpenSea(tokenId);
         let nftImage = document.getElementById('nft-image');
         let nftOpenSeaUrl = document.getElementById('nft-open-sea');
 

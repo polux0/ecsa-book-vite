@@ -1,25 +1,23 @@
 import { openCongratzOverlay } from "./openCongratzOverlay";
-import { blurAndPreventScroll, disableBlurAndEnableScroll } from "./blurAndPreventScrolling.js";
+import { disableBlurAndEnableScroll } from "./blurAndPreventScrolling.js";
+import { modifyBenefits} from "./modifyBenefits.js";
+function hideElementAndEnableScroll(elementId) {
+    const element = document.getElementById(elementId);
+    if (element) {
+        element.style.display = "none";
+        disableBlurAndEnableScroll();
+    }
+}
+// transitionFromBenefitToCongratz ( should become )
 function closeOpenBenefitAndOpenCongratz() {
-    if (localStorage.getItem('pbi') == false){
+    if (localStorage.getItem('pbi') == false) {
         console.log('this should not modify benefits!');
-        modifyBenefits(); 
-    }
-    let benefit1Overlay = document.getElementById("benefit1Overlay");
-    let benefit1OverlayClose = document.getElementById("benefit1OverlayClose");
-    let benefit1OverlayContent = document.getElementById("benefit1OverlayContent");
-    if(benefit1Overlay){
-        benefit1Overlay.style.display = "none";
-        disableBlurAndEnableScroll();
-    }
-    if(benefit1OverlayClose){
-        benefit1OverlayClose.style.display = "none";
-        disableBlurAndEnableScroll();
-    }
-    if(benefit1OverlayContent){
-        benefit1OverlayContent.style.display = "none";
-        disableBlurAndEnableScroll();
-    }
+        modifyBenefits();  // Ensure you have imported or defined this function
+    }   
+    hideElementAndEnableScroll("benefit1Overlay");
+    hideElementAndEnableScroll("benefit1OverlayClose");
+    hideElementAndEnableScroll("benefit1OverlayContent");
     openCongratzOverlay();
 }
-export {closeOpenBenefitAndOpenCongratz}
+
+export { closeOpenBenefitAndOpenCongratz };

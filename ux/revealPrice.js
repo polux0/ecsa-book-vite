@@ -1,73 +1,32 @@
 import { getColonizationLevel } from './getColonizationLevel.js';
 import { getPhysicalBookIncluded } from '../validation/getPhysicalBookIncluded.js';
 
-let periphery = import.meta.env.VITE_PERIPHERY_PRICE;
-let peripheryBookPrice = import.meta.env.VITE_PERIPHERY_BOOK_PRICE;
-let imperialCorePrice = import.meta.env.VITE_IMPERIAL_CORE_PRICE;
-let imperialCoreBookPrice = import.meta.env.VITE_IMPERIAL_CORE_BOOK_PRICE;
+const PERIPHERY = import.meta.env.VITE_PERIPHERY_PRICE;
+const PERIPHERY_BOOK_PRICE = import.meta.env.VITE_PERIPHERY_BOOK_PRICE;
+const IMPERIAL_CORE_PRICE = import.meta.env.VITE_IMPERIAL_CORE_PRICE;
+const IMPERIAL_CORE_BOOK_PRICE = import.meta.env.VITE_IMPERIAL_CORE_BOOK_PRICE;
 
-function calculateRevealPrice(){
-
-    disableSlider();
-    disableCheckbox();
+const calculatePrice = () => {
     let colonisationLevel = getColonizationLevel();
     let bookSelected = getPhysicalBookIncluded();
-    let finalPrice;
 
-    if(bookSelected){
-        if(colonisationLevel >= 50){
-            finalPrice = Number(imperialCorePrice) + Number(imperialCoreBookPrice);
+    if (bookSelected) {
+        if (colonisationLevel >= 50) {
+            return Number(IMPERIAL_CORE_PRICE) + Number(IMPERIAL_CORE_BOOK_PRICE);
+        } else {
+            return Number((Number(PERIPHERY) + Number(PERIPHERY_BOOK_PRICE)).toFixed(4));
         }
-        else{
-            let finalPriceBeforeRounding = Number(periphery) + Number(peripheryBookPrice);
-            finalPrice = Number(finalPriceBeforeRounding.toFixed(4));
-        }
+    } else {
+        return colonisationLevel >= 50 ? Number(IMPERIAL_CORE_PRICE) : Number(PERIPHERY);
     }
-    else{
-        if(colonisationLevel >= 50){
-            finalPrice = imperialCorePrice;
-        }
-        else{
-            finalPrice = periphery;
-        }
-    }
-    return finalPrice;
+};
 
-}
-// technical debt
-function getFinalPrice(){
-    let colonisationLevel = getColonizationLevel();
-    let bookSelected = getPhysicalBookIncluded();
-    let finalPrice;
-
-    if(bookSelected){
-        if(colonisationLevel >= 50){
-            finalPrice = Number(imperialCorePrice) + Number(imperialCoreBookPrice);
-        }
-        else{
-            let finalPriceBeforeRounding = Number(periphery) + Number(peripheryBookPrice);
-            finalPrice = Number(finalPriceBeforeRounding.toFixed(4));
-        }
+const replaceRevealPriceButtonWithActualPrice = (revealedPrice) => {
+    let button = document.getElementById('revealPriceButton');
+    if (button) {
+        button.innerHTML = `Price: ${revealedPrice} ETH`;
     }
-    else{
-        if(colonisationLevel >= 50){
-            finalPrice = imperialCorePrice;
-        }
-        else{
-            finalPrice = periphery;
-        }
-    }
-    return finalPrice;
-}
-function replaceRevealPriceButtonWithActualPrice(revealedPrice){
-    let revealPriceDiv = document.getElementById('revealPriceDiv');
-    let revealPriceButton = document.getElementById('revealPriceButton');
-    if(revealPriceDiv){
-        if(revealPriceButton){
-            revealPriceButton.innerHTML = `Price: ${revealedPrice} ETH`;
-        }
-    }
-}
+};
 function replaceRevealPriceButtonWithActualPriceReverse(){
     let revealPriceButton = '<button class="revealPrice" id="revealPriceButton" onclick="revealPrice()">Reveal price</button>';
     let revealPriceDiv = document.getElementById('revealPriceDiv');
@@ -75,36 +34,25 @@ function replaceRevealPriceButtonWithActualPriceReverse(){
         revealPriceDiv.innerHTML = revealPriceButton;
     }
 }
-function disableSlider(){
-    let slider = document.getElementById('colonizationSlider');
-    if(slider){
-        slider.disabled = true;
+const toggleElementState = (elementId, state) => {
+    let elem = document.getElementById(elementId);
+    if (elem) {
+        elem.disabled = !state;
     }
-}
-function enableSlider(){
-    let slider = document.getElementById('colonizationSlider');
-    if(slider){
-        slider.disabled = false;
-    }
-}
-function disableCheckbox(){
-    const checkbox = document.getElementById('physicalBookCheckbox');
-    if(checkbox){
-        checkbox.disabled = true;
-    }
-}
+};
 
-function enableCheckbox(){
-    const checkbox = document.getElementById('physicalBookCheckbox');
-    if(checkbox){
-        checkbox.disabled = false;
-    }
-}
-
-function revealPrice(){
-    let price = calculateRevealPrice();
+const revealPrice = () => {
+    let price = calculatePrice();
     replaceRevealPriceButtonWithActualPrice(price);
-}
+};
 
+// Attaching the function to the window object (keep this if required by other scripts outside the module)
 window.revealPrice = revealPrice;
-export {revealPrice, getFinalPrice, enableSlider, enableCheckbox, replaceRevealPriceButtonWithActualPriceReverse};
+
+export {
+    revealPrice,
+    calculatePrice as getFinalPrice,  // Renamed to keep the previous functionality intact
+    toggleElementState as enableSlider,  // Use true as second argument
+    toggleElementState as enableCheckbox, // Use true as second argument
+    replaceRevealPriceButtonWithActualPriceReverse // No changes made
+};

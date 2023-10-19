@@ -8,208 +8,187 @@ import { modifyBenefits } from "./modifyBenefits.js";
 import { insertCoPublisher, getCopublisherByWallet, updateCopublisher } from "../db/copublishers.js";
 import { blurAndPreventScroll } from "./blurAndPreventScrolling.js";
 import { updateCopublishers } from "./displayCopublishers.js";
-// import { downloadBook } from "./downloadBook.js";
 
+const getWallet = () => localStorage.getItem("wallet");
 
-// technical debt - code should be modularized!
-const insertBenefitByIdAndOpenBenefitsOverlay = async function(content) {
-    let wallet = localStorage.getItem("wallet");
-    const benefitsOverlay = document.getElementById('benefit1Overlay');
-    if(benefitsOverlay){
-        benefitsOverlay.style.display = "flex";
+const handleOverlayDisplay = () => {
+    const overlay = document.getElementById('benefit1Overlay');
+    if (overlay) {
+        overlay.style.display = "flex";
     }
-    const benefitsOverlayClose = document.getElementById('benefit1OverlayClose');
-    if(benefitsOverlayClose){
-        benefitsOverlayClose.addEventListener('click', function(){
-            closeOpenBenefitAndOpenCongratz();   
+}
+
+const setupCloseAndBackButtons = () => {
+    const closeButton = document.getElementById('benefit1OverlayClose');
+    const backButton = document.getElementById('benefitOverlayClose');
+
+    const clickHandler = () => closeOpenBenefitAndOpenCongratz();
+
+    if (closeButton) {
+        closeButton.addEventListener('click', clickHandler);
+        closeButton.style.display = "block";
+    }
+
+    if (backButton) {
+        backButton.addEventListener('click', clickHandler);
+    }
+}
+
+const setupInvitationButtons = () => {
+    const copyButton = document.getElementById("copyButton");
+    const downloadButton = document.getElementById("downloadButton");
+
+    if (copyButton) copyButton.addEventListener("click", copyInvitations);
+    if (downloadButton) downloadButton.addEventListener("click", downloadInvitations);
+}
+
+const handleOrderDetails = async () => {
+    const wallet = getWallet();
+    const existingOrder = await getOrderByWallet(wallet);
+    const sendButton = document.getElementById("postDeliveryDetails");
+    const deliveryName = document.getElementById("name");
+    const deliveryMailing = document.getElementById("mailingAddress");
+    const deliveryPhoneNumber = document.getElementById("phoneNumber");
+    const deliveryContact = document.getElementById("contact");
+    const deliveryError = document.getElementById("detailsError");
+    
+    if (sendButton) {
+        if (existingOrder) {
+            sendButton.textContent = "Update ➹";
+            deliveryName.value = existingOrder.name;
+            deliveryMailing.value = existingOrder.mailing_address;
+            deliveryPhoneNumber.value = existingOrder.phone_number;
+            deliveryContact.value = existingOrder.contact;
+        }
+        
+        sendButton.addEventListener("click", async (event) => {
+            deliveryError.style.display = "none";
+            validateOrders();
+
+            let result;
+            if (existingOrder) {
+                result = await updateOrderByWallet(
+                    deliveryName.value.trim(),
+                    deliveryMailing.value.trim(),
+                    deliveryPhoneNumber.value.trim(),
+                    deliveryContact.value.trim(),
+                    wallet
+                );
+            } else {
+                result = await insertOrder(
+                    deliveryName.value.trim(),
+                    deliveryMailing.value.trim(),
+                    deliveryPhoneNumber.value.trim(),
+                    deliveryContact.value.trim(),
+                    wallet
+                );
+            }
+
+            if (result == null) {
+                sendButton.textContent = "Updated!";
+            } else {
+                deliveryError.innerHTML = "It seems there is an issue with the delivery, please contact us!";
+                deliveryError.style.display = "block";
+            }
         });
-        benefitsOverlayClose.style.display = "block";
     }
-    const benefitsOverlayContent = document.getElementById('benefit1OverlayContent');
-    if(benefitsOverlayContent){
-        benefitsOverlayContent.innerHTML = content;
-        benefitsOverlayContent.innerHTML += '<button class="aboutOverlayBack" id="benefitOverlayClose">← back</button>';
+}
 
-        let backButton = document.getElementById('benefitOverlayClose');
-        if(backButton){
-            backButton.addEventListener('click', function(){
-                closeOpenBenefitAndOpenCongratz();   
-            });
+const handleCopublisherDetails = async () => {
+    const wallet = getWallet();
+    const existingCopublisher = await getCopublisherByWallet(wallet);
+    const postPublisherButton = document.getElementById("postPublisherButton");
+    const copublisherName = document.getElementById("copublisherName");
+    const copublisherError = document.getElementById("copublisherError");
+
+    if (postPublisherButton) {
+        if (existingCopublisher) {
+            postPublisherButton.innerHTML = "Update ➹";
+            copublisherName.value = existingCopublisher.name;
+        } else {
+            postPublisherButton.innerHTML = "Send ➹";
         }
-        let copyButton = document.getElementById("copyButton");
-        let downloadButton = document.getElementById("downloadButton");
-        if(copyButton){
-            copyButton.addEventListener("click", function (event) {
-                copyInvitations();
-            });
-        }
-        if(downloadButton){
-            downloadButton.addEventListener("click", function (event) {
-                downloadInvitations();
-            });
-        }
-        benefitsOverlayContent.style.display = "block";
-        blurAndPreventScroll();
-        
 
-        // downloadBook
-        // let downloadBook = document.getElementById('downloadGeneratedPdfsButton')
-        // if(downloadBook){
-        //     downloadBook.addEventListener("click", function (event) {
-        //         downloadBook();
-        //     });
-        // }
+        postPublisherButton.addEventListener("click", async (event) => {
+            copublisherError.style.display = "none";
+            validateCopublisher();
+            let name = copublisherName.value;
 
-        let sendButton = document.getElementById("postDeliveryDetails");
-
-        let deliveryName = document.getElementById("name");
-        let deliveryMailing = document.getElementById("mailingAddress");
-        let deliveryPhoneNumber = document.getElementById("phoneNumber");
-        let deliveryContact = document.getElementById("contact");
-        let deliveryError = document.getElementById("detailsError");
-        
-
-        if(sendButton){
-
-            let wallet = localStorage.getItem("wallet");
-            let existingOrder = await getOrderByWallet(wallet);
-            if(existingOrder){
-                console.log("existing order: ", existingOrder);
-                sendButton.textContent = "Update ➹";
-                
-                deliveryName.value = existingOrder.name;
-                deliveryMailing.value = existingOrder.mailing_address;
-                deliveryPhoneNumber.value = existingOrder.phone_number;
-                deliveryContact.value = existingOrder.contact;
-                orderUpdateOrPost = "Update";
-            }
-            else{
-                orderUpdateOrPost = "Post";
-            }
-            sendButton.addEventListener("click", async function (event) {
-
-                deliveryError.style.display = "none";
-                validateOrders();
-                if(existingOrder){
-                    let updateOrderSuccess = await updateOrderByWallet(deliveryName.value.trim(), deliveryMailing.value.trim(), deliveryPhoneNumber.value.trim(), deliveryContact.value.trim(), localStorage.getItem("wallet"));
-                    if(updateOrderSuccess == null){
-                        sendButton.textContent = "Updated!";
-                    }
-                    else{
-                        deliveryError.innerHTML = "It seems there is an issue with the delivery, please contact us!";
-                        deliveryError.style.display = "block"
-                    }
+            let result;
+            if (existingCopublisher) {
+                result = await updateCopublisher(wallet, name);
+                if (result == null) {
+                    postPublisherButton.innerHTML = "Updated!";
+                    updateCopublishers(wallet, name);
                 }
-                else{
-                    let insertOrderSuccess = await insertOrder(deliveryName.value.trim(), deliveryMailing.value.trim(), deliveryPhoneNumber.value.trim(), deliveryContact.value.trim(), localStorage.getItem("wallet"));
-                    if(insertOrderSuccess == null){
-                        sendButton.textContent = "Updated";
-                    }
-                    else{
-                        deliveryError.innerHTML = "It seems there is an issue with the delivery, please contact us!";
-                        deliveryError.style.display = "block"
-                    }
-                }
-                //disable button `send` function
-                //possibly disable deliveryName, deliveryMailing, deliveryPhoneNumber
-                // if(deliveryError){
-                //     if(deliveryError.style.display !== "block"){
-                //         sendButton.textContent = "Thanks!";
-                //         isSendClicked = true; // Set the flag to true
-                //         return;
-                //     }
-                // }
-            });
-        }
-
-        // tehnical debt
-        let postPublisherButton = document.getElementById("postPublisherButton");
-        if(postPublisherButton){
-            let copublisherName = document.getElementById("copublisherName");
-            let copublisherUpdateOrPost;
-
-            let existingCopublisher = await getCopublisherByWallet(wallet);
-            console.log("Is it existing copublisher?", existingCopublisher);
-            
-            if(postPublisherButton){
-                if(existingCopublisher){
-                    postPublisherButton.innerHTML = "Update ➹";
-                    copublisherName.value = existingCopublisher.name;
-                    copublisherUpdateOrPost = "Update";
-                }
-                else{
-                    postPublisherButton.innerHTML = "Send ➹";
-                    copublisherUpdateOrPost = "Send";
-                }
+            } else {
+                result = await insertCoPublisher(wallet, name);
             }
-            let copublisherError = document.getElementById("copublisherError");
-            if(postPublisherButton){
-                postPublisherButton.addEventListener("click", async function (event) {
-                    copublisherError.style.display = "none";
-                    validateCopublisher();
-                    let name = copublisherName.value;
-                    if(copublisherUpdateOrPost = "Update"){
-                        let copublisherUpdateSuccess = await updateCopublisher(wallet, name);
-                        if(copublisherUpdateSuccess == null){
-                            console.log("copublisherUpdateSuccess", copublisherUpdateSuccess);
-                            postPublisherButton.innerHTML = "Updated!";
-                            updateCopublishers(wallet, name);
-                        }
-                        else{
-                            deliveryError.innerHTML = "It seems there is an issue with updating copublisher name, please contact us!";
-                            deliveryError.style.display = "block"
-                        }
-                    }
-                    else{
-                        let copublisherInsertSuccess = await insertCoPublisher(wallet, name);
-                        console.log("copublisherInsertSuccess", copublisherInsertSuccess);
-                    }
-                })
+
+            if (result !== null) {
+                copublisherError.innerHTML = "It seems there is an issue with updating copublisher name, please contact us!";
+                copublisherError.style.display = "block";
             }
-        }
+        });
+    }
+}
 
-        // invitations related
-        let invitationLinkElement = document.getElementById(`invitation-link1`);
-        let invitation = localStorage.getItem('invitation');
-        // console.log("invitation: ", invitation);
-        if(invitation && invitationLinkElement){
-            invitationLinkElement.innerHTML = invitation;
-        }
-        let tokenId = localStorage.getItem('tokenId');
-        // fetch element that holds OpenSea link: 
-        let elementContainingOpenSeaLink = document.getElementById('openSeaLink');
+const setupBenefitsLinks = () => {
+    const invitationLinkElement = document.getElementById(`invitation-link1`);
+    const invitation = localStorage.getItem('invitation');
+    const tokenId = localStorage.getItem('tokenId');
+    const elementContainingOpenSeaLink = document.getElementById('openSeaLink');
+    const ipfsBookDownloadLink = document.getElementById('ipfsBookDownloadLink');
+    const dl = document.getElementById('dl');
 
-        if(elementContainingOpenSeaLink && tokenId){
-            // get token id from local storage so we can generate opensea link
-            let url = import.meta.env.VITE_NETWORK == 'sepolia' ? 'testnets.opensea.io' : 'opensea.io'; 
-            const final = `https://${url}/assets/${import.meta.env.VITE_NETWORK}/${import.meta.env.VITE_NFT_CONTRACT_ADDRESS}/${tokenId}`;
-            elementContainingOpenSeaLink.innerHTML = final;
-        }
-        // fetch element that holds Pinnata / IPFS link:
-        let ipfsBookDownloadLink = document.getElementById('ipfsBookDownloadLink');
-        let pinnataGateway = import.meta.env.VITE_PINATA_GATEWAY;
-        let resourceName = `protocols-for-postcapitalist-expression_digital-edition_${tokenId}.pdf/`;
-        let accessToken = `?pinataGatewayToken=${import.meta.env.VITE_PINATA_ACCESS_TOKEN}`;
-        let downloadURL = pinnataGateway + resourceName + accessToken;
+    if (invitation && invitationLinkElement) {
+        invitationLinkElement.innerHTML = invitation;
+    }
 
-        if(tokenId && ipfsBookDownloadLink){
-            ipfsBookDownloadLink.innerHTML = downloadURL;
-        }
+    if (elementContainingOpenSeaLink && tokenId) {
+        const url = import.meta.env.VITE_NETWORK == 'sepolia' ? 'testnets.opensea.io' : 'opensea.io'; 
+        const finalUrl = `https://${url}/assets/${import.meta.env.VITE_NETWORK}/${import.meta.env.VITE_NFT_CONTRACT_ADDRESS}/${tokenId}`;
+        elementContainingOpenSeaLink.innerHTML = finalUrl;
+    }
 
-        let dl = document.getElementById('dl');
-        if(tokenId && dl){
+    if (tokenId && ipfsBookDownloadLink) {
+        const pinnataGateway = import.meta.env.VITE_PINATA_GATEWAY;
+        const resourceName = `protocols-for-postcapitalist-expression_digital-edition_${tokenId}.pdf/`;
+        const accessToken = `?pinataGatewayToken=${import.meta.env.VITE_PINATA_ACCESS_TOKEN}`;
+        const downloadURL = pinnataGateway + resourceName + accessToken;
+        ipfsBookDownloadLink.innerHTML = downloadURL;
+        if (dl) {
             dl.href = downloadURL;
         }
+    }
+}
 
-        if (localStorage.getItem('pbi') == false){
-            console.log('pbi: ', localStorage.getItem('pbi'));
-            modifyBenefits(); 
-        }
+const insertBenefitByIdAndOpenBenefitsOverlay = async (content) => {
+    handleOverlayDisplay();
+    setupCloseAndBackButtons();
+
+    const benefitsOverlayContent = document.getElementById('benefit1OverlayContent');
+    if (benefitsOverlayContent) {
+        benefitsOverlayContent.innerHTML = content + '<button class="aboutOverlayBack" id="benefitOverlayClose">← back</button>';
+        benefitsOverlayContent.style.display = "block";
+        blurAndPreventScroll();
     }
 
+    setupInvitationButtons();
+    if(content.includes('6. The print book published by Minor Compositions')){
+        try {
+            await handleOrderDetails();    
+        } catch (error) {
+            console.log('Could not find order details...');
+        }
+        
+    }
+    await handleCopublisherDetails();
+    setupBenefitsLinks();
 
-    // delivery details related
-
-
+    if (localStorage.getItem('pbi') == false) {
+        modifyBenefits();
+    }
 }
-export {insertBenefitByIdAndOpenBenefitsOverlay} 
+
+export { insertBenefitByIdAndOpenBenefitsOverlay };
