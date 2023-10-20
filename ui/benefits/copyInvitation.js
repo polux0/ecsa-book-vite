@@ -1,4 +1,4 @@
-function copyInvitations() {
+function copyInvitation() {
     // Get content of the element
     let link2 = document.getElementById('invitation-link1')?.textContent || '';
 
@@ -15,4 +15,4 @@ function copyInvitations() {
         }, 5000);  // 5 seconds
     }
 }
-export {copyInvitations};
+export {copyInvitation};

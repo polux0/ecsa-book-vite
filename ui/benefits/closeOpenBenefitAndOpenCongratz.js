@@ -1,6 +1,6 @@
-import { openCongratzOverlay } from "./openCongratzOverlay";
-import { disableBlurAndEnableScroll } from "./blurAndPreventScrolling.js";
-import { modifyBenefits} from "./modifyBenefits.js";
+import { openCongratzOverlay } from "../congratulations/openCongratzOverlay";
+import { disableBlurAndEnableScroll } from "../../ux/blurAndPreventScrolling.js";
+import { modifyBenefits } from "./modifyBenefits.js";
 function hideElementAndEnableScroll(elementId) {
     const element = document.getElementById(elementId);
     if (element) {
@@ -12,7 +12,7 @@ function hideElementAndEnableScroll(elementId) {
 function closeOpenBenefitAndOpenCongratz() {
     if (localStorage.getItem('pbi') == false) {
         console.log('this should not modify benefits!');
-        modifyBenefits();  // Ensure you have imported or defined this function
+        modifyBenefits();
     }   
     hideElementAndEnableScroll("benefit1Overlay");
     hideElementAndEnableScroll("benefit1OverlayClose");

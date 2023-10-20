@@ -1,5 +1,5 @@
 import { getColonizationLevel } from './getColonizationLevel.js';
-import { getPhysicalBookIncluded } from '../validation/getPhysicalBookIncluded.js';
+import { getPhysicalBookIncluded } from '../../validation/getPhysicalBookIncluded.js';
 
 const PERIPHERY = import.meta.env.VITE_PERIPHERY_PRICE;
 const PERIPHERY_BOOK_PRICE = import.meta.env.VITE_PERIPHERY_BOOK_PRICE;

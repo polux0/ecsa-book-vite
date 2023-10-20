@@ -1,10 +1,8 @@
 import { ethers } from 'ethers';
 
-// Define constants or better yet, move to configuration
 const RPC_URL = import.meta.env.VITE_RPC_URL;
 const NFT_CONTRACT_ADDRESS = import.meta.env.VITE_NFT_CONTRACT_ADDRESS;
 
-// Assuming you have your contractABI somewhere
 const contractABI = [
   {
     "inputs": [
@@ -770,7 +768,7 @@ const areInvitationsActive = async () => {
         else return !active;
     } catch (error) {
         console.error('Error fetching invitation status:', error);
-        return [];  // return an empty array in case of an error
+        return [];
     }
 }
 

@@ -1,4 +1,3 @@
-// Utility function to apply styles to an element
 function applyStylesToElement(elementId, styles) {
     let element = document.getElementById(elementId);
     if (element) {

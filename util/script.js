@@ -5,8 +5,6 @@ import { enableSlider, enableCheckbox, replaceRevealPriceButtonWithActualPriceRe
 import { deselectPhysicalBook } from '../ux/deselectPhysicalBook.js';
 import { blurAndPreventScroll } from "../ux/blurAndPreventScrolling.js";
 
-import { resetBenefits } from '../ux/modifyBenefits.js';
-
 //Get the root style to access css variables
 let root  = document.documentElement;
 
@@ -498,7 +496,6 @@ fetch('glossary.json')
                 enableCheckbox();
                 deselectPhysicalBook();
                 replaceRevealPriceButtonWithActualPriceReverse();
-                // resetBenefits();
 
                 localStorage.setItem('tokenId', `${p+1}`);
               } catch (error) {

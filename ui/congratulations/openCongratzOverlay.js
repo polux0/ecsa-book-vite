@@ -1,5 +1,5 @@
-import { modifyBenefits } from './modifyBenefits';
-import { blurAndPreventScroll } from "./blurAndPreventScrolling.js";
+import { modifyBenefits } from '../benefits/modifyBenefits';
+import { blurAndPreventScroll } from "../../ux/blurAndPreventScrolling.js";
 
 const openCongratzOverlay = (physicalBookIncluded) => {
     // Determine if modifications are needed

@@ -1,5 +1,3 @@
-import {getAnNFTViaOpenSea } from '../../ux/getAnNFTViaOpenSea';
-
 const displayNFTImageFromOpenSea = async (tokenId) => {
     try {
         let nftImage = document.getElementById('nft-image');

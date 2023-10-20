@@ -1,6 +1,6 @@
-import { getBenefitBasedOnId } from "../util/getBenefitBasedOnId.js";
-import { insertBenefitByIdAndOpenBenefitsOverlay } from "./insertBenefitByIdAndOpenBenefitsOverlay";
-import { disableBlurAndEnableScroll } from "./blurAndPreventScrolling.js";
+import { getBenefitBasedOnId } from "../benefits/getBenefitBasedOnId.js";
+import { insertBenefitByIdAndOpenBenefitsOverlay } from "../../ux/insertBenefitByIdAndOpenBenefitsOverlay.js";
+import { disableBlurAndEnableScroll } from "../../ux/blurAndPreventScrolling.js";
 
 function closeCongratzAndOpenBenefitById(id) {
     let congratzOverlay = document.getElementById("congratzOverlay");

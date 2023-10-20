@@ -1,19 +1,19 @@
 import { ethers } from 'ethers';
-import { connect } from '../web3/blocknative/index';
-import { areInvitationsActive } from '../web3/areInvitationsActive.js';
-import { areReservationsActive } from '../web3/areReservationsActive.js';
+import { connect } from '../../web3/blocknative/index';
+import { areInvitationsActive } from '../../web3/areInvitationsActive.js';
+import { areReservationsActive } from '../../web3/areReservationsActive.js';
 import { displayError } from "../validation/displayError.js";
-import { getPhysicalBookIncluded } from "../validation/getPhysicalBookIncluded.js";
-import { handleInvitations } from '../validation/handleInvitations.js';
-import { handleReservations } from '../validation/handleReservations.js';
-import { handleWithoutInvitationOrReservation } from '../validation/handleWithoutInvitationOrReservation.js';
-import { waitingForTransactionToInitiate, revertWaitingForTransactionToInitiate } from '../ux/waitingForTransactionToInitiate';
-import { checkAndSwitchNetwork } from '../ux/checkAndSwitchNetwork.js';
-import { clearMintingError } from '../web3/ui-interactions/index';
-import { isTokenReserved } from '../web3/isTokenReserved';
+import { getPhysicalBookIncluded } from "../../validation/getPhysicalBookIncluded.js";
+import { handleInvitations } from '../../validation/handleInvitations.js';
+import { handleReservations } from '../../validation/handleReservations.js';
+import { handleWithoutInvitationOrReservation } from '../../validation/handleWithoutInvitationOrReservation.js';
+import { waitingForTransactionToInitiate, revertWaitingForTransactionToInitiate } from '../../ux/waitingForTransactionToInitiate';
+import { checkAndSwitchNetwork } from '../../ux/checkAndSwitchNetwork.js';
+import { clearMintingError } from '../../web3/ui-interactions/index';
+import { isTokenReserved } from '../../web3/isTokenReserved';
 import { getFinalPrice } from '../ux/revealPrice.js';
 
-async function submitSelection() {
+async function copublish() {
 
     const tokenId = localStorage.getItem('tokenId');
     clearMintingError();
@@ -108,5 +108,5 @@ async function submitSelection() {
     }
 }
 
-window.submitSelection = submitSelection;
-export {submitSelection}
+window.copublish = copublish;
+export {copublish}

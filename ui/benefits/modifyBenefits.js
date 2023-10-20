@@ -23,4 +23,3 @@ function resetBenefits() {
   }
 }
 export {modifyBenefits, resetBenefits};
-  

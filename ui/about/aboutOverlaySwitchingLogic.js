@@ -1,4 +1,4 @@
-import { blurAndPreventScroll, disableBlurAndEnableScroll } from "./blurAndPreventScrolling.js";
+import { blurAndPreventScroll, disableBlurAndEnableScroll } from "../../ux/blurAndPreventScrolling.js";
 
 function toggleContentVisibility(currentId, nextId) {
     let currentElement = document.getElementById(currentId);
