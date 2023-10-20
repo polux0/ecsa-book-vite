@@ -3,7 +3,7 @@ import { handleReservationOperations } from './handleReservationOperations';
 import { insertCoPublisher } from '../db/copublishers';
 import { clearMintingError, closePriceTierOverlay, removePublishButton, removeBlurFilter, setOrbBorderToSignalThatUnitIsPublished,  handleTransactionError } from './ui-interactions/index.js';
 import { transactionInitiated } from '../ux/transactionInitiated.js';
-import { openCongratzOverlay } from '../ux/openCongratzOverlay';
+import { openCongratzOverlay } from '../ui/congratulations/openCongratzOverlay';
 import { revertWaitingForTransactionToInitiate } from '../ux/waitingForTransactionToInitiate';
 import { displayNFTImageFromOpenSea } from './ui-interactions/displayNFTFromOpenSea';
 import {validateChoosePrice} from '../validation/validateChoosePrice.js';

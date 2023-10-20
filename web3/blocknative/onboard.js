@@ -3,6 +3,7 @@ import injectedModule, { ProviderLabel } from '@web3-onboard/injected-wallets'
 import walletConnectModule from '@web3-onboard/walletconnect'
 import coinbaseWalletModule from '@web3-onboard/coinbase'
 import magicModule from '@web3-onboard/magic'
+// import { CopublishLogoBlack } from '../../imgs/OPENSEA LOGO COPUBLISH2 BLACK.png'
 
 const injected = injectedModule({
   // display specific unavailable wallets

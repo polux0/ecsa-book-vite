@@ -1,8 +1,10 @@
 import { closeOpenBenefitAndOpenCongratz } from "./closeOpenBenefitAndOpenCongratz.js";
-import { copyInvitations } from "./copyInvitation.js";
+import { copyInvitation } from "./copyInvitation.js";
 import { downloadInvitations } from "./downloadInvitations";
 import { modifyBenefits } from "./modifyBenefits.js";
 import { blurAndPreventScroll } from "../../ux/blurAndPreventScrolling.js";
+import { handleCopublisherDetails } from "../copublish/handleCopublisherDetails.js";
+import { handleOrderDetails } from "./handleOrderDetails.js";
 
 const handleOverlayDisplay = () => {
     const overlay = document.getElementById('benefit1Overlay');
@@ -31,7 +33,7 @@ const setupInvitationButtons = () => {
     const copyButton = document.getElementById("copyButton");
     const downloadButton = document.getElementById("downloadButton");
 
-    if (copyButton) copyButton.addEventListener("click", copyInvitations);
+    if (copyButton) copyButton.addEventListener("click", copyInvitation);
     if (downloadButton) downloadButton.addEventListener("click", downloadInvitations);
 }
 
@@ -41,7 +43,7 @@ const setupBenefitsLinks = () => {
     const invitation = localStorage.getItem('invitation');
     const tokenId = localStorage.getItem('tokenId');
     const elementContainingOpenSeaLink = document.getElementById('openSeaLink');
-    const ipfsBookDownloadLink = document.getElementById('ipfsBookDownloadLink');
+    // const ipfsBookDownloadLink = document.getElementById('ipfsBookDownloadLink');
     const dl = document.getElementById('dl');
 
     if (invitation && invitationLinkElement) {
@@ -54,12 +56,12 @@ const setupBenefitsLinks = () => {
         elementContainingOpenSeaLink.innerHTML = finalUrl;
     }
 
-    if (tokenId && ipfsBookDownloadLink) {
+    if (tokenId) {
         const pinnataGateway = import.meta.env.VITE_PINATA_GATEWAY;
         const resourceName = `protocols-for-postcapitalist-expression_digital-edition_${tokenId}.pdf/`;
         const accessToken = `?pinataGatewayToken=${import.meta.env.VITE_PINATA_ACCESS_TOKEN}`;
         const downloadURL = pinnataGateway + resourceName + accessToken;
-        ipfsBookDownloadLink.innerHTML = downloadURL;
+        // ipfsBookDownloadLink.innerHTML = downloadURL;
         if (dl) {
             dl.href = downloadURL;
         }
@@ -68,12 +70,12 @@ const setupBenefitsLinks = () => {
 
 const insertBenefitByIdAndOpenBenefitsOverlay = async (content) => {
     handleOverlayDisplay();
-    setupCloseAndBackButtons();
 
     const benefitsOverlayContent = document.getElementById('benefit1OverlayContent');
     if (benefitsOverlayContent) {
         benefitsOverlayContent.innerHTML = content + '<button class="aboutOverlayBack" id="benefitOverlayClose">← back</button>';
         benefitsOverlayContent.style.display = "block";
+        setupCloseAndBackButtons();
         blurAndPreventScroll();
     }
 

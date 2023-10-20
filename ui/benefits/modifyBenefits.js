@@ -1,4 +1,8 @@
 function modifyBenefits() {
+    let benefit5 = document.getElementById('benefit5');
+    if(benefit5){
+      benefit5.style.borderBottom = '1px solid';
+    }
     let benefit6 = document.getElementById('benefit6');
     if(benefit6) {
       benefit6.remove();

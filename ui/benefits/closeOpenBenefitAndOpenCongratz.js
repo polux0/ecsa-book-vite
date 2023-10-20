@@ -10,8 +10,8 @@ function hideElementAndEnableScroll(elementId) {
 }
 // transitionFromBenefitToCongratz ( should become )
 function closeOpenBenefitAndOpenCongratz() {
+    console.log("backButton should have been clicked!");
     if (localStorage.getItem('pbi') == false) {
-        console.log('this should not modify benefits!');
         modifyBenefits();
     }   
     hideElementAndEnableScroll("benefit1Overlay");

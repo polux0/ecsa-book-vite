@@ -1,8 +1,8 @@
 import { ethers } from 'ethers';
-import { getNextInvitation, getNextThreeInvitations } from '../db/invitations';
+import { getNextInvitation } from '../db/invitations';
 import { insertCoPublisher } from '../db/copublishers';
 import { transactionInitiated } from '../ux/transactionInitiated';
-import { openCongratzOverlay } from '../ux/openCongratzOverlay';
+import { openCongratzOverlay } from '../ui/congratulations/openCongratzOverlay';
 import { revertWaitingForTransactionToInitiate } from '../ux/waitingForTransactionToInitiate';
 import { clearMintingError, closePriceTierOverlay, removePublishButton, removeBlurFilter, setOrbBorderToSignalThatUnitIsPublished,  handleTransactionError } from './ui-interactions/index.js';
 import { validateChoosePrice } from '../validation/validateChoosePrice.js';

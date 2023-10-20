@@ -1,5 +1,5 @@
 import { getBenefitBasedOnId } from "../benefits/getBenefitBasedOnId.js";
-import { insertBenefitByIdAndOpenBenefitsOverlay } from "../../ux/insertBenefitByIdAndOpenBenefitsOverlay.js";
+import { insertBenefitByIdAndOpenBenefitsOverlay } from "../benefits/insertBenefitByIdAndOpenBenefitsOverlay.js";
 import { disableBlurAndEnableScroll } from "../../ux/blurAndPreventScrolling.js";
 
 function closeCongratzAndOpenBenefitById(id) {

@@ -1,6 +1,6 @@
 import { ethers } from 'ethers';
 import { transactionInitiated } from '../ux/transactionInitiated.js';
-import { openCongratzOverlay } from '../ux/openCongratzOverlay';
+import { openCongratzOverlay } from '../ui/congratulations/openCongratzOverlay';
 import { insertCoPublisher } from '../db/copublishers';
 import { revertWaitingForTransactionToInitiate } from '../ux/waitingForTransactionToInitiate';
 import { displayNFTImageFromOpenSea } from './ui-interactions/displayNFTFromOpenSea';

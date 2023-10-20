@@ -1,8 +1,8 @@
 import { isTokenMinted } from '../web3/getMintedTokens.js'
 import { getMintedTokens } from '../web3/getMintedTokens.js';
 import { removeBlurFilter, setOrbBorderToSignalThatUnitIsPublished } from '../web3/ui-interactions/index.js';
-import { enableSlider, enableCheckbox, replaceRevealPriceButtonWithActualPriceReverse } from "../ux/revealPrice.js";
-import { deselectPhysicalBook } from '../ux/deselectPhysicalBook.js';
+import { enableSlider, enableCheckbox, replaceRevealPriceButtonWithActualPriceReverse } from "../ui/copublish/revealPrice.js";
+import { deselectPhysicalBook } from '../ui/copublish/deselectPhysicalBook.js';
 import { blurAndPreventScroll } from "../ux/blurAndPreventScrolling.js";
 
 //Get the root style to access css variables

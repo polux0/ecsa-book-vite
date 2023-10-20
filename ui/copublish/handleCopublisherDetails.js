@@ -1,6 +1,6 @@
-import { validateCopublisher } from "../validation/validateCopublisher";
-import { insertCoPublisher, getCopublisherByWallet, updateCopublisher } from "../db/copublishers.js";
-import { updateCopublishers } from "../ui/displayCopublishers.js";
+import { validateCopublisher } from "../../validation/validateCopublisher";
+import { insertCoPublisher, getCopublisherByWallet, updateCopublisher } from "../../db/copublishers.js";
+import { updateCopublishers } from "../../ui/displayCopublishers.js";
 
 const handleCopublisherDetails = async () => {
     const getWallet = () => localStorage.getItem("wallet");

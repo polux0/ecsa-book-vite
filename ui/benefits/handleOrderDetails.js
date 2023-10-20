@@ -1,5 +1,5 @@
-import { insertOrder, getOrderByWallet, updateOrderByWallet } from "../db/orders.js";
-import { validateOrders } from "../validation/validateOrders.js";
+import { insertOrder, getOrderByWallet, updateOrderByWallet } from "../../db/orders.js";
+import { validateOrders } from "../../validation/validateOrders.js";
 
 const getWallet = () => localStorage.getItem("wallet");
 const handleOrderDetails = async () => {

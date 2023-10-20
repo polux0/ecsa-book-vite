@@ -1,10 +1,10 @@
 
-import { initiateAboutOverlayLogic } from '../ux/aboutOverlaySwitchingLogic';
-import { closeCongratzAndOpenBenefitById } from "../ux/closeCongratzAndOpenBenefitById";
-import { getAllYourAssets } from "../util/getAllYourAssets";
+import { initiateAboutOverlayLogic } from '../ui/about/aboutOverlaySwitchingLogic';
+import { closeCongratzAndOpenBenefitById } from "../ui/congratulations/closeCongratzAndOpenBenefitById";
+import { getAllYourAssets } from "../ui/benefits/getAllYourAssets";
 import { blurAndPreventScroll, disableBlurAndEnableScroll } from "../ux/blurAndPreventScrolling.js";
-import { displayCopublishers } from '../ux/displayCopublishers';
-import { closeSubmenus } from '../ux/closeSubmenus.js';
+import { displayCopublishers } from '../ui/displayCopublishers';
+import { closeSubmenus } from '../ui/closeSubmenus.js';
 
 
 function initiateListeners(){
