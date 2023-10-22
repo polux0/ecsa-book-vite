@@ -461,7 +461,6 @@
         z-index: 10;
         border-top: 1px solid var(--c1);
         max-width: 100%;
-        overflow:hidden
     }
 
     footer button {

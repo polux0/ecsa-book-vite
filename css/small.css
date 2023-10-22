@@ -10,6 +10,7 @@
     
     footer{
         grid-template-columns: var(--pageGridColumns1);
+        overflow: hidden;
     }
 
     h1{
