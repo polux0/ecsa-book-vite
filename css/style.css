@@ -1188,7 +1188,7 @@
     background-color: var(--bg);
     border: 1px solid var(--c1);
     border-bottom: none;
-    padding: 6px;
+    padding: 12px;
     transition: color 250ms, background-color 250ms;
 }
 p.pbenefit:hover {
