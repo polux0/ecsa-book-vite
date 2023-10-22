@@ -330,8 +330,7 @@
         font-family: var(--displayFontFamily);
         text-align: center;
         width: 48px;
-        position: sticky;
-        float: right;
+        position: absolute;
         top: 0;
         right: 0;
         aspect-ratio: 1/1;
