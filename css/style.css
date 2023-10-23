@@ -417,7 +417,7 @@
     }
 
     #secondaryNav nav{
-        box-shadow: 2px -1px 12px rgba(0,0,0,0.5); 
+        box-shadow: 6px -1px 6px rgba(0,0,0,0.35);
     }
 
     #secondaryNav a {
