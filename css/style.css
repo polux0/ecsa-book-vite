@@ -526,6 +526,7 @@
 
     #toc{
         margin-top: 3em;
+        padding-left: 0.5em;
     }
 
     #bookIndex {
