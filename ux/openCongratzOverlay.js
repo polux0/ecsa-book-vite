@@ -1,5 +1,5 @@
 import {modifyBenefits} from './modifyBenefits';
-import { blurAndPreventScroll, disableBlurAndEnableScroll } from "./blurAndPreventScrolling.js";
+import { blurAndPreventScroll } from "./blurAndPreventScrolling.js";
 
 const openCongratzOverlay = async function(physicalBookIncluded) {
     if (physicalBookIncluded == false || localStorage.getItem('pbi') == false){
