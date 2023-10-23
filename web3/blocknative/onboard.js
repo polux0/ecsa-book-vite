@@ -1,20 +1,43 @@
 import Onboard from '@web3-onboard/core'
 import injectedModule, { ProviderLabel } from '@web3-onboard/injected-wallets'
 import walletConnectModule from '@web3-onboard/walletconnect'
-import coinbaseModule from '@web3-onboard/coinbase'
+import coinbaseWalletModule from '@web3-onboard/coinbase'
 import magicModule from '@web3-onboard/magic'
 
 const injected = injectedModule({
   // display specific unavailable wallets
-  displayUnavailable: [ProviderLabel.MetaMask, ProviderLabel.Trust, ProviderLabel.Coinbase, ProviderLabel.Rainbow]
+  displayUnavailable: false,
+  filter: {
+    // allow only on non android mobile
+    [ProviderLabel.Detected]: ['desktop'],
+    [ProviderLabel.Coinbase]: ['desktop']
+  }
+  // sort: wallets => {
+  //   const metaMask = wallets.find(
+  //     ({ label }) => label === ProviderLabel.walletConnect
+  //   )
+  //   return (
+  //     [
+  //       metaMask,
+  //       ...wallets.filter(
+  //         ({ label }) =>
+  //           label !== ProviderLabel.walletConnect
+  //       )
+  //     ]
+  //       // remove undefined values
+  //       .filter(wallet => wallet)
+  //   )
+  // }
+
 })
 const walletConnect = walletConnectModule({projectId: `${import.meta.env.VITE_WALLET_CONNECT_API_KEY}`,   qrcodeModalOptions: {
-  mobileLinks: ['rainbow', 'metamask', 'argent', 'trust', 'imtoken', 'pillar']
+  mobileLinks: ['rainbow', 'metamask', 'argent', 'trust', 'imtoken', 'pillar', 'coinbase']
 }}, )
-const coinbaseWallet = coinbaseModule()
+
+const coinbaseWallet = coinbaseWalletModule()
 const magicWallet = magicModule({apiKey: `${import.meta.env.VITE_MAGIC_AUTH_MODULE_API_KEY}`});
 
-const wallets = [injected, walletConnect, coinbaseWallet, magicWallet]
+const wallets = [walletConnect, injected, coinbaseWallet, magicWallet]
 
 // technical debt - enviornment variables
 const chains = [

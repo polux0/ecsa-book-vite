@@ -6,7 +6,8 @@ import { validateOrders } from "../validation/validateOrders.js";
 import { validateCopublisher } from "../validation/validateCopublisher";
 import { modifyBenefits } from "./modifyBenefits.js";
 import { insertCoPublisher, getCopublisherByWallet, updateCopublisher } from "../db/copublishers.js";
-import { blurAndPreventScroll, disableBlurAndEnableScroll } from "./blurAndPreventScrolling.js";
+import { blurAndPreventScroll } from "./blurAndPreventScrolling.js";
+import { updateCopublishers } from "./displayCopublishers.js";
 // import { downloadBook } from "./downloadBook.js";
 
 
@@ -67,13 +68,11 @@ const insertBenefitByIdAndOpenBenefitsOverlay = async function(content) {
         let deliveryContact = document.getElementById("contact");
         let deliveryError = document.getElementById("detailsError");
         
-        let isSendClicked = false; // flag to check if the send button is clicked
 
         if(sendButton){
 
             let wallet = localStorage.getItem("wallet");
             let existingOrder = await getOrderByWallet(wallet);
-            let orderUpdateOrPost;
             if(existingOrder){
                 console.log("existing order: ", existingOrder);
                 sendButton.textContent = "Update ➹";
@@ -154,6 +153,7 @@ const insertBenefitByIdAndOpenBenefitsOverlay = async function(content) {
                         if(copublisherUpdateSuccess == null){
                             console.log("copublisherUpdateSuccess", copublisherUpdateSuccess);
                             postPublisherButton.innerHTML = "Updated!";
+                            updateCopublishers(wallet, name);
                         }
                         else{
                             deliveryError.innerHTML = "It seems there is an issue with updating copublisher name, please contact us!";
@@ -188,7 +188,7 @@ const insertBenefitByIdAndOpenBenefitsOverlay = async function(content) {
         // fetch element that holds Pinnata / IPFS link:
         let ipfsBookDownloadLink = document.getElementById('ipfsBookDownloadLink');
         let pinnataGateway = import.meta.env.VITE_PINATA_GATEWAY;
-        let resourceName = `book_with_cover_${tokenId}.pdf/`;
+        let resourceName = `protocols-for-postcapitalist-expression_digital-edition_${tokenId}.pdf/`;
         let accessToken = `?pinataGatewayToken=${import.meta.env.VITE_PINATA_ACCESS_TOKEN}`;
         let downloadURL = pinnataGateway + resourceName + accessToken;
 

@@ -31,7 +31,7 @@ function getBenefitBasedOnId(id){
         <b>3. Participation in the discourse development and IRL meets</b>
         <br>
         <br>
-        Your unit gives you the right to access the Discourse Development Discord, i.e., to participate in the development of the discourse by sharing your insights and engaging in the dialogue. This allows you to shape the discourse and contribute to the co-publishing of the book. We have curated public discussions with interesting guests and a Discord channel where we developed the discourse. You can also just hangaround. We also organise IRL meets. The next one is going to be in New York City in early December. Please follow notifications in the <a href="https://t.me/economicspaceagency" target="_blank"> ECSA Telegram </a>, <a href="https://twitter.com/ecospaceagency" target="_blank"> ECSA Twitter </a>, and <a href="https://discord.gg/DuJEju5z" target="_blank"> Discourse Development Discord. </a>.<br>
+        Your unit gives you the right to access the Discourse Development Discord, i.e., to participate in the development of the discourse by sharing your insights and engaging in the dialogue. This allows you to shape the discourse and contribute to the co-publishing of the book. We have curated public discussions with interesting guests and a Discord channel where we developed the discourse. You can also just hangaround. We also organise IRL meets. The next one is going to be in New York City in early December. Please follow notifications in the <a href="https://t.me/economicspaceagency" target="_blank"> ECSA Telegram </a>, <a href="https://twitter.com/ecospaceagency" target="_blank"> ECSA Twitter </a>, and <a href="https://discord.gg/DuJEju5z" target="_blank"> Discourse Development Discord. </a><br>
         </p>
         `,
 
@@ -43,7 +43,7 @@ function getBenefitBasedOnId(id){
         Your unit makes you a curator of this project. It offers you a code-link which can be used to invite friends to join the project. The first five people to use your invite-code will have the opportunity to participate in co-publishing the remaining units and become core members of the discourse’s development (i.e. the invite-code can be used by max 5 different people to acquire one unit). Your invitees gain all the unit holder's rights after acquiring their unit. 
         The aim is to turn the book-object into a network: a living, spoken discourse on postcapitalist expression.
         <br>
-        We hope you will choose friends who you believe will be interested in the postcapitalist discourse and whose participation will increase its value. But tell them to be decisive, there are only 601 units available!
+        We hope you will choose friends who you believe will be interested in the postcapitalist discourse and whose participation will increase its value. But be quick, there are only 601 units available!
         <br>
         <br>
         Your sharable invite-link is here, it can be used by max 5 different people to acquire one unit:
@@ -60,6 +60,8 @@ function getBenefitBasedOnId(id){
         </div>`,
 
         `<b>5. The book PDF with a unique generative cover </b>
+        <br>
+        <br>
         The unit gives you the right to download the book PDF with a unique generative cover. It will allow you to understand your unit of discourse’s meaning and relevance as part of the whole book. It assists you in determining the value of the token you hold.
         <br>
         <br>

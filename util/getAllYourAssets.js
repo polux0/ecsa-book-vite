@@ -3,7 +3,10 @@ import { downloadBenefits } from "../ux/downloadBenefits";
 import {closeOpenBenefitAndOpenCongratz} from '../ux/closeOpenBenefitAndOpenCongratz';
 
 function getAllYourAssets(){
-
+    let congratzOvelay = document.getElementById('congratzOverlay');
+    if(congratzOvelay){
+        congratzOvelay.style.display = 'none';
+    }
     let content = 
     `
     <div class="invitation-container">
@@ -32,10 +35,10 @@ function getAllYourAssets(){
     <p class="unique-pdf-link-text" id="unique-pdf-link-text"> Your unique pdf: </p>
     <p class="unique-pdf-link" id="ipfsBookDownloadLink"> ipfs://QmcHt8YqmA8Vhnfg946kDPRVUfRFo5y7T75nuJPBbXCAMV/token.id </p>
     <br>
-    <div class="copyAndInvitationButtons">
-        <button class="copy-button" id="copyButton">Copy ❑</button>
-        <button class="download-button" id="downloadButton">Download ↓</button>
     </div>
+    <div class="copyAndInvitationButtons">
+    <button class="copy-button" id="copyButton">Copy ❑</button>
+    <button class="download-button" id="downloadButton">Download ↓</button>
     </div>
     <br>
     <br>`;
