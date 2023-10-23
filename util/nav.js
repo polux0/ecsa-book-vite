@@ -196,6 +196,8 @@ showToolButton.onmouseenter = function () {
 function toggleFullScreen() {
     const elementsToToggle = ['mainBookText', 'footNotesAndAudiobook', 'bookIndex'];
 
+    bookContent.classList.toggle('fullscreen-margin');
+    
     elementsToToggle.forEach(id => {
         const element = document.getElementById(id);
         if (element) {

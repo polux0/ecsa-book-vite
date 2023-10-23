@@ -10,7 +10,6 @@
     
     footer{
         grid-template-columns: var(--pageGridColumns1);
-        overflow: hidden;
     }
 
     h1{
@@ -75,6 +74,16 @@
 
 }
 
+@media(max-width: 860px){
+
+    footer{
+        overflow: hidden;
+    }
+
+}
+
+
+
 @media(max-width: 680px){
     :root{
         --bookFontSize: 20px !important;
@@ -124,6 +133,7 @@
 
 #bookContent{
     width: calc(100dvw - 2em); 
+    overflow-x: hidden !important;
  }
 
  #mainBookText{
