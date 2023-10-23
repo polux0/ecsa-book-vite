@@ -1227,6 +1227,7 @@ p.pbenefit:hover {
 
 #benefitsPackage{
     border-bottom: 1px solid var(--c1);
+    border-top: none;
 }
 
 b {
