@@ -287,6 +287,12 @@
             margin-top: 2vh;
             font-size: var(--mobileBookFontSize);
         }
+        .buttonload {
+            margin-left:50% !important;
+          }
+        .invitation-container{
+            margin-top: 50px !important;
+        } 
     }
     #tiersSubmitButton{
         margin-top: 3vh;
@@ -308,6 +314,12 @@
             margin-top: 2vh;
             font-size: var(--mobileBookFontSize);
         }
+        .buttonload {
+            margin-left:50% !important;
+          }
+        .invitation-container{
+            margin-top: 50px !important;
+        } 
     }
     .overlay {
         display: block;
@@ -1053,6 +1065,12 @@
         border-radius: 50%;
         background-color: #dcdcdc;
     }
+    .buttonload {
+        margin-left:50% !important;
+      }
+    .invitation-container{
+        margin-top: 50px !important;
+    }  
 }
 
 .dot-carousel {
@@ -1385,6 +1403,12 @@ input:focus{
     #aboutOverlayNext1 {
       margin-top: 0px;/* Your styles for small screens go here */
     }
+    .buttonload {
+        margin-left:50% !important;
+      }
+    .invitation-container{
+        margin-top: 50px !important;
+    } 
 }
 #benefit6{
     border:1px solid;
