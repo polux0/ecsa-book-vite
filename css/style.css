@@ -1204,6 +1204,7 @@
     align-self: center;
 }
 .aboutOverlayBack{
+    border: none !important;
     margin-top: 3vh;
     align-self: flex-start;
 }
