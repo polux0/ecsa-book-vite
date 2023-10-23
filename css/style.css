@@ -1249,15 +1249,15 @@ b {
 }
 .aboutContent{
     padding: 3vw;
-    margin-top: 34px;
+    padding-top: 50px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    line-height: 1.45em;
+    line-height: 1.35em;
 }
 .aboutOverlayNext{
     margin-top: 3vh;
-    align-self: flex-end;
+    float: right;
 }
 .aboutOverlayPrev {
     margin-top: 3vh;
