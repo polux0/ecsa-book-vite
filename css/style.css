@@ -151,6 +151,16 @@
         padding-top: 2em;
     }
 
+    .fullscreen-padding {
+        padding-left: 0 !important;
+        margin-left: 0 !important;
+    }
+
+    .fullscreen-margin {
+        margin-left: -20px;
+        margin-right: 4px;
+    }
+
     .invertOnDark{
         filter: invert(1);
         transition: filter 250ms;
