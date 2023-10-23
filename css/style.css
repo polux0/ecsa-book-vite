@@ -1139,6 +1139,15 @@
     display: block;
     margin-bottom: 12px;
 }
+
+#dl{
+    text-decoration: none;
+}
+
+#downloadPDF{
+    margin-top: 3em;
+}
+
 .postDeliveryDetails{
     font-size: 1em;
     margin: 0 auto;
