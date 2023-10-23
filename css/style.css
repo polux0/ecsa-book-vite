@@ -781,7 +781,7 @@
     }
 
     .available p:hover{
-        opacity: 0.75;
+        opacity: 1;
         filter: blur(0px);
     }
 
@@ -792,7 +792,7 @@
     }
 
     .available > h5:hover{
-        opacity: 0.75;
+        opacity: 1;
         filter: blur(0px);
     }
 
@@ -864,13 +864,14 @@
         overflow-y: scroll;
         padding: 0.5em 0.5em 0.7em 0.5em;
         margin-top: -6px;
-        z-index: 5;
+        z-index: 12;
         line-height: 1.3em;
         font-style: normal !important;
+        transition: opacity 200ms;
       }
   
       .tooltip:hover .definition {
-        opacity: 1;
+        opacity: 1 !important;
         pointer-events: all;
       }
   
