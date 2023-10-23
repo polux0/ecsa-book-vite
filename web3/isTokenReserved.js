@@ -1,6 +1,8 @@
 import { ethers } from 'ethers';
 
-const RPC_URL = import.meta.env.VITE_RPC_URL;
+const VITE_RPC_URL_SEPOLIA = import.meta.env.VITE_RPC_URL_SEPOLIA;
+const VITE_RPC_URL_POLYGON = import.meta.env.VITE_RPC_URL_POLYGON;
+const VITE_NETWORK = import.meta.env.VITE_NETWORK;
 const RESERVATION_CONTRACT_ADDRESS = import.meta.env.VITE_RESERVATION_CONTRACT_ADDRESS;
 
 // RESERVATION_CONTRACT_ABI
@@ -293,7 +295,8 @@ const contractABI = [
 ]
   
 const isTokenReserved = async (tokenId) => {
-    const provider = new ethers.AlchemyProvider("sepolia", RPC_URL);
+    const RPC_URL = VITE_NETWORK == "sepolia" ? VITE_RPC_URL_SEPOLIA : VITE_RPC_URL_POLYGON;
+    const provider = new ethers.AlchemyProvider(VITE_NETWORK, RPC_URL);
     const reservationContract = new ethers.Contract(RESERVATION_CONTRACT_ADDRESS, contractABI, provider);
     const isTokenReserved = await reservationContract.isReserved(tokenId);
     return isTokenReserved;

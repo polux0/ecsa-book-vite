@@ -1,8 +1,10 @@
 import { ethers } from 'ethers';
 
 // Define constants or better yet, move to configuration
-const RPC_URL = import.meta.env.VITE_RPC_URL;
+const VITE_RPC_URL_SEPOLIA = import.meta.env.VITE_RPC_URL_SEPOLIA;
+const VITE_RPC_URL_POLYGON = import.meta.env.VITE_RPC_URL_POLYGON;
 const NFT_CONTRACT_ADDRESS = import.meta.env.VITE_NFT_CONTRACT_ADDRESS;
+const VITE_NETWORK = import.meta.env.VITE_NETWORK;
 
 // Assuming you have your contractABI somewhere
 const contractABI = [
@@ -754,7 +756,8 @@ const contractABI = [
 
 // This function fetches the token IDs
 const getInvitationsStatus = async () => {
-    const provider = new ethers.AlchemyProvider("sepolia", RPC_URL);
+    const RPC_URL = VITE_NETWORK == "sepolia" ? VITE_RPC_URL_SEPOLIA : VITE_RPC_URL_POLYGON;
+    const provider = new ethers.AlchemyProvider(VITE_NETWORK, RPC_URL);
     const nftContract = new ethers.Contract(NFT_CONTRACT_ADDRESS, contractABI, provider);
     const invitationsStatus = await nftContract.getInvitationsActive();
     return invitationsStatus;
