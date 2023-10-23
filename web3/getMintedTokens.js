@@ -754,9 +754,7 @@ const contractABI = [
 
 const fetchMintedTokenIds = async () => {
     const RPC_URL = VITE_NETWORK == "sepolia" ? VITE_RPC_URL_SEPOLIA : VITE_RPC_URL_POLYGON;
-    console.log("RPC_URL: ", RPC_URL);
     const provider = new ethers.AlchemyProvider(VITE_NETWORK, RPC_URL);
-    console.log("Provider: ", provider);
     const nftContract = new ethers.Contract(CONTRACT_ADDRESS, contractABI, provider);
     const _alreadyMintedTokenIds = await nftContract.getAlreadyMintedTokenIds();
     return _alreadyMintedTokenIds;

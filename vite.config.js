@@ -1,12 +1,10 @@
 import { defineConfig } from 'vite'
 import { viteStaticCopy } from 'vite-plugin-static-copy'
 import { nodePolyfills } from 'vite-plugin-node-polyfills'
-import svgr from '@svgr/rollup';
-import svgLoader from 'vite-svg-loader';
-
-
 import path from 'path'
 import { readdirSync } from 'fs'
+import svgr from 'vite-plugin-svgr';
+
 
 export default defineConfig({
   build: {
@@ -64,7 +62,7 @@ export default defineConfig({
       // Whether to polyfill `node:` protocol imports.
       protocolImports: true,
     }),
-    svgr(),svgLoader()
+    svgr()
   ],
   server: {
     port: 3000,
