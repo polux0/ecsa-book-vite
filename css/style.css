@@ -1445,3 +1445,9 @@ input:focus{
         margin-right: 27px;
     }
 }
+/* trying to fix issue in google chrome */
+.asci {
+    font-family: 'Courier New', Courier, monospace;
+    white-space: pre;
+}
+
