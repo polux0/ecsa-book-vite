@@ -295,7 +295,7 @@
         } 
     }
     #tiersSubmitButton{
-        margin-top: 3vh;
+        /* margin-top: 3vh; */
         float: right;
     }
     #congratzOverlay{
@@ -1422,6 +1422,7 @@ input:focus{
         margin-top: 50px !important;
     } 
 }
+
 #benefit6{
     border:1px solid;
 }
@@ -1450,4 +1451,27 @@ input:focus{
     font-family: 'Courier New', Courier, monospace;
     white-space: pre;
 }
+/* trying to fix issue with 1st about overlay on Galaxy fold */
 
+@media (max-width: 280px) {
+    #aboutContent1 {
+      overflow-y: auto;
+    }
+    #aboutOverlayNext{
+        margin-top: 3vh;
+    }
+    /* #hiddenBookIndex{
+        display: none;
+    } */
+    
+    /* #bookIndex{
+        display: none;
+    } */
+}
+#benefitsPackage{
+    border-top:1px solid;
+}
+#enterTheDiscourseButton{
+    border:none !important;
+    align-self: flex-end;
+}
