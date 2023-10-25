@@ -67,7 +67,7 @@ const insertBenefitByIdAndOpenBenefitsOverlay = async function(content) {
         let deliveryPhoneNumber = document.getElementById("phoneNumber");
         let deliveryContact = document.getElementById("contact");
         let deliveryError = document.getElementById("detailsError");
-        
+        let orderUpdateOrPost; 
 
         if(sendButton){
 
@@ -82,7 +82,7 @@ const insertBenefitByIdAndOpenBenefitsOverlay = async function(content) {
                 deliveryPhoneNumber.value = existingOrder.phone_number;
                 deliveryContact.value = existingOrder.contact;
                 orderUpdateOrPost = "Update";
-            }
+            }   
             else{
                 orderUpdateOrPost = "Post";
             }
@@ -93,7 +93,7 @@ const insertBenefitByIdAndOpenBenefitsOverlay = async function(content) {
                 if(existingOrder){
                     let updateOrderSuccess = await updateOrderByWallet(deliveryName.value.trim(), deliveryMailing.value.trim(), deliveryPhoneNumber.value.trim(), deliveryContact.value.trim(), localStorage.getItem("wallet"));
                     if(updateOrderSuccess == null){
-                        sendButton.textContent = "Updated!";
+                        sendButton.textContent = "Thank you!";
                     }
                     else{
                         deliveryError.innerHTML = "It seems there is an issue with the delivery, please contact us!";
@@ -103,7 +103,7 @@ const insertBenefitByIdAndOpenBenefitsOverlay = async function(content) {
                 else{
                     let insertOrderSuccess = await insertOrder(deliveryName.value.trim(), deliveryMailing.value.trim(), deliveryPhoneNumber.value.trim(), deliveryContact.value.trim(), localStorage.getItem("wallet"));
                     if(insertOrderSuccess == null){
-                        sendButton.textContent = "Updated";
+                        sendButton.textContent = "Thank you!";
                     }
                     else{
                         deliveryError.innerHTML = "It seems there is an issue with the delivery, please contact us!";
@@ -205,6 +205,7 @@ const insertBenefitByIdAndOpenBenefitsOverlay = async function(content) {
             console.log('pbi: ', localStorage.getItem('pbi'));
             modifyBenefits(); 
         }
+        // enter the discourse button
     }
 
 

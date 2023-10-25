@@ -21,5 +21,6 @@ function closeOpenBenefitAndOpenCongratz() {
         disableBlurAndEnableScroll();
     }
     openCongratzOverlay();
+
 }
 export {closeOpenBenefitAndOpenCongratz}
