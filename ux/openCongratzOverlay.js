@@ -1,5 +1,5 @@
 import {modifyBenefits} from './modifyBenefits';
-import { blurAndPreventScroll, disableBlurAndEnableScroll } from "./blurAndPreventScrolling.js";
+import { blurAndPreventScroll } from "./blurAndPreventScrolling.js";
 
 const openCongratzOverlay = async function(physicalBookIncluded) {
     if (physicalBookIncluded == false || localStorage.getItem('pbi') == false){
@@ -27,6 +27,13 @@ const openCongratzOverlay = async function(physicalBookIncluded) {
     if(congratzMessage){
         // enable message to be seen
         congratzMessage.style.display = "block";   
+    }
+    let enterTheDiscourseButton = document.getElementById('enterTheDiscourseButton');
+    if(enterTheDiscourseButton){
+        enterTheDiscourseButton.addEventListener('click', function(){
+            console.log('Last step was clicked!');
+            window.open('https://discord.gg/phazawkuSq', '_blank').focus();
+        });
     }
 }
 export {openCongratzOverlay} 

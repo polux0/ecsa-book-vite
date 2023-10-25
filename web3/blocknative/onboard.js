@@ -3,6 +3,7 @@ import injectedModule, { ProviderLabel } from '@web3-onboard/injected-wallets'
 import walletConnectModule from '@web3-onboard/walletconnect'
 import coinbaseWalletModule from '@web3-onboard/coinbase'
 import magicModule from '@web3-onboard/magic'
+// import logoSVG from "../../imgs/logo.svg";
 
 const injected = injectedModule({
   // display specific unavailable wallets
@@ -57,8 +58,8 @@ const chains = [
 
 const appMetadata = {
   name: 'Economic Space Agency',
-  icon: '<svg />',
-  logo: '<svg />',
+  icon: 'https://ecsa-nft.mypinata.cloud/ipfs/QmVpHdfo8sK7f8i696toFhS8ujYBFEMpGPs59hey1vGuV2',
+  logo: 'https://ecsa-nft.mypinata.cloud/ipfs/QmY4J21VH43hinqznakNWV3jcmH8HBST6bW2gyWWBD3BUt',
   description: 'Protocols for Postcapitalist Expression',
   recommendedInjectedWallets: [
     { name: 'Coinbase', url: 'https://wallet.coinbase.com/' },

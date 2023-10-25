@@ -1,6 +1,8 @@
 import { ethers } from 'ethers';
 
-const RPC_URL = import.meta.env.VITE_RPC_URL;
+const VITE_RPC_URL_SEPOLIA = import.meta.env.VITE_RPC_URL_SEPOLIA;
+const VITE_RPC_URL_POLYGON = import.meta.env.VITE_RPC_URL_POLYGON;
+const VITE_NETWORK = import.meta.env.VITE_NETWORK;
 const CONTRACT_ADDRESS = import.meta.env.VITE_NFT_CONTRACT_ADDRESS;
 
 const contractABI = [
@@ -823,7 +825,8 @@ const contractABI = [
   
 
 const hasMinted = async (address) => {
-    const provider = new ethers.AlchemyProvider("sepolia", RPC_URL);
+    const RPC_URL = VITE_NETWORK == "sepolia" ? VITE_RPC_URL_SEPOLIA : VITE_RPC_URL_POLYGON;
+    const provider = new ethers.AlchemyProvider(VITE_NETWORK, RPC_URL);
     const nftContract = new ethers.Contract(CONTRACT_ADDRESS, contractABI, provider);
     let final = await nftContract.hasMinted(address);
     console.log('final: ', final);
