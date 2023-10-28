@@ -207,6 +207,14 @@ const insertBenefitByIdAndOpenBenefitsOverlay = async function(content) {
         }
         // enter the discourse button
     }
+    let enterTheDiscourseButton = document.getElementById('enterTheDiscourseButton');
+    console.log('fetched enterTheDiscourseButton', enterTheDiscourseButton);
+    if(enterTheDiscourseButton){
+        enterTheDiscourseButton.addEventListener('click', function(){
+            console.log('Last step was clicked!');
+            window.open('https://discord.gg/phazawkuSq', '_blank').focus();
+        });
+    }
 
 
     // delivery details related
