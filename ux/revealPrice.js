@@ -65,6 +65,7 @@ function replaceRevealPriceButtonWithActualPrice(revealedPrice){
     if(revealPriceDiv){
         if(revealPriceButton){
             revealPriceButton.innerHTML = `Price: ${revealedPrice} ETH`;
+            localStorage.setItem('priceRevealed', true);
         }
     }
 }

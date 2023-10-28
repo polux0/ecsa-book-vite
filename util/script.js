@@ -500,6 +500,7 @@ fetch('glossary.json')
                 deselectPhysicalBook();
                 replaceRevealPriceButtonWithActualPriceReverse();
                 initiateListenersForSliderAndBookIncluded();
+                localStorage.removeItem('priceRevealed');
                 // resetBenefits();
 
                 localStorage.setItem('tokenId', `${p+1}`);

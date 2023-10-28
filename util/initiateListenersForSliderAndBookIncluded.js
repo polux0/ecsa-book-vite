@@ -8,14 +8,24 @@ function initiateListenersForSliderAndBookIncluded (){
         let finalPrice = getFinalPrice();
         let revealPriceButton = document.getElementById('revealPriceButton');
         if(revealPriceButton){
-            revealPriceButton.innerHTML = `Price: ${finalPrice} ETH`;
+            if(localStorage.getItem('priceRevealed') == 'true'){
+                revealPriceButton.innerHTML = `Price: ${finalPrice} ETH`;
+            }
+            else{
+                console.log('could not find reveal price');
+            }
         }
     });
     checkbox.addEventListener('change', function(){
         let finalPrice = getFinalPrice();
         let revealPriceButton = document.getElementById('revealPriceButton');
         if(revealPriceButton){
-            revealPriceButton.innerHTML = `Price: ${finalPrice} ETH`;
+            if(localStorage.getItem('priceRevealed') == 'true'){
+                revealPriceButton.innerHTML = `Price: ${finalPrice} ETH`;
+            }
+            else{
+                console.log('could not find reveal price');
+            }
         }
     });
 
