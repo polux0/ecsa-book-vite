@@ -23,7 +23,7 @@ async function handleInvitations(address, invitationId, tokenId, physicalBookInc
             return "Invalid invitation!";
         }
     } else {
-        return "Invitations are active, but no invitation is provided.";
+        return `Sorry, you need an invitation to co-publish! <a href="https://economic-space-agency.gitbook.io/about-co-publishing-units-of-discourse/faq#invites" target="_blank">How to get an invitation?</a>`;
     }
 }
 export { handleInvitations };

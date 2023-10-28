@@ -88,7 +88,7 @@ async function submitSelection() {
                     withoutReservationAndInvitationError = "Token is still reserved";
                 }
                 else if(invitationsActive){
-                    withoutReservationAndInvitationError = "Invitations are still active";
+                    withoutReservationAndInvitationError = `Sorry, you need an invitation to co-publish! <a href="https://economic-space-agency.gitbook.io/about-co-publishing-units-of-discourse/faq#invites" target="_blank">How to get an invitation?</a>`;
                 }
                 else{
                     withoutReservationAndInvitationError = await handleWithoutInvitationOrReservation(address, reservationsActive, invitationsActive, tokenId, physicalBookIncluded, chosenPrice);
