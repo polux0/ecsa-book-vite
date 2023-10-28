@@ -8,8 +8,8 @@ let imperialCoreBookPrice = import.meta.env.VITE_IMPERIAL_CORE_BOOK_PRICE;
 
 function calculateRevealPrice(){
 
-    disableSlider();
-    disableCheckbox();
+    // disableSlider();
+    // disableCheckbox();
     let colonisationLevel = getColonizationLevel();
     let bookSelected = getPhysicalBookIncluded();
     let finalPrice;

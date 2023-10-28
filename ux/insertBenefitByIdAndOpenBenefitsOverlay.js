@@ -73,6 +73,7 @@ const insertBenefitByIdAndOpenBenefitsOverlay = async function(content) {
 
             let wallet = localStorage.getItem("wallet");
             let existingOrder = await getOrderByWallet(wallet);
+            let orderUpdateOrPost;
             if(existingOrder){
                 console.log("existing order: ", existingOrder);
                 sendButton.textContent = "Update ➹";
