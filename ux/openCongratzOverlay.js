@@ -28,5 +28,12 @@ const openCongratzOverlay = async function(physicalBookIncluded) {
         // enable message to be seen
         congratzMessage.style.display = "block";   
     }
+    let enterTheDiscourseButton = document.getElementById('enterTheDiscourseButton');
+    if(enterTheDiscourseButton){
+        enterTheDiscourseButton.addEventListener('click', function(){
+            console.log('Last step was clicked!');
+            window.open('https://discord.gg/phazawkuSq', '_blank').focus();
+        });
+    }
 }
 export {openCongratzOverlay} 

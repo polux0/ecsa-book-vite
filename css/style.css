@@ -295,7 +295,7 @@
         } 
     }
     #tiersSubmitButton{
-        margin-top: 3vh;
+        /* margin-top: 3vh; */
         float: right;
     }
     #congratzOverlay{
@@ -429,7 +429,7 @@
     }
 
     #secondaryNav nav{
-        box-shadow: 2px -1px 12px rgba(0,0,0,0.5); 
+        box-shadow: 6px -1px 6px rgba(0,0,0,0.35);
     }
 
     #secondaryNav a {
@@ -793,7 +793,7 @@
     }
 
     .available p:hover{
-        opacity: 0.75;
+        opacity: 1;
         filter: blur(0px);
     }
 
@@ -804,7 +804,7 @@
     }
 
     .available > h5:hover{
-        opacity: 0.75;
+        opacity: 1;
         filter: blur(0px);
     }
 
@@ -876,13 +876,14 @@
         overflow-y: scroll;
         padding: 0.5em 0.5em 0.7em 0.5em;
         margin-top: -6px;
-        z-index: 5;
+        z-index: 12;
         line-height: 1.3em;
         font-style: normal !important;
+        transition: opacity 200ms;
       }
   
       .tooltip:hover .definition {
-        opacity: 1;
+        opacity: 1 !important;
         pointer-events: all;
       }
   
@@ -1156,6 +1157,15 @@
     display: block;
     margin-bottom: 12px;
 }
+
+#dl{
+    text-decoration: none;
+}
+
+#downloadPDF{
+    margin-top: 3em;
+}
+
 .postDeliveryDetails{
     font-size: 1em;
     margin: 0 auto;
@@ -1221,6 +1231,7 @@
     align-self: center;
 }
 .aboutOverlayBack{
+    border: none !important;
     margin-top: 3vh;
     align-self: flex-start;
 }
@@ -1244,6 +1255,7 @@ p.pbenefit:hover {
 
 #benefitsPackage{
     border-bottom: 1px solid var(--c1);
+    border-top: none;
 }
 
 b {
@@ -1266,15 +1278,15 @@ b {
 }
 .aboutContent{
     padding: 3vw;
-    margin-top: 34px;
+    padding-top: 50px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    line-height: 1.45em;
+    line-height: 1.35em;
 }
 .aboutOverlayNext{
     margin-top: 3vh;
-    align-self: flex-end;
+    float: right;
 }
 .aboutOverlayPrev {
     margin-top: 3vh;
@@ -1410,6 +1422,7 @@ input:focus{
         margin-top: 50px !important;
     } 
 }
+
 #benefit6{
     border:1px solid;
 }
@@ -1432,4 +1445,33 @@ input:focus{
     #includePhysicalBookChoise{
         margin-right: 27px;
     }
+}
+/* trying to fix issue in google chrome */
+.asci {
+    font-family: 'Courier New', Courier, monospace;
+    white-space: pre;
+}
+/* trying to fix issue with 1st about overlay on Galaxy fold */
+
+@media (max-width: 280px) {
+    #aboutContent1 {
+      overflow-y: auto;
+    }
+    #aboutOverlayNext{
+        margin-top: 3vh;
+    }
+    /* #hiddenBookIndex{
+        display: none;
+    } */
+    
+    /* #bookIndex{
+        display: none;
+    } */
+}
+#benefitsPackage{
+    border-top:1px solid;
+}
+#enterTheDiscourseButton{
+    border:none !important;
+    align-self: flex-end;
 }
