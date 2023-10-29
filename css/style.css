@@ -1185,6 +1185,14 @@
     transform: translateY(-50%);
     cursor: pointer;
 }
+
+.revealedPrice{
+    color: var(--bg) !important;
+    background-color: var(--c1) !important;
+    cursor: default !important;
+}
+
+
 /* #invitation-link1{
     font-size:0.7rem;
     margin-top: 4em;
