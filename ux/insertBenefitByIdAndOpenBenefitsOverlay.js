@@ -202,7 +202,7 @@ const insertBenefitByIdAndOpenBenefitsOverlay = async function(content) {
             dl.href = downloadURL;
         }
 
-        if (localStorage.getItem('pbi') == false){
+        if (localStorage.getItem('pbi') == false || localStorage.getItem('alreadyReceivedPhysicalBook' == 'true')){
             console.log('pbi: ', localStorage.getItem('pbi'));
             modifyBenefits(); 
         }
