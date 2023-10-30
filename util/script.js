@@ -4,7 +4,6 @@ import { removeBlurFilter, setOrbBorderToSignalThatUnitIsPublished } from '../we
 import { enableSlider, enableCheckbox, replaceRevealPriceButtonWithActualPriceReverse } from "../ux/revealPrice.js";
 import { deselectPhysicalBook } from '../ux/deselectPhysicalBook.js';
 import { blurAndPreventScroll } from "../ux/blurAndPreventScrolling.js";
-
 import { resetBenefits } from '../ux/modifyBenefits.js';
 
 //Get the root style to access css variables
