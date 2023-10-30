@@ -1005,6 +1005,9 @@
 .custom-radio {
     display: none;
 }
+.custom-radio1{
+    display:none;
+}
 
 /* Style the label to position the custom radio and text */
 #selectPhsyicalBookLabel {
@@ -1016,6 +1019,15 @@
     margin-right: 35px;
 }
 
+#alreadyReceivedPhsyicalBookLabel{
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+}
+
+#alreadyReceivedPhysicalBookChoise{
+    margin-right: 35px;
+}
 /* Create a new custom radio circle */
 
 .custom-radio + span:before {
@@ -1035,6 +1047,34 @@
 /* Create the radio circle when checked */
 /* Was before */
 .custom-radio:checked + span:before {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #dcdcdc;
+}
+
+.custom-radio1 + span:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid #cbc7c7;
+    border-radius: 50%;
+    background-color: transparent;
+}
+
+
+/* Create the radio circle when checked */
+/* Was before */
+.custom-radio1:checked + span:before {
     content: '';
     position: absolute;
     left: 6px;
@@ -1070,6 +1110,30 @@
         border-radius: 50%;
         background-color: #dcdcdc;
     }
+    .custom-radio1 + span:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 40%;
+        transform: translateY(-50%);
+        width: 17px;
+        height: 17px;
+        border: 2px solid #cbc7c7;
+        border-radius: 50%;
+        background-color: transparent;
+    }
+    .custom-radio1:checked + span:before {
+        content: '';
+        position: absolute;
+        left: 6px;
+        top: 40%;
+        transform: translateY(-50%);
+        width: 13px;
+        height: 13px;
+        border-radius: 50%;
+        background-color: #dcdcdc;
+    }
+    
     .buttonload {
         margin-left:50% !important;
       }
@@ -1454,6 +1518,9 @@ input:focus{
         margin-top:15px;
     }
     #includePhysicalBookChoise{
+        margin-right: 27px;
+    }
+    #alreadyReceivedPhysicalBookChoise{
         margin-right: 27px;
     }
 }

@@ -73,6 +73,7 @@ const insertBenefitByIdAndOpenBenefitsOverlay = async function(content) {
 
             let wallet = localStorage.getItem("wallet");
             let existingOrder = await getOrderByWallet(wallet);
+            let orderUpdateOrPost;
             if(existingOrder){
                 console.log("existing order: ", existingOrder);
                 sendButton.textContent = "Update ➹";
@@ -201,7 +202,7 @@ const insertBenefitByIdAndOpenBenefitsOverlay = async function(content) {
             dl.href = downloadURL;
         }
 
-        if (localStorage.getItem('pbi') == false){
+        if (localStorage.getItem('pbi') == false || localStorage.getItem('alreadyReceivedPhysicalBook' == 'true')){
             console.log('pbi: ', localStorage.getItem('pbi'));
             modifyBenefits(); 
         }

@@ -1,13 +1,21 @@
 import { isTokenMinted } from '../web3/getMintedTokens.js'
 import { getMintedTokens } from '../web3/getMintedTokens.js';
 import { removeBlurFilter, setOrbBorderToSignalThatUnitIsPublished } from '../web3/ui-interactions/index.js';
-import { enableSlider, enableCheckbox, replaceRevealPriceButtonWithActualPriceReverse } from "../ux/revealPrice.js";
+import { enableSlider, enablePhysicalBookCheckbox, enableAlreadyReceivedPhysicalBookCheckbox, replaceRevealPriceButtonWithActualPriceReverse } from "../ux/revealPrice.js";
 import { deselectPhysicalBook } from '../ux/deselectPhysicalBook.js';
 import { blurAndPreventScroll } from "../ux/blurAndPreventScrolling.js";
+<<<<<<< HEAD
+=======
+import { disableOtherCheckBox, resetCheckBoxes } from '../ux/disableOtherCheckBox.js';
+
+>>>>>>> already-received-physical-book
 import { resetBenefits } from '../ux/modifyBenefits.js';
+import { initiateListenersForSliderAndBookIncluded } from './initiateListenersForSliderAndBookIncluded';
 
 //Get the root style to access css variables
 let root  = document.documentElement;
+
+disableOtherCheckBox();
 
 //Change color scheme
 const colorSchemes = [
@@ -493,10 +501,15 @@ fetch('glossary.json')
                 if(tiersSubmitButton){
                     tiersSubmitButton.innerHTML = "Co-publish";
                 }
+                resetCheckBoxes();
                 enableSlider();
-                enableCheckbox();
+                enablePhysicalBookCheckbox();
+                enableAlreadyReceivedPhysicalBookCheckbox();
                 deselectPhysicalBook();
                 replaceRevealPriceButtonWithActualPriceReverse();
+                initiateListenersForSliderAndBookIncluded();
+                localStorage.removeItem('priceRevealed');
+                localStorage.removeItem('pbi');
                 // resetBenefits();
 
                 localStorage.setItem('tokenId', `${p+1}`);
