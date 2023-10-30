@@ -8,7 +8,7 @@ function setEconomicMediaGlowListeners() {
     if (!economicMediaButton.classList.contains('activeButton')) {
         containers.forEach(container => {
             container.addEventListener('mouseover', function(event) {
-                if (event.target.tagName === 'P') {
+                if (event.target.tagName === 'P' && event.target.style.filter !== 'none') {
                     // Check if the last glow was more than 3 seconds ago
                     const currentTime = new Date().getTime();
                     if (currentTime - lastGlowTime < 3000) return; // 3s glow restriction
