@@ -4,11 +4,7 @@ import { removeBlurFilter, setOrbBorderToSignalThatUnitIsPublished } from '../we
 import { enableSlider, enablePhysicalBookCheckbox, enableAlreadyReceivedPhysicalBookCheckbox, replaceRevealPriceButtonWithActualPriceReverse } from "../ux/revealPrice.js";
 import { deselectPhysicalBook } from '../ux/deselectPhysicalBook.js';
 import { blurAndPreventScroll } from "../ux/blurAndPreventScrolling.js";
-<<<<<<< HEAD
-=======
 import { disableOtherCheckBox, resetCheckBoxes } from '../ux/disableOtherCheckBox.js';
-
->>>>>>> already-received-physical-book
 import { resetBenefits } from '../ux/modifyBenefits.js';
 import { initiateListenersForSliderAndBookIncluded } from './initiateListenersForSliderAndBookIncluded';
 
