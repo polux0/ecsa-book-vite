@@ -28,10 +28,10 @@ function getBenefitBasedOnId(id){
 
         `
         <p>
-        <b>3. Participation in the discourse development and IRL meets</b>
+        <b>3. Participation in the discourse development and in-person meetings</b>
         <br>
         <br>
-        Your unit gives you the right to access the Discourse Development Discord, i.e., to participate in the development of the discourse by sharing your insights and engaging in the dialogue. This allows you to shape the discourse and contribute to the co-publishing of the book. We have curated public discussions with interesting guests and a Discord channel where we developed the discourse. You can also just hangaround. We also organise IRL meets. The next one is going to be in New York City in early December. Please follow notifications in the <a href="https://t.me/economicspaceagency" target="_blank"> ECSA Telegram </a>, <a href="https://twitter.com/ecospaceagency" target="_blank"> ECSA Twitter </a>, and <a href="https://discord.gg/DuJEju5z" target="_blank"> Discourse Development Discord. </a><br>
+        Your unit grants you access to the Discourse Development Discord, a community where unit holders will shape the discourse of the book by exchanging ideas, sharing insights and engaging in dialogue. As part of the activities of the node, the ECSA team will curate public discussions with interesting guests as well as facilitate Q&A with the authors. The community that forms in the discord will shape its own future, with the possibility of becoming a DAO that holds a portion of the sale’s funds, or even becoming a node in the emerging ECSA economic network!<br>
         </p>
         `,
 
@@ -74,7 +74,7 @@ function getBenefitBasedOnId(id){
         <b>6. The print book published by Minor Compositions / Autonomedia (Colchester / New York / Port Watson, 2023)</b>
         <br>
         <br>
-        If you have so selected, your unit offers you also a special edition physical copy of the book delivered to your door.
+        If you have selected it as an option, your unit includes the delivery of a physical special edition copy of the book delivered to your door. This edition will only enter production after finishing the sale. An estimated timeline and updates on the process will be communicated inside the discourse community.
         <br>
         <br>
         Please leave here your name and address where you would like it be delivered:
