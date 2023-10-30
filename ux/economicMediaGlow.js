@@ -1,7 +1,5 @@
-let hoverTimer; // This will store the timer for delay
 let glowDurationTimer; // This will store the timer for glow duration
 let lastGlowTime = 0; // To store the last time the glow effect occurred
-const delayDuration = 3000; // Set delay to 3000ms (5s)
 
 function setEconomicMediaGlowListeners() {
     const containers = document.querySelectorAll('.available');
@@ -13,30 +11,22 @@ function setEconomicMediaGlowListeners() {
                 if (event.target.tagName === 'P') {
                     // Check if the last glow was more than 3 seconds ago
                     const currentTime = new Date().getTime();
-                    if (currentTime - lastGlowTime < delayDuration) return;
+                    if (currentTime - lastGlowTime < 3000) return; // 3s glow restriction
 
-                    // Clear any existing timers
-                    clearTimeout(hoverTimer);
-                    clearTimeout(glowDurationTimer);
+                    lastGlowTime = currentTime; // Update the last glow time
 
-                    // Start a new timer for delay
-                    hoverTimer = setTimeout(() => {
-                        handleMouseOver(economicMediaButton);
-                        lastGlowTime = new Date().getTime(); // Update the last glow time
+                    handleMouseOver(economicMediaButton);
 
-                        // Start the glow duration timer
-                        glowDurationTimer = setTimeout(() => {
-                            handleMouseOut(economicMediaButton);
-                        }, 500); // 0.5s glow duration
-
-                    }, delayDuration);
+                    // Start the glow duration timer
+                    glowDurationTimer = setTimeout(() => {
+                        handleMouseOut(economicMediaButton);
+                    }, 1000); // 1s glow duration
                 }
             });
 
             container.addEventListener('mouseout', function(event) {
                 if (event.target.tagName === 'P') {
-                    // Clear the timers
-                    clearTimeout(hoverTimer);
+                    // Clear the glow duration timer
                     clearTimeout(glowDurationTimer);
                     handleMouseOut(economicMediaButton);
                 }
@@ -49,7 +39,7 @@ function handleMouseOver(element) {
     if (!element.classList.contains('activeButton')) {
         element.style.background = 'white';
         element.style.boxShadow = '0 0 100px white';
-        element.style.transition = 'background 0.5s ease, box-shadow 0.5s ease';
+        element.style.transition = 'background 1s ease, box-shadow 1s ease';
     } else {
         console.log('element is already active', element);
     }
