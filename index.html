@@ -117,9 +117,16 @@
             </p>
             <!-- Slider container -->
             <div class="slider-container">
-                <label for="left-slider"><a href="https://economic-space-agency.gitbook.io/about-co-publishing-units-of-discourse/faq#how-much-does-it-cost-to-acquire-a-unit-of-discourse" target="_blank">Pay less</a></label>
+                <!-- was before & was good -->
+                <!-- <label for="left-slider"><a href="https://economic-space-agency.gitbook.io/about-co-publishing-units-of-discourse/faq#how-much-does-it-cost-to-acquire-a-unit-of-discourse" target="_blank">Periphery</a></label> -->
+                <!-- was before & was good -->
+                <label for="left-slider"><span class="tooltip"><span>Periphery</span><button class="term" id="peripheryTerm"></button><span class="definition" style="left: auto; margin-top:3px;">“More periphery” is meant for people with lower access to wealth in the global context (as a general rule of thumb: most people in the Global South and people who’ve been systematically disadvantaged or are poor/working class in the Global North. If you would like more detailed explanation, please visit our gitbook by clicking <a href='https://economic-space-agency.gitbook.io/about-co-publishing-units-of-discourse/faq#how-much-does-it-cost-to-acquire-a-unit-of-discourse' target="_blank">here.</a></span></span></label>
+
                 <input type="range" min="0" max="100" value="50" class="slider" id="colonizationSlider">
-                <label for="right-slider"><a href="https://economic-space-agency.gitbook.io/about-co-publishing-units-of-discourse/faq#how-much-does-it-cost-to-acquire-a-unit-of-discourse" target="_blank">Pay more</a></label>
+                <!-- was before & was good -->
+                <!-- <label for="right-slider"><a href="https://economic-space-agency.gitbook.io/about-co-publishing-units-of-discourse/faq#how-much-does-it-cost-to-acquire-a-unit-of-discourse" target="_blank">Imperial Core</a></label> -->
+                <!-- was before & was good -->
+                <label for="right-slider"><span class="tooltip"><span>Imperial core</span><button class="term" id="imperialCoreTerm"></button><span class="definition" style="left: auto; right: 0px; margin-top:3px">“More imperial core” is meant for people with medium to high access to wealth in the global context (as a general rule of thumb: middle class and upper/owning class people in the Global North, anyone with investments or retirement savings, anyone who expects an inheritance). If you would like more detailed explanation, please visit our gitbook by clicking <a href='https://economic-space-agency.gitbook.io/about-co-publishing-units-of-discourse/faq#how-much-does-it-cost-to-acquire-a-unit-of-discourse' target="_blank">here.</a></span></span></label>
             </div>
             <!-- Slider container -->
             <!-- Price Tiers Selection -->
@@ -224,7 +231,7 @@
         <nav class="secondaryNavMenu" id="navBook">
             <a href="https://www.minorcompositions.info/?p=1195" target="_blank">physical<br>book</a>
             <a href="https://matslats.net/ecsa-economic-grammar-multitude-protocols-postcapitalist-economic-espression-audiobook" target="_blank">audio<br>book</a>
-            <a href="#" target="_blank">epub</a>
+            <a href="ipfs://QmSnPxTQQZZkzHePDsU2NowCuiNZuZ4TB2FSR8D48vY1aN" target="_blank">epub</a>
             <a href="https://ecsa-nft.mypinata.cloud/ipfs/QmUhhFyZ8T9qSaQ5E8ep9pm3Yy36cPk9EFZmYhqxCpMK4N" target="_blank">pdf</a>
         </nav>
 
@@ -7436,6 +7443,27 @@
     // and update the content of their child sup tags
     for (let i = startIndex; i < allFootNotes.length; i++) {
         allFootNotes[i].querySelector('sup').innerHTML = i - startIndex + 1;
+    }
+
+    // Updating the other: 
+    // Get all elements with class 'footNote'
+    let footnotes = document.getElementsByClassName('footNote');
+    
+    // Find the index of the starting element (id 'fn3')
+    let startIndex1 = 0;
+    for (let i = 0; i < footnotes.length; i++) {
+        if (footnotes[i].id === 'fn3') {
+            startIndex1 = i;
+            break;
+        }
+    }
+    
+    // Update the starting element and all subsequent elements
+    for (let i = startIndex1; i < footnotes.length; i++) {
+        let currentVal = parseInt(footnotes[i].innerText, 10);
+        if (!isNaN(currentVal)) {
+            footnotes[i].innerText = currentVal - 2;
+        }
     }
 
 </script>

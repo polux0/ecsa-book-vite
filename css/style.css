@@ -1523,6 +1523,14 @@ input:focus{
     #alreadyReceivedPhysicalBookChoise{
         margin-right: 27px;
     }
+    #peripheryTerm{
+        padding: unset;
+        width: 2.5em !important;
+    }
+    #imperialCoreTerm{
+        padding: unset;
+        width: 1.6em !important;
+    }
 }
 /* trying to fix issue in google chrome */
 .asci {
@@ -1552,4 +1560,12 @@ input:focus{
 #enterTheDiscourseButton{
     border:none !important;
     align-self: flex-end;
+}
+#peripheryTerm{
+    padding: unset;
+    width: 3em;
+}
+#imperialCoreTerm{
+    padding: unset;
+    width: 4.3em;
 }
