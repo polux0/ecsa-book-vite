@@ -77,7 +77,7 @@ function replaceRevealPriceButtonWithActualPrice(revealedPrice){
     if(revealPriceDiv){
         if(revealPriceButton){
             revealPriceButton.className = 'revealedPrice';
-            revealPriceButton.innerHTML = `Price: ${revealedPrice} ETH`;
+            revealPriceButton.innerHTML = `Price: ${revealedPrice} Matic`;
             localStorage.setItem('priceRevealed', true);
         }
     }
